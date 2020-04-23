@@ -1,0 +1,168 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+}
+.navBar{
+	background-color: #5cb85c;
+}
+#linkcolor{
+	color:white;
+	background-color: #5cb85c;
+}
+#linkcolor:hover{
+	color:black;
+}
+#linkcolor:active{
+	color:green;
+}
+.centered {
+  position: absolute;
+  color:white;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.title {
+  color: grey;
+  font-size: 18px;
+}
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  text-align: center;
+  font-family: arial;
+}
+.datestyle{
+	float: right;
+	color:grey;
+}
+.questionstyle{
+	padding:10px;
+}
+.viewAllQuestionButton{
+	border-radius: 0px;
+	box-shadow: 2px 11px 10px 3px rgba(0,0,0,.2);
+}
+.allQuestionButtonPlace{
+	text-align: right;
+	padding:1px;
+}
+.categoryBoxes{
+	box-shadow: 1px 19px 15px 9px rgba(0,0,0,.2);
+	background-color: white;
+}
+/* Style all input fields */
+.login-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+}
+
+/* Style the submit button */
+.login-submit {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Style the container for inputs */
+.login-container {
+  background-color: #f1f1f1;
+  padding: 20px;
+}
+
+/* The message box is shown when the user clicks on the password field */
+#message {
+  display:none;
+  background: #f1f1f1;
+  color: #000;
+  position: relative;
+  padding: 20px;
+  margin-top: 10px;
+}
+
+#message-p {
+  padding: 10px 35px;
+  font-size: 18px;
+}
+
+/* Add a green text color and a checkmark when the requirements are right */
+.valid {
+  color: green;
+}
+
+.valid:before {
+  position: relative;
+  left: -35px;
+  content: "✔";
+}
+
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+  color: red;
+}
+
+.invalid:before {
+  position: relative;
+  left: -35px;
+  content: "✖";
+}
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 45px;
+  border-radius: 10px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 17px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #fff;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 8px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 8px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 32px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 56px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
+}
