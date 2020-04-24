@@ -38,8 +38,11 @@ include "Header.php";
 			        <textarea class="form-control" rows="5" id="contentAns" name="cmnt" required></textarea>
 			      </div>
 			  	</div>
-			  	<p>&nbsp;</p>
-			  	<button type="button" class="btn btn-primary btn-lg" style="float:right;">Upload</button>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12">
+			  	<p style="padding-left: 30px;">Auto Saved(Not Published)</p>
+			  	<button type="button" class="btn btn-primary btn-md" style="float:right;margin-left:20px;">Publish</button>
+			  	<button type="button" class="btn btn-danger btn-md" style="float:right;right: 5px;">Cancel</button>
 			</div>
 		</div>
 	</div>
