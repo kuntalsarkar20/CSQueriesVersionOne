@@ -37,6 +37,19 @@
 				        <input class="form-control" type="password" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
 				      </div>
 				  	</div>
+				  	<div id="message">
+					  <h4>Password must contain the following:</h4>
+					  <div class="row">
+						  	<div class="col-sm-6">
+							  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+							  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+							</div>
+							<div class="col-sm-6">
+							  <p id="number" class="invalid">A <b>number</b></p>
+							  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+							</div>
+						</div>
+					</div>
 
 				  	<label for="psw">Confirm Password</label>
 				    <div class="form-group">
@@ -49,27 +62,36 @@
 				  </form>
 				</div>
 
-				<div id="message">
-				  <h3>Password must contain the following:</h3>
-				  <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
-				  <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
-				  <p id="number" class="invalid">A <b>number</b></p>
-				  <p id="length" class="invalid">Minimum <b>8 characters</b></p>
-				</div>
 			</div>
 		</div>
 	</div>
 </section>
 <script type="text/javascript">
-	function usernameValidation(divId,value){
-		if(value==''){
+	function usernameValidation(divId,uvalue){
+		if(uvalue==''){
 			usernameValidationFailed(divId);
 		}else{
 			if(typeAndLengthCheck(divId)){
-				usernameValidationSucess(divId);
-				document.getElementById('msgForWrongUsername').innerHTML="";
+				$.ajax({
+                type:'POST',
+                url:'<?php echo base_url("userManagement/accessAccount/isUsernameAvailable"); ?>',
+                data:{'username':uvalue},
+                success:function(data){
+                	if(data=="false"){
+						usernameValidationSucess(divId);
+						document.getElementById('msgForWrongUsername').innerHTML="";
+					}else{
+						document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username not Available.";
+						usernameValidationFailed(divId);
+					}
+                },
+                error:function(data){
+                	document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username not Available.";
+					usernameValidationFailed(divId);
+                }
+            });
 			}else{
-				document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username Can only Contain alphaNumeric characters and Underscores and length should be less than 20 Characters.";
+				document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username Can only Contain alphaNumeric characters and Underscores and length should be between 4 and 20 Characters.";
 				usernameValidationFailed(divId);
 			}
 		}
@@ -108,8 +130,8 @@
 		 var upperCaseLetters = /[A-Z]/g;
 		  var numbers = /[0-9]/g;
 		 var usernameValue = document.getElementById(divisionId).value;
-		if(usernameValue.length<=15){
-			if(usernameValue.match(lowerCaseLetters) || usernameValue.match(upperCaseLetters) || usernameValue.match(/_/g)|| usernameValue.match(numbers)){
+		if(usernameValue.length<=15 && usernameValue.length>=4){
+			if(usernameValue.match('^[A-Z0-9a-z.\s_-]+$')){
 				return true;
 			}else{
 				return false;

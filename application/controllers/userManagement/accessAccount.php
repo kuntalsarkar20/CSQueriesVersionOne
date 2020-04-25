@@ -15,4 +15,13 @@ class accessAccount extends CI_Controller {
 		$this->load->view('userManagementViews/Login');
 		$this->load->view('templates/Footer');
 	}
+	public function isUsernameAvailable()
+	{
+		$username = $this->input->post('username');
+		if($username=='kuntal_sarkar'){
+			return print_r ("true");
+		}else{
+			return print_r ("false");
+		}
+	}
 }
