@@ -24,4 +24,13 @@ class accessAccount extends CI_Controller {
 			return print_r ("false");
 		}
 	}
+	public function insertUserData(){     //Sending User registration data into database
+		if(isset($_POST['submit'])){      //if user clicks the submit button on signup page
+			$displayName=strip_tags($_POST['displayName']);
+			echo $displayName;
+		}
+		// else{   //if anyone tries to run form_validate function directly.
+		// 	redirect(base_url()."signup");
+		// }
+	}
 }

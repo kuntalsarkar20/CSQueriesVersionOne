@@ -7,25 +7,25 @@
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="login-container">
 					<center><h3 style="font-weight: bold;">Sign Up</h3></center>
-				  <form class="form-horizontal">
+				  <form class="form-horizontal" action="userManagement/accessAccount/insertUserData" method="POST">
 				    <label for="usrname">Your Name</label>
 				    <div class="form-group">
 				      <div class="col-sm-12">
-				        <input class="form-control" type="text" required>
+				        <input class="form-control" type="text" name="displayName"required>
 				      </div>
 				  	</div>
 
 				    <label for="usrname">Email Address</label>
 				    <div class="form-group">
 				      <div class="col-sm-12">
-				        <input class="form-control" type="email" required>
+				        <input class="form-control" type="email" name="userEmail"required>
 				      </div>
 				  	</div>
 
 				    <label for="usrname">Username</label>
 					<div class="form-group" id="usernameSuccess">
 				      <div class="col-sm-12">
-				        <input class="form-control" id="focusedInput" type="text" onkeyup="usernameValidation(this.id,this.value)">
+				        <input class="form-control" id="focusedInput" type="text" onkeyup="usernameValidation(this.id,this.value)" name="usrname">
 				        <span class="" id="icon"></span>
 				      </div>
 				      <span class="" id="msgForWrongUsername"></span>
@@ -34,7 +34,7 @@
 				    <label for="psw">Password</label>
 				    <div class="form-group">
 				      <div class="col-sm-12">
-				        <input class="form-control" type="password" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+				        <input class="form-control" type="password" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="psw" required>
 				      </div>
 				  	</div>
 				  	<div id="message">
@@ -54,11 +54,11 @@
 				  	<label for="psw">Confirm Password</label>
 				    <div class="form-group">
 				      <div class="col-sm-12">
-				        <input class="form-control" type="password" id="confirm_psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+				        <input class="form-control" type="password" id="confirm_psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="confirm-psw" required>
 				      </div>
 				  	</div>
 				    
-				    <input type="submit" class="login-input login-submit" value="Submit">
+				    <input type="submit" class="login-input login-submit" value="Submit" name="submit">
 				  </form>
 				</div>
 
