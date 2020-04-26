@@ -13,8 +13,10 @@ class Profile extends CI_Controller{
 		}else if(!isset($_SESSION['username'])){		//if there is no session
 			redirect(base_url()."login");
 		}else if($this->uri->segment(1)==$_SESSION['username']){
+			$this->load->model("contentManagement/fetchContent_model");
+			$categoryDetails['category']=$this->fetchContent_model->categories();
 			$this->load->view('templates/Header',$data);
-			$this->load->view('userManagementViews/UploadContent');
+			$this->load->view('userManagementViews/UploadContent',$categoryDetails);
 			$this->load->view('templates/Footer');
 		}else{				//if there is session and also valid username
 			if(!empty($result)){

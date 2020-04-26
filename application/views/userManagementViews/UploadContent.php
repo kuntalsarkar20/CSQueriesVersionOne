@@ -1,25 +1,28 @@
 <section style="padding:80px 0px;">
 	<div class="container">
 		<div class="row">
+			<form method="post" action="#">
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<label for="psw">Select any Topic</label>
 			    <div class="form-group">
 			      <div class="col-sm-12">
 			        <select class="form-control" id="sel1">
 				        <option selected="true" disabled="disabled">Select Topic</option>
-				        <option>DBMS</option>
-				        <option>DS & Algorithm</option>
-				        <option>C</option>
-				        <option>C++</option>
+				        <?php 
+					        foreach ($category as $row) {
+								echo '<option>'.$row['CategoryName'].'</option>';
+							}
+						?>
+				        
 				      </select>
 			      </div>
-			      <h5 style="float: right;padding-right: 30px;">Topic not listed?<!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; --></h5>
+			      <h5 style="float: right;padding-right: 30px;">Topic not listed?</h5>
 			  	</div>
 			  	<p>&nbsp;</p>
 			  	<label for="psw">Your Content Heading/Question</label>
 			    <div class="form-group">
 			      <div class="col-sm-12">
-			        <textarea class="form-control" rows="5" id="comment" name="cmnt" required></textarea>
+			        <textarea class="form-control" rows="5" id="comment" name="contentName" required></textarea>
 			      </div>
 			  	</div>
 			</div>
@@ -33,15 +36,17 @@
 			  	<label for="psw">Your Content Explaination/Answer</label>
 			    <div class="form-group">
 			      <div class="col-sm-12">
-			        <textarea class="form-control" rows="5" id="contentAns" name="cmnt" required></textarea>
+			        <textarea class="form-control" rows="5" id="contentAns" name="contentDetails" required></textarea>
 			      </div>
 			  	</div>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
-			  	<p style="padding-left: 30px;">Auto Saved(Not Published)</p>
-			  	<button type="button" class="btn btn-primary btn-md" style="float:right;margin-left:20px;">Publish</button>
-			  	<button type="button" class="btn btn-danger btn-md" style="float:right;right: 5px;">Cancel</button>
+			  	<!-- <p style="padding-left: 30px;">Auto Saved(Not Published)</p> -->
+			  	<br>
+			  	<button type="button" class="btn btn-success btn-md" style="float:right;margin-left:20px;">Save & Publish</button>
+			  	<button type="button" class="btn btn-primary btn-md" style="float:right;right: 5px;" title="It will not be published until publish it.">Save</button>
 			</div>
+		</form>
 		</div>
 	</div>
 </section>
