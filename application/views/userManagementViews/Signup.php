@@ -2,6 +2,14 @@
 	<!-- <p>&nbsp;</p>
 	<p>&nbsp;</p> -->
 	<div class="container">
+		<?php
+		  if($this->uri->segment(2)=="failed"){
+		    echo '<div class="alert alert-danger alert-dismissible fade in">
+			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    <strong>Failed!</strong> Please check Your Details and try again.
+			  </div>';
+		  }
+		  ?>
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-12"></div>
 			<div class="col-lg-6 col-md-6 col-sm-12">
@@ -58,7 +66,7 @@
 				      </div>
 				  	</div>
 				    
-				    <input type="submit" class="login-input login-submit" value="Submit" name="submit">
+				    <input type="submit" class="login-input login-submit" value="Submit" id="signupbtn" name="submit">
 				  </form>
 				</div>
 
@@ -77,22 +85,26 @@
                 url:'<?php echo base_url("userManagement/accessAccount/isUsernameAvailable"); ?>',
                 data:{'username':uvalue},
                 success:function(data){
-                	if(data=="false"){
+                	if(data=="Available"){
 						usernameValidationSucess(divId);
 						document.getElementById('msgForWrongUsername').innerHTML="";
+						document.getElementById('signupbtn').disabled = false;
 					}else{
 						document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username not Available.";
+						document.getElementById('signupbtn').disabled = true;
 						usernameValidationFailed(divId);
 					}
                 },
                 error:function(data){
                 	document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username not Available.";
+                	document.getElementById('signupbtn').disabled = true;
 					usernameValidationFailed(divId);
                 }
             });
 			}else{
 				document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username Can only Contain alphaNumeric characters and Underscores and length should be between 4 and 20 Characters.";
 				usernameValidationFailed(divId);
+				document.getElementById('signupbtn').disabled = true;
 			}
 		}
 	}

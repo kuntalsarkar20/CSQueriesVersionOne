@@ -1,3 +1,18 @@
+<?php
+$profileNavMenu='<li><a href="'.base_url().'signup" id="linkcolor"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	        <li><a href="'.base_url().'login" id="linkcolor"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+if(isset($_SESSION['username'])){
+	$profileNavMenu='<li class="dropdown">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">Category <span class="caret"></span></a>
+	          <ul class="dropdown-menu navBar">
+	            <li><a href="'.base_url().'uploadcontent" id="linkcolor">Upload Content</a></li>
+	            <li><a href="#" id="linkcolor">My Questions</a></li>
+	            <li><a href="#" id="linkcolor">Profile</a></li>
+	            <li><a href="'.base_url().'userManagement/profile/logout" id="linkcolor">LogOut</a></li>
+	          </ul>
+	        </li>';
+} 
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,8 +67,7 @@
 		      </div>
 		    </form>
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="<?php echo base_url(); ?>signup" id="linkcolor"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	        <li><a href="<?php echo base_url(); ?>login" id="linkcolor"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	        <?php echo $profileNavMenu; ?>
 	      </ul>
 	    </div>
 	  </div>
