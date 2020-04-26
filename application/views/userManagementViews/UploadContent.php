@@ -6,6 +6,7 @@
 			    <div class="form-group">
 			      <div class="col-sm-12">
 			        <select class="form-control" id="sel1">
+				        <option selected="true" disabled="disabled">Select Topic</option>
 				        <option>DBMS</option>
 				        <option>DS & Algorithm</option>
 				        <option>C</option>
@@ -22,9 +23,9 @@
 			      </div>
 			  	</div>
 			</div>
-			<div class="col-lg-6 col-md-6 col-sm-12"><h4>Already Uploaded Questions From this Topic</h4>
-				<div style="height:310px;overflow: scroll;">
-					The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.The overflow property specifies whether to clip content or to add scrollbars when an element's content is too big to fit in a specified area.
+			<div class="col-lg-6 col-md-6 col-sm-12"><h4 style="font-weight: bold;">Already Uploaded Questions From this Topic</h4>
+				<div style="height:310px;overflow: scroll;border: 2px solid black;">
+					
 				</div>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">

@@ -67,6 +67,7 @@
 				  	</div>
 				    
 				    <input type="submit" class="login-input login-submit" value="Submit" id="signupbtn" name="submit">
+				    <center><p><a href="<?php echo base_url().'Login';?>">Already have an account?</a></p></center>
 				  </form>
 				</div>
 

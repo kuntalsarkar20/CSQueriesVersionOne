@@ -13,23 +13,18 @@ class accessAccount extends CI_Controller {
 	}
 	public function signup()
 	{
-		if($this->check_session()){
-			redirect(base_url()."uploadcontent");
-		}else{
-			$this->load->view('templates/Header');
-			$this->load->view('userManagementViews/Signup');
-			$this->load->view('templates/Footer');
-		}
+		$data['title']="SignUp | CSQueries";
+		$this->load->view('templates/Header',$data);
+		$this->load->view('userManagementViews/Signup');
+		$this->load->view('templates/Footer');
+
 	}
 	public function login()
 	{
-		if($this->check_session()){
-			redirect(base_url()."uploadcontent");
-		}else{
-			$this->load->view('templates/Header');
-			$this->load->view('userManagementViews/Login');
-			$this->load->view('templates/Footer');
-		}
+		$data['title']="Login | CSQueries";
+		$this->load->view('templates/Header',$data);
+		$this->load->view('userManagementViews/Login');
+		$this->load->view('templates/Footer');
 	}
 	public function isUsernameAvailable()
 	{
@@ -61,7 +56,7 @@ class accessAccount extends CI_Controller {
 				$status= $this->accessAccount_model->insertSignupData($userData);
 				if($status){	//if all the data inserted properly into db
 					$_SESSION['username']=$username;
-					redirect(base_url()."uploadcontent");
+					redirect(base_url().$username);
 				}else{		//If there is an error in inserting data into db
 					redirect(base_url()."Signup/failed");
 				}
@@ -88,15 +83,15 @@ class accessAccount extends CI_Controller {
 				// $encryptpassword=$epassword.$passwordSalt;
 				if($fetchedPass==$encryptpassword){
 					$_SESSION['username']=$username;
-					return print_r("Valid");
+					return print_r($username);
 				}else{
-					return print_r($passwordSalt);
+					return print_r("InValid");
 				}
 			}else{
 				return print_r("InValid");
 			}
 		}else{
-			return print_r("empty array returned");
+			return print_r("InValid");
 		}
 	}
 }

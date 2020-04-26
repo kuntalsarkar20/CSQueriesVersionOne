@@ -33,8 +33,10 @@
 
 				  	<div class="form-group">
 				      <div class="col-sm-12">
-				        <button type="button" id="login_submit" class="login-input login-submit" onclick="showLoader()">Submit</button><p style="float:right;"><a href="#">Forgot Username or Password?</a></p>
+				        <button type="button" id="login_submit" class="login-input login-submit" onclick="showLoader()">Submit</button>
 				        <center style="background-color: #5cb85c;"><div class="lds-ellipsis" id="loader" style="display: none;"><div></div><div></div><div></div><div></div></div></center>
+				        <p style="float:right;"><a href="#">Forgot Username or Password?</a></p><br><br>
+				        <center><p><a href="<?php echo base_url().'Signup';?>">Don't have an account? Sign up Here. It's free</a></p></center>
 				      </div>
 				  	</div>
 				    
@@ -66,10 +68,11 @@
             data:{'username':uvalue,
             'password':pass},
             success:function(data){
-            	if(data=="Valid"){
-					window.location.href="<?php echo base_url().'uploadcontent';?>";
-				}else{
+            	if(data=="InValid"){
 					window.location.href="<?php echo base_url().'login/failed';?>";
+				}else{
+					
+					window.location.href="<?php echo base_url();?>"+data;
 				}
             },
             error:function(data){

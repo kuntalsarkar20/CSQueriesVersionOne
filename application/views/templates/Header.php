@@ -3,9 +3,9 @@ $profileNavMenu='<li><a href="'.base_url().'signup" id="linkcolor"><span class="
 	        <li><a href="'.base_url().'login" id="linkcolor"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
 if(isset($_SESSION['username'])){
 	$profileNavMenu='<li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">Category <span class="caret"></span></a>
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">'.$_SESSION['username'].' <span class="caret"></span></a>
 	          <ul class="dropdown-menu navBar">
-	            <li><a href="'.base_url().'uploadcontent" id="linkcolor">Upload Content</a></li>
+	            <li><a href="'.base_url().$_SESSION['username'].'" id="linkcolor">Upload Content</a></li>
 	            <li><a href="#" id="linkcolor">My Questions</a></li>
 	            <li><a href="#" id="linkcolor">Profile</a></li>
 	            <li><a href="'.base_url().'userManagement/profile/logout" id="linkcolor">LogOut</a></li>
@@ -16,7 +16,7 @@ if(isset($_SESSION['username'])){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>First Page</title>
+	<title><?= $title ?></title>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
