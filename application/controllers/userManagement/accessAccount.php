@@ -14,6 +14,8 @@ class accessAccount extends CI_Controller {
 	public function signup()
 	{
 		$data['title']="SignUp | CSQueries";
+		$this->load->model("contentManagement/fetchContent_model");
+		$data['category']=$this->fetchContent_model->categories();
 		$this->load->view('templates/Header',$data);
 		$this->load->view('userManagementViews/Signup');
 		$this->load->view('templates/Footer');
@@ -22,6 +24,8 @@ class accessAccount extends CI_Controller {
 	public function login()
 	{
 		$data['title']="Login | CSQueries";
+		$this->load->model("contentManagement/fetchContent_model");
+		$data['category']=$this->fetchContent_model->categories();
 		$this->load->view('templates/Header',$data);
 		$this->load->view('userManagementViews/Login');
 		$this->load->view('templates/Footer');

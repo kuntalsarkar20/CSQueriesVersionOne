@@ -44,7 +44,7 @@
 				<div style="height:310px;overflow: scroll;border: 2px solid black;">
 				<?php 
 				        foreach ($questions as $row) {
-							echo '<div style="padding:20px 20px;"><b><a href="'.base_url().'questions/'.$row['ContentId'].'/'.$row['CategoryName'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a></b><br><br></div';
+							echo '<div style="padding:10px 20px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a></b></div>';
 						}
 					?>
 				</div>

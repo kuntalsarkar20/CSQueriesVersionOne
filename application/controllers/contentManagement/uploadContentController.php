@@ -16,10 +16,12 @@ class uploadContentController extends CI_Controller {
 				$isPublish=0;
 			}
 			$category = $_POST['category'];
-			$contentHeading = $_POST['contentName'];
-			$content = $_POST['contentDetails'];
+			$contentHeading = addslashes($_POST['contentName']);
+			$content = addslashes($_POST['contentDetails']);
 			if(!empty($category) && !empty($contentHeading)){
 				$dashedContent = str_replace(" ", "-", $contentHeading);
+				$dashedContent = preg_replace('/[^A-Za-z0-9\-]/', '', $dashedContent);
+				$dashedContent = (strlen($dashedContent) > 80) ? substr($dashedContent,0,80) : $dashedContent;
 				$contentData = array( 'authId' => $_SESSION['AuthId'],
 					'category' => $category,
 					'contentHeading' => $contentHeading,

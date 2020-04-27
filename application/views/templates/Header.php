@@ -49,10 +49,11 @@ if(isset($_SESSION['username'])){
 	        <li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">Category <span class="caret"></span></a>
 	          <ul class="dropdown-menu navBar">
-	            <li><a href="#" id="linkcolor">DBMS</a></li>
-	            <li><a href="#" id="linkcolor">DS & Algorithm</a></li>
-	            <li><a href="#" id="linkcolor">C</a></li>
-	            <li><a href="#" id="linkcolor">C++</a></li>
+	            <?php 
+			        foreach ($category as $row) {
+			        	echo '<li><a href="'.base_url().'Category/'.$row['CategoryName'].'/" id="linkcolor">'.$row['CategoryName'].'</a></li>';
+					}
+				?>
 	          </ul>
 	        </li>
 	      </ul>
