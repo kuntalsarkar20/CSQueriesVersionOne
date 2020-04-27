@@ -12,7 +12,7 @@ class Profile extends CI_Controller{
 			print_r("hello no session");
 		}else if(!isset($_SESSION['username'])){		//if there is no session
 			redirect(base_url()."login");
-		}else if($this->uri->segment(1)==$_SESSION['username']){
+		}else if($this->uri->segment(1)==$_SESSION['username'] && isset($_SESSION['AuthId'])){
 			$this->load->model("contentManagement/fetchContent_model");
 			$categoryDetails['category']=$this->fetchContent_model->categories();
 			$this->load->view('templates/Header',$data);

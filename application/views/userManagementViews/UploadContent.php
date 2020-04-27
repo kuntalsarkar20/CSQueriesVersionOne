@@ -1,16 +1,16 @@
 <section style="padding:80px 0px;">
 	<div class="container">
 		<div class="row">
-			<form method="post" action="#">
+			<form method="post" action="contentManagement/uploadContentController/contentUploadUser">
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<label for="psw">Select any Topic</label>
 			    <div class="form-group">
 			      <div class="col-sm-12">
-			        <select class="form-control" id="sel1">
+			        <select class="form-control" id="sel1" name="category">
 				        <option selected="true" disabled="disabled">Select Topic</option>
 				        <?php 
 					        foreach ($category as $row) {
-								echo '<option>'.$row['CategoryName'].'</option>';
+								echo '<option value="'.$row['CategoryId'].'">'.$row['CategoryName'].'</option>';
 							}
 						?>
 				        
@@ -43,8 +43,8 @@
 			<div class="col-lg-12 col-md-12 col-sm-12">
 			  	<!-- <p style="padding-left: 30px;">Auto Saved(Not Published)</p> -->
 			  	<br>
-			  	<button type="button" class="btn btn-success btn-md" style="float:right;margin-left:20px;">Save & Publish</button>
-			  	<button type="button" class="btn btn-primary btn-md" style="float:right;right: 5px;" title="It will not be published until publish it.">Save</button>
+			  	<button type="submit" name="publish" class="btn btn-success btn-md" style="float:right;margin-left:20px;" title="It will  be published and anyone can able to view this.">Save & Publish</button>
+			  	<button type="submit" name="save" class="btn btn-primary btn-md" style="float:right;right: 5px;" title="It will not be published until you publish it.">Save</button>
 			</div>
 		</form>
 		</div>

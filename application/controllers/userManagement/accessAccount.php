@@ -5,7 +5,7 @@ session_start();
 class accessAccount extends CI_Controller {
 
 	public function check_session(){
-		if(!isset($_SESSION['username'])){
+		if(!isset($_SESSION['username']) && !isset($_SESSION['AuthId'])){
 			return false;
 		}else{
 			return true;
@@ -54,8 +54,9 @@ class accessAccount extends CI_Controller {
 				'salt' => $salt  );
 				$this->load->model("userManagement/accessAccount_model");
 				$status= $this->accessAccount_model->insertSignupData($userData);
-				if($status){	//if all the data inserted properly into db
+				if($status['status']){	//if all the data inserted properly into db
 					$_SESSION['username']=$username;
+					$_SESSION['AuthId']=$status['authorId'];
 					redirect(base_url().$username);
 				}else{		//If there is an error in inserting data into db
 					redirect(base_url()."Signup/failed");
@@ -76,12 +77,14 @@ class accessAccount extends CI_Controller {
 		if(!empty($status)){ //found the data on database
 			if(sizeof($status)==1){	//if only 1 result found
 				foreach ($status as $row) {
+					$authorId=$row['AuthId'];
 					$fetchedPass=$row['PassWord'];
 					$passwordSalt=$row['PassWordSalt'];
 				}
 				$encryptpassword=md5($password.$passwordSalt);
 				// $encryptpassword=$epassword.$passwordSalt;
 				if($fetchedPass==$encryptpassword){
+					$_SESSION['AuthId']=$authorId;
 					$_SESSION['username']=$username;
 					return print_r($username);
 				}else{
