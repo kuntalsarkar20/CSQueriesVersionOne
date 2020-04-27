@@ -14,9 +14,10 @@ class Profile extends CI_Controller{
 			redirect(base_url()."login");
 		}else if($this->uri->segment(1)==$_SESSION['username'] && isset($_SESSION['AuthId'])){
 			$this->load->model("contentManagement/fetchContent_model");
-			$categoryDetails['category']=$this->fetchContent_model->categories();
+			$mainData['category']=$this->fetchContent_model->categories();
+			$mainData['questions']=$this->fetchContent_model->questions();
 			$this->load->view('templates/Header',$data);
-			$this->load->view('userManagementViews/UploadContent',$categoryDetails);
+			$this->load->view('userManagementViews/UploadContent',$mainData);
 			$this->load->view('templates/Footer');
 		}else{				//if there is session and also valid username
 			if(!empty($result)){
