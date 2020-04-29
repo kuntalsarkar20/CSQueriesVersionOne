@@ -1,4 +1,3 @@
-
 <section style="padding:80px 0px;">
 	<div class="container">
 		<?php
@@ -69,7 +68,10 @@
 	</div>
 </section>
 <script type="text/javascript">
-	CKEDITOR.replace('contentAns')
-	//setInterval(function(){alert("Hello")},3000);
+	CKEDITOR.replace('contentAns',{
+		height:300,
+		filebrowserUploadUrl:"<?php echo base_url();?>contentManagement/uploadContentController/uploadContentImages",
+		filebrowserUploadMethod: 'form'
+	})
 
 </script>
