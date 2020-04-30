@@ -5,7 +5,7 @@ if(isset($_SESSION['username'])){
 	$profileNavMenu='<li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">'.$_SESSION['username'].' <span class="caret"></span></a>
 	          <ul class="dropdown-menu navBar">
-	            <li><a href="'.base_url().$_SESSION['username'].'" id="linkcolor">Upload Content</a></li>
+	            <li><a href="'.base_url().$_SESSION['username'].'" id="linkcolor">Dash Board</a></li>
 	            <li><a href="#" id="linkcolor">My Questions</a></li>
 	            <li><a href="#" id="linkcolor">Profile</a></li>
 	            <li><a href="'.base_url().'userManagement/profile/logout" id="linkcolor">LogOut</a></li>

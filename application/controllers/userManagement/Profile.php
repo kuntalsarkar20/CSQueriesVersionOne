@@ -15,8 +15,7 @@ class Profile extends CI_Controller{
 		}else if($this->uri->segment(1)==$_SESSION['username'] && isset($_SESSION['AuthId'])){
 			$this->load->model("contentManagement/fetchContent_model");
 			$mainData['category']=$this->fetchContent_model->categories();
-			$data['category']=$this->fetchContent_model->categories();
-			$mainData['questions']=$this->fetchContent_model->questions();
+			$data['category']=$mainData['category'];
 			$this->load->view('templates/Header',$data);
 			$this->load->view('userManagementViews/UploadContent',$mainData);
 			$this->load->view('templates/Footer');

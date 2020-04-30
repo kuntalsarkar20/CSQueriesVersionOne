@@ -19,11 +19,11 @@
 				<label for="psw">Select any Topic</label>
 			    <div class="form-group">
 			      <div class="col-sm-12">
-			        <select class="form-control" id="topic" name="category" required>
+			        <select class="form-control" id="topic" name="category" onchange="getTopicQuestions()" required>
 				        <option selected="true" value='' disabled="disabled">Select Topic</option>
 				        <?php 
 					        foreach ($category as $row) {
-								echo '<option value="'.$row['CategoryId'].'">'.$row['CategoryName'].'</option>';
+								echo '<option value="'.$row['CategoryId'].'" id="topicName'.$row['CategoryId'].'">'.$row['CategoryName'].'</option>';
 							}
 						?>
 				        
@@ -40,12 +40,8 @@
 			  	</div>
 			</div>
 			<div class="col-lg-6 col-md-6 col-sm-12"><h4 style="font-weight: bold;">Already Uploaded Questions From this Topic</h4>
-				<div style="height:310px;overflow: scroll;border: 2px solid black;">
-				<?php 
-				        foreach ($questions as $row) {
-							echo '<div style="padding:10px 20px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a></b></div>';
-						}
-					?>
+				<div style="height:310px;overflow: scroll;border: 2px solid black;" id="relatedQuestionBox">
+				
 				</div>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
@@ -74,4 +70,21 @@
 		filebrowserUploadMethod: 'form'
 	})
 
+</script>
+<script type="text/javascript">
+	function getTopicQuestions(){
+		var topic = document.getElementById('topic').value;
+		var id = 'topicName'+topic;
+		var topicval = document.getElementById(id).innerHTML;
+		$.ajax({
+	            type:'GET',
+	            url:'<?php echo base_url("contentManagement/getQuestions/questionForTopic/"); ?>'+topicval,
+	            success:function(data){ 
+	            	$("#relatedQuestionBox").html(data);	
+	            },
+	            error:function(data){
+	            	$("#relatedQuestionBox").html("No Questions Found");
+	            }
+	        });
+		}
 </script>
