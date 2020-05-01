@@ -1,0 +1,48 @@
+.info {
+	border: 3px solid #662900;
+	box-shadow: 1px 19px 15px 9px rgba(0,0,0,.2);
+	/*background-color:#b75635;*/
+	padding: 0px 0px 100px 0px;
+	border-radius: 25px;
+
+	
+}
+.box1 {
+	box-shadow: 1px 19px 15px 9px rgba(0,0,0,.2);
+	background-color:#fff;
+	/*opacity:0.6;*/
+	filter:alpha(opacity=80);
+	color: black;
+}
+.box2 {
+	border: px solid black;
+	box-shadow: 1px 19px 15px 9px rgba(0,0,0,.2);
+	background-color: #fff;
+	/*opacity:0.6;*/
+	filter:alpha(opacity=80);
+	top: 50px;
+	color: black;
+	padding: 1000px 50px 50px 50px;"
+}
+.box3 {
+	top: px;
+
+}
+#link {
+	color:black;
+
+}
+.profile-h1 {
+	font-family:OpenSans;
+	font-size: 26px;
+}
+.profile-h2 {
+	font-family:arial;
+	font-size: 17px;
+}
+#link:hover{
+	color:brown;
+}
+#link:active{
+	color:green;
+}
