@@ -15,5 +15,9 @@ class accessAccount_model extends CI_Model{
 		$result=$this->db->query('SELECT AuthId,PassWord,PassWordSalt,AuthId from author where UserName="'.$uname.'"');
 		return $result->result_array();
 	}
+	public function getUserData($uname){
+		$queryResult=$this->db->query('SELECT author.*,count(contents.ContentId) as userUploadedQuestionNo from author,contents where UserName="'.$uname.'" AND contents.AuthId = author.AuthId');
+		return $queryResult->result_array();
+	}
 }
 ?>

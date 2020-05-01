@@ -1,4 +1,4 @@
-<section style="padding:80px 0px;height:700px;">
+<section style="padding:80px 0px;" id="login-section">
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 	<div class="container">
@@ -47,6 +47,7 @@
 	</div>
 </section>
 <script type="text/javascript">
+	document.getElementById('login-section').style.minHeight=screen.height+"px";
 	function showLoader(){
 		var uvalue=document.getElementById('usrname').value;
 		var pass=document.getElementById('psw').value;

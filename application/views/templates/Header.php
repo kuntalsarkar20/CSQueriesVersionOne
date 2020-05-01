@@ -5,9 +5,9 @@ if(isset($_SESSION['username'])){
 	$profileNavMenu='<li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">'.$_SESSION['username'].' <span class="caret"></span></a>
 	          <ul class="dropdown-menu navBar">
-	            <li><a href="'.base_url().$_SESSION['username'].'" id="linkcolor">Dash Board</a></li>
+	            <li><a href="'.base_url().$_SESSION['username'].'/dashboard" id="linkcolor">Dash Board</a></li>
 	            <li><a href="#" id="linkcolor">My Questions</a></li>
-	            <li><a href="#" id="linkcolor">Profile</a></li>
+	            <li><a href="'.base_url().$_SESSION['username'].'" id="linkcolor">Profile</a></li>
 	            <li><a href="'.base_url().'userManagement/profile/logout" id="linkcolor">LogOut</a></li>
 	          </ul>
 	        </li>';
@@ -22,7 +22,8 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!--modal-->
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!--Animate on Scroll CDN Sources -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

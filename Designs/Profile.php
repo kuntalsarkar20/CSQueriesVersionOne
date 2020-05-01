@@ -1,22 +1,20 @@
 <?php
 include "Header.php";
 ?>
-<section style="background-color:#f3f7f7;">
-	<div class="container" style="padding: 70px 0px;">
+<section style="background-color:#f3f7f7;padding:50px 0px;">
+	<div class="container" style="padding: 20px;">
 	<div class="row">
-		<div class="col-lg-4 col-md-4 col-sm-12" style="padding:0px 20px;">
-			<!-- <div class="col-sm-12" style="padding:0px 20px;border:px solid black;"> -->
-				 <a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil" style="top:-30px;left: 20px;color: black;"></span></a>
-				 <img src="having_doubts.png" alt="Profile Picture" style="width:30%;height:100px;">
-				 <h1 style="font-size: 30px;font-family:Helvetica;" class="profile-h1"><B>Kuntal Sarkar</B></h1>
-				 <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@kuntal_sarkar</h2>
-				  <a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Edit Info</a>
-				  <hr>
-				  <h2 class="profile-h2"><li>Completed gradutaion in BCA at 2019</li><br><li>Pursuing MCA</li></h2>
-			<!-- </div> -->
+		<div class="col-lg-4 col-md-4 col-sm-12" style="padding:10px 20px;" id="detail">
+			 <a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil" style="top:-30px;left: 20px;color: black;"></span></a>
+			 <img src="having_doubts.png" alt="Profile Picture" style="width:30%;height:100px;">
+			 <h1 style="font-size: 30px;font-family:Helvetica;" class="profile-h1"><B>Kuntal Sarkar</B></h1>
+			 <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@kuntal_sarkar</h2>
+			  <a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Edit Info</a>
+			  <hr>
+			  <h2 class="profile-h2"><li>Completed gradutaion in BCA at 2019</li><br><li>Pursuing MCA</li></h2>
 		</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
-				<div class="col-sm-12 box1">
+				<div class="col-sm-12 profile-boxes">
 					<div class="row">
 						<div class="col-sm-6">
 							<h1 class="profile-h1"><span class="glyphicon glyphicon-star"></span>Badges</h1>
@@ -33,8 +31,8 @@ include "Header.php";
 					</div><hr><br>
 				</div>
 			</div>
-		<div class="col-lg-8 col-md-8 col-sm-12" style="border:px solid black;">
-			<div class=" col-sm-12 box2" style="padding: 20px;" >
+		<div class="col-lg-8 col-md-8 col-sm-12" style="padding: 20px 15px 0px 15px;">
+			<div class=" col-sm-12 profile-boxes" style="padding: 20px;" >
 				<h1 class="profile-h1"> <span class="glyphicon glyphicon-education"></span> Education</h1>
 				 <h2 class="profile-h2"><span class="glyphicon glyphicon-asterisk"></span><b> UEM, Kolkata(University Of Engineering &amp; Management)</b>
 				<br><a href="" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-pencil" style="float: right;"></span></a> &nbsp; &nbsp;	Computer Science, MCA | July 2019 - Present</h2>
@@ -44,9 +42,8 @@ include "Header.php";
 		<div class="col-lg-4 col-md-4 col-sm-12">
 			<p>&nbsp;</p>
 		</div>			
-			<div class="col-lg-8 col-md-8 col-sm-12" style="border:px solid black; padding:50px 10px 15px 15px;">
-				<br><br>
-				<div class="col-sm-12 box1">
+			<div class="col-lg-8 col-md-8 col-sm-12" style="padding:20px 10px 15px 15px;">
+				<div class="col-sm-12 profile-boxes">
 					<div class="row">
 						<div class="col-sm-12" style="padding:0px 30px;">
 							<h1 class="profile-h1"> <span class="glyphicon glyphicon-list-alt"></span> How many language do you know?</h1>
