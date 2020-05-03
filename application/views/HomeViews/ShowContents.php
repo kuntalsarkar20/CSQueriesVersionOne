@@ -13,7 +13,7 @@ foreach ($question as $row) {
 	}
 }
 ?>
-<section style="background-color: #e9eeef91;">
+<section style="background-color: #e9eeef91;" id="forMinHeight">
 <div class="container" style="padding-top: 40px;">
 	<div class="row">
 		<div class="col-md-8 col-lg-8 col-sm-12" style="padding: 30px;">
@@ -44,3 +44,6 @@ foreach ($question as $row) {
 	</div>
 </div>
 </section>
+<script type="text/javascript">
+	document.getElementById('forMinHeight').style.minHeight=screen.height+'px';
+</script>

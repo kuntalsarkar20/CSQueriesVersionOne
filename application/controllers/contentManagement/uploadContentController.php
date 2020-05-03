@@ -3,11 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 session_start();
 
 class uploadContentController extends CI_Controller {
-	public function getData(){
-		if(isset($_POST['publish'])){
-			echo "hello";
-		}
-	}
+	function __construct() {
+        parent::__construct();
+		$this->load->model("contentManagement/uploadContent_model");
+    }
 	public function contentUploadUser(){
 		try{
 			if(isset($_POST['publish'])){
@@ -18,7 +17,7 @@ class uploadContentController extends CI_Controller {
 			$category = $_POST['category'];
 			$contentHeading = addslashes($_POST['contentName']);
 			$content = addslashes($_POST['contentDetails']);
-			if(!empty($category) && !empty($contentHeading)){
+			if(!empty($category) && !empty($contentHeading)){   //checking if the category or content heading is empty
 				$dashedContent = str_replace(" ", "-", $contentHeading);
 				$dashedContent = preg_replace('/[^A-Za-z0-9\-]/', '', $dashedContent);
 				$dashedContent = (strlen($dashedContent) > 80) ? substr($dashedContent,0,80) : $dashedContent;
@@ -28,7 +27,6 @@ class uploadContentController extends CI_Controller {
 					'dashed' => $dashedContent,
 					'content' => $content,
 					'publishStatus' => $isPublish);
-				$this->load->model("contentManagement/uploadContent_model");
 				$result = $this->uploadContent_model->uploadContents($contentData);
 				if($result){
 					redirect(base_url().$_SESSION['username'].'/myContents/UploadSuccess');
@@ -61,6 +59,42 @@ class uploadContentController extends CI_Controller {
 				echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number,'$url','$message');</script>";
 			}
 		}
+	}
+	public function editContent(){
+		if(isset($_POST['update'])){
+			$userClick = 'update';
+		}elseif(isset($_POST['updateAndToggle'])){
+			$userClick = 'updateAndToggle';
+		}
+		$cId = $_POST['ContentId'];
+		$category = $_POST['category'];
+		$contentHeading = addslashes($_POST['contentName']);
+		$content = addslashes($_POST['contentDetails']);
+		if(!empty($category) && !empty($contentHeading)){   //checking if the category or content heading is empty
+				$dashedContent = str_replace(" ", "-", $contentHeading);
+				$dashedContent = preg_replace('/[^A-Za-z0-9\-]/', '', $dashedContent);
+				$dashedContent = (strlen($dashedContent) > 80) ? substr($dashedContent,0,80) : $dashedContent;
+				$contentData = array( 'ContentId' => $cId,
+					'category' => $category,
+					'contentHeading' => $contentHeading,
+					'dashed' => $dashedContent,
+					'content' => $content);
+				if($userClick=='update'){
+					$result = $this->uploadContent_model->updateContent($contentData);
+					// echo "ok";
+				}elseif($userClick=='updateAndToggle'){
+					$result = $this->uploadContent_model->updateContentAndToggle($contentData);
+				}else{
+					$result='';
+				}
+				if($result){
+					redirect(base_url().$_SESSION['username'].'/myContents/UploadSuccess');
+				}else{
+					redirect($_SERVER['HTTP_REFERER'].'/UpdateFailed');
+				}
+			}else{
+				redirect($_SERVER['HTTP_REFERER'].'/UpdateFailed');
+			}
 	}
 
 }

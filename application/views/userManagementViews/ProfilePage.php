@@ -27,6 +27,8 @@ foreach ($userDetails as $row) {
 	$email= $row['Email'];
 	$YearOfGraduation= $row['YearOfGraduation'];
 	$numberOfQuest = $row['userUploadedQuestionNo'];
+	$views = $row['totalView'];
+	$authorPic = $row['Image'];
 }
 ?>
 
@@ -35,7 +37,7 @@ foreach ($userDetails as $row) {
 	<div class="row">
 		<div class="col-lg-4 col-md-4 col-sm-12" style="padding:10px 20px;" id="detail">
 			 <?php echo $editPic; ?>
-			 <img src="<?php echo base_url(); ?>assets/images/aboutPictures/having_doubts.png" alt="Profile Picture" style="width:30%;height:100px;">
+			 <img src="<?php echo base_url().$authorPic; ?>" alt="Profile Picture" style="width:30%;height:100px;">
 			 <h1 style="font-size: 30px;font-family:Helvetica;" class="profile-h1"><B><?php echo $authorName; ?></B></h1>
 			 <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@<?php echo $usrname; ?></h2>
 			  <?php echo $editInfoButton; ?>
@@ -69,7 +71,9 @@ foreach ($userDetails as $row) {
 							 	<!-- <span class="glyphicon glyphicon-star" style="font-size: 30px;color:green;"></span>
 							    <span class="glyphicon glyphicon-star" style="font-size: 30px;"></span>
 							 	<span class="glyphicon glyphicon-star" style="font-size: 30px;"></span> --></h2>
-							 	<h2 class="profile-h2">Number of Question Contributed: <?php echo $numberOfQuest; ?></h2>	
+							 	<h2 class="profile-h2">Number of Content Contributed: <?php echo $numberOfQuest; ?>
+							 		<span style="float:right;">Total Content Views: <?php echo $views; ?></span>
+							 	</h2>	
 						</div>
 					</div><hr><br>
 				</div>

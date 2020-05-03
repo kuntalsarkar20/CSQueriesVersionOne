@@ -16,7 +16,7 @@ class accessAccount_model extends CI_Model{
 		return $result->result_array();
 	}
 	public function getUserData($uname){
-		$queryResult=$this->db->query('SELECT author.*,count(contents.ContentId) as userUploadedQuestionNo from author,contents where UserName="'.$uname.'" AND contents.AuthId = author.AuthId');
+		$queryResult=$this->db->query('SELECT author.*,count(contents.ContentId) as userUploadedQuestionNo,sum(contents.Views) as totalView from author,contents where UserName="'.$uname.'" AND contents.AuthId = author.AuthId');
 		return $queryResult->result_array();
 	}
 }

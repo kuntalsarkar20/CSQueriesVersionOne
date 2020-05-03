@@ -8,6 +8,7 @@ class Profile extends CI_Controller{
 		$this->load->model("contentManagement/fetchContent_model");
     }
 	public function index(){
+		$data['category']=$this->fetchContent_model->categories();
 		$username=$this->uri->segment(1);
 		$this->load->model("userManagement/accessAccount_model");
 		$result=$this->accessAccount_model->isUsernameValid($username);
@@ -41,6 +42,7 @@ class Profile extends CI_Controller{
 	}
 	public function dashboard(){
 		$data['title']="Upload Content | CSQueries";
+		$data['category']=$this->fetchContent_model->categories();
 		if($this->isSessionAvailable()){
 			if($this->isUrlUsernameSame()){
 				$this->load->model("contentManagement/fetchContent_model");

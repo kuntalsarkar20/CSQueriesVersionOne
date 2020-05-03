@@ -6,6 +6,7 @@ class getQuestions extends CI_Controller {
 	function __construct() {
         parent::__construct();
 		$this->load->model("contentManagement/fetchContent_model");
+		$this->load->model("contentManagement/uploadContent_model");
     }
 	public function ShowContents($category=NULL,$questionId =NULL ,$questionText=NULL){
 		$data['category']=$this->fetchContent_model->categories();
@@ -15,6 +16,7 @@ class getQuestions extends CI_Controller {
 			$this->load->view('templates/Header',$data);
 			$this->load->view('HomeViews/ShowContents',$mainData);
 			$this->load->view('templates/Footer');
+			$this->uploadContent_model->updateQuestionView($questionId);
 		}else{				//No questions found on database
 			show_404();
 		}

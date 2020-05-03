@@ -3,7 +3,7 @@ $profileNavMenu='<li><a href="'.base_url().'signup" id="linkcolor"><span class="
 	        <li><a href="'.base_url().'login" id="linkcolor"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
 if(isset($_SESSION['username'])){
 	$profileNavMenu='<li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">'.$_SESSION['username'].' <span class="caret"></span></a>
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor"><img src="'. base_url().'assets/images/aboutPictures/having_doubts.png" alt="Profile Picture" style="width:50px; height:50px; border-radius:20%;"> '.$_SESSION['username'].' <span class="caret"></span></a>
 	          <ul class="dropdown-menu navBar">
 	            <li><a href="'.base_url().$_SESSION['username'].'/dashboard" id="linkcolor">Dash Board</a></li>
 	            <li><a href="'.base_url().$_SESSION['username'].'/myContents" id="linkcolor">My Contents</a></li>
@@ -33,10 +33,9 @@ if(isset($_SESSION['username'])){
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 </head>
 <body>
-	<div class="loader"></div>
 	<nav class="navbar navbar-inverse navbar-fixed-top navBar">
 	  <div class="container"> <!--To make the navbar full screen add -fluid here -->
-	    <div class="navbar-header">
+	    <div class="navbar-header" style="padding: 12px;">
 	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
@@ -45,7 +44,7 @@ if(isset($_SESSION['username'])){
 	      <a class="navbar-brand" href="<?php echo base_url(); ?>" id="linkcolor">CSQueries</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
-	      <ul class="nav navbar-nav">
+	      <ul class="nav navbar-nav" style="padding: 12px;">
 	        <li><a href="<?php echo base_url(); ?>" id="linkcolor">Home</a></li>
 	        <li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">Category <span class="caret"></span></a>
@@ -58,7 +57,7 @@ if(isset($_SESSION['username'])){
 	          </ul>
 	        </li>
 	      </ul>
-	      <form class="navbar-form navbar-left">
+	      <form class="navbar-form navbar-left" style="padding: 12px;">
 		      <div class="input-group">
 		        <input type="text" class="form-control" placeholder="Search" name="search">
 		        <div class="input-group-btn">

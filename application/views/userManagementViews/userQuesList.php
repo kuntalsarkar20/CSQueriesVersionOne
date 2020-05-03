@@ -25,19 +25,19 @@
 					}
 					echo '<div class="col-md-offset-1 col-lg-offset-1 col-lg-10 col-md-10 col-sm-12" style="padding: 20px 10px;">
 							<div class="profile-boxes" style="padding: 10px 10px;">
-								<h1 class="profile-h1"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a> '.$publishStatus.'</b></h1>
+								<h1 class="profile-h1" style="font-size:22px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a> '.$publishStatus.'</b></h1>
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12">
-										<h2 class="profile-h2">Topic: '.$row['CategoryName'].'</h2>
+										<h2 class="questionList-h2">Category: '.$row['CategoryName'].'</h2>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-12">
-										<h2 class="profile-h2">Uploaded On: '.$row['CreatedAt'].'</h2>
+										<h2 class="questionList-h2">Uploaded On: '.date('d-M-Y', strtotime($row['CreatedAt'])).'</h2>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-12">
-										<h2 class="profile-h2">Last Updated: '.$row['UpdatedAt'].'</h2>
+										<h2 class="questionList-h2">Last Updated: '.date('d-M-Y', strtotime($row['UpdatedAt'])).'</h2>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-12">
-										<a href="'.base_url().$_SESSION['username'].'/myContents/editContent/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'"><button class="publish-button">Edit</button></a>
+										<a href="'.base_url().$_SESSION['username'].'/myContents/editContent/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'"><button class="publish-button"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
 									</div>
 								</div> <hr>
 							</div>

@@ -1,5 +1,6 @@
 <?php 
 foreach ($question as $row) {
+	$cId=$row['ContentId'];
 	$contentName= $row['Question'];
 	$contentDesc= $row['Answer'];
 	$contentCategory = $row['CategoryId'];
@@ -19,8 +20,17 @@ foreach ($question as $row) {
 			</ul>
 		</div>
 	<div class="container">
+		<?php
+		  if($this->uri->segment(7)=="UpdateFailed"){
+		    echo '<div class="alert alert-danger alert-dismissible fade in">
+			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    <strong>Update Failed</strong> Please check you have properly entered all the mandatory field and try again.
+			  </div>';
+		  }
+		  ?>
 		<div class="row">
-			<form method="post" action="<?php echo base_url();?>contentManagement/uploadContentController/contentUploadUser">
+			<form method="post" action="<?php echo base_url();?>contentManagement/uploadContentController/editContent">
+			<input type="hidden" name="ContentId" value="<?php echo $cId; ?>">
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<label for="psw">Select any Topic</label>
 			    <div class="form-group">
@@ -66,8 +76,8 @@ foreach ($question as $row) {
 			<div class="col-lg-12 col-md-12 col-sm-12">
 			  	<!-- <p style="padding-left: 30px;">Auto Saved(Not Published)</p> -->
 			  	<br>
-			  	<button type="submit" name="publish" class="btn btn-success btn-md" id="upload-btn" style="float:right;margin-left:20px;" title="It will  be published and anyone can able to view this."><?php echo $btnText; ?></button>
-			  	<button type="submit"  name="save" class="btn btn-primary btn-md" id="upload-btn" style="float:right;right: 5px;" title="It will not be published until you publish it.">Update</button>
+			  	<button type="submit" name="updateAndToggle" class="btn btn-success btn-md" id="upload-btn" style="float:right;margin-left:20px;" title="It will  be published and anyone can able to view this."><?php echo $btnText; ?></button>
+			  	<button type="submit"  name="update" class="btn btn-primary btn-md" id="upload-btn" style="float:right;right: 5px;" title="It will not be published until you publish it.">Update</button>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
 				<blockquote>
