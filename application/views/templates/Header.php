@@ -1,16 +1,20 @@
 <?php
-$profileNavMenu='<li><a href="'.base_url().'signup" id="linkcolor"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-	        <li><a href="'.base_url().'login" id="linkcolor"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>';
+$profileNavMenu='<ul class="nav navbar-nav navbar-right">
+			<li><a href="'.base_url().'signup" id="linkcolor"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+	        <li><a href="'.base_url().'login" id="linkcolor"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+	        </ul>';
 if(isset($_SESSION['username'])){
-	$profileNavMenu='<li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor"><img src="'. base_url().'assets/images/aboutPictures/having_doubts.png" alt="Profile Picture" style="width:50px; height:50px; border-radius:20%;"> '.$_SESSION['username'].' <span class="caret"></span></a>
+	$profileNavMenu='<ul class="nav navbar-nav navbar-right">
+	<li class="dropdown">
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor"><img src="'. base_url().'assets/images/aboutPictures/having_doubts.png" alt="Profile Picture" style="width:30px; height:30px; border-radius:20%;"> '.$_SESSION['username'].' <span class="caret"></span></a>
 	          <ul class="dropdown-menu navBar">
 	            <li><a href="'.base_url().$_SESSION['username'].'/dashboard" id="linkcolor">Dash Board</a></li>
 	            <li><a href="'.base_url().$_SESSION['username'].'/myContents" id="linkcolor">My Contents</a></li>
 	            <li><a href="'.base_url().$_SESSION['username'].'" id="linkcolor">Profile</a></li>
 	            <li><a href="'.base_url().'userManagement/profile/logout" id="linkcolor">LogOut</a></li>
 	          </ul>
-	        </li>';
+	        </li>
+	        </ul>';
 } 
 ?>
 <!DOCTYPE html>
@@ -35,7 +39,7 @@ if(isset($_SESSION['username'])){
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top navBar">
 	  <div class="container"> <!--To make the navbar full screen add -fluid here -->
-	    <div class="navbar-header" style="padding: 12px;">
+	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>
@@ -44,7 +48,7 @@ if(isset($_SESSION['username'])){
 	      <a class="navbar-brand" href="<?php echo base_url(); ?>" id="linkcolor">CSQueries</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
-	      <ul class="nav navbar-nav" style="padding: 12px;">
+	      <ul class="nav navbar-nav">
 	        <li><a href="<?php echo base_url(); ?>" id="linkcolor">Home</a></li>
 	        <li class="dropdown">
 	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">Category <span class="caret"></span></a>
@@ -57,7 +61,7 @@ if(isset($_SESSION['username'])){
 	          </ul>
 	        </li>
 	      </ul>
-	      <form class="navbar-form navbar-left" style="padding: 12px;">
+	      <form class="navbar-form navbar-left">
 		      <div class="input-group">
 		        <input type="text" class="form-control" placeholder="Search" name="search">
 		        <div class="input-group-btn">
@@ -67,9 +71,9 @@ if(isset($_SESSION['username'])){
 		        </div>
 		      </div>
 		    </form>
-	      <ul class="nav navbar-nav navbar-right">
+	      <!-- <ul class="nav navbar-nav navbar-right"> -->
 	        <?php echo $profileNavMenu; ?>
-	      </ul>
+	      <!-- </ul> -->
 	    </div>
 	  </div>
 	</nav>

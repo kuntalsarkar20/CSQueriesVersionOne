@@ -113,18 +113,20 @@ foreach ($userDetails as $row) {
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          	<h1 style="text-align: center;font-family: arial;">Edit Info</h1><hr>
-					    <form action="/action_page.php">
-						    <div class="form-group">
-						      <label for="uname">Username:</label>
-						      <input type="text" class="form-control" id="uname" placeholder="Enter Username" name="uname" value="<?php echo $usrname; ?>" disabled>
-						    </div>
+					    <form action="">
+						    <label for="usrname">Username</label>
+								<div class="form-group" id="usernameSuccess">
+							        <input class="form-control" id="focusedInput" type="text" onkeyup="usernameValidation(this.id,this.value)" name="usrname">
+							        <span class="" id="icon"></span>
+							      <span class="" id="msgForWrongUsername"></span>
+							  	</div>
 						    <div class="form-group">
 						      <label for="name">Email:</label>
 						      <input type="text" class="form-control" placeholder="Email" name="name" value="<?php echo $email; ?>" disabled>
 						    </div>
 						    <div class="form-group">
 						      <label for="name">Name:</label>
-						      <input type="name" class="form-control" placeholder="Enter Your Name" name="name" value="<?php echo $authorName; ?>">
+						      <input type="name" class="form-control" placeholder="Enter Your Name" name="name" value="<?php echo $authorName; ?>" required>
 						    </div>
 						    <center><button type="submit" class="btn btn-default">Change</button></center>
 						</form>
@@ -154,7 +156,7 @@ foreach ($userDetails as $row) {
 						      <label for="name">Graduation Year (if not then expected):</label>
 						      <input type="number" class="form-control" id="year" placeholder="Enter Year" name="year" value="<?php echo $YearOfGraduation; ?>">
 						    </div>
-						    <center><button type="submit" class="btn btn-default">Change</button></center>
+						    <center><button type="submit" id="edit-info" class="btn btn-default">Change</button></center>
 						</form>
 			        </div>
 		      	</div>
@@ -162,3 +164,82 @@ foreach ($userDetails as $row) {
 		</div>
 	</div>
 </section>
+<script type="text/javascript">
+	function usernameValidation(divId,uvalue){
+		if(uvalue==''){
+			usernameValidationFailed(divId);
+		}else{
+			if(typeAndLengthCheck(divId)){
+				$.ajax({
+                type:'POST',
+                url:'<?php echo base_url("userManagement/accessAccount/isUsernameAvailable"); ?>',
+                data:{'username':uvalue},
+                success:function(data){
+                	if(data=="Available"){
+						usernameValidationSucess(divId);
+						document.getElementById('msgForWrongUsername').innerHTML="";
+						document.getElementById('edit-info').disabled = false;
+					}else{
+						document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username not Available.";
+						document.getElementById('edit-info').disabled = true;
+						usernameValidationFailed(divId);
+					}
+                },
+                error:function(data){
+                	document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username not Available.";
+                	document.getElementById('signupbtn').disabled = true;
+					usernameValidationFailed(divId);
+                }
+            });
+			}else{
+				document.getElementById('msgForWrongUsername').innerHTML="&nbsp;&nbsp;Username Can only Contain alphaNumeric characters and Underscores and length should be between 4 and 20 Characters.";
+				usernameValidationFailed(divId);
+				document.getElementById('signupbtn').disabled = true;
+			}
+		}
+	}
+	function usernameValidationSucess(divId){
+		document.getElementById(divId).id = 'inputSuccess';
+		var iconClass = document.getElementById("icon");
+		var unameSuccess = document.getElementById("usernameSuccess");
+
+		iconClass.classList.remove("glyphicon-remove");
+		unameSuccess.classList.remove("has-error");
+
+		iconClass.classList.add("glyphicon");
+		iconClass.classList.add("glyphicon-ok");
+		iconClass.classList.add("form-control-feedback");
+		unameSuccess.classList.add("has-success");
+		unameSuccess.classList.add("has-feedback");
+	}
+	function usernameValidationFailed(divId){
+		document.getElementById(divId).id = 'inputSuccess';
+		var iconClass = document.getElementById("icon");
+		var unameSuccess = document.getElementById("usernameSuccess");
+
+		iconClass.classList.remove("glyphicon-ok");
+		unameSuccess.classList.remove("has-success");
+
+
+		iconClass.classList.add("glyphicon");
+		iconClass.classList.add("glyphicon-remove");
+		iconClass.classList.add("form-control-feedback");
+		unameSuccess.classList.add("has-error");
+		unameSuccess.classList.add("has-feedback");
+	}
+	function typeAndLengthCheck(divisionId){
+		 var lowerCaseLetters = /[a-z]/g;
+		 var upperCaseLetters = /[A-Z]/g;
+		  var numbers = /[0-9]/g;
+		 var usernameValue = document.getElementById(divisionId).value;
+		if(usernameValue.length<=15 && usernameValue.length>=4){
+			if(usernameValue.match('^[A-Z0-9a-z.\s_-]+$')){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			return false;
+		}
+	}
+</script>

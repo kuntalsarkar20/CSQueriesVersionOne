@@ -65,6 +65,11 @@
 				        <input class="form-control" type="password" id="confirm_psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="confirm-psw" required>
 				      </div>
 				  	</div>
+				  	<div class="form-group">
+					      <div class="col-sm-12">
+						  <label><input type="checkbox" value="" required> I accept all the Terms & Conditions.</label>
+						</div>
+					</div>
 				    
 				    <input type="submit" class="login-input login-submit" value="Submit" id="signupbtn" name="submit">
 				    <center><p><a href="<?php echo base_url().'Login';?>">Already have an account?</a></p></center>

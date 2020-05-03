@@ -48,6 +48,7 @@ class accessAccount extends CI_Controller {
 			$username = strip_tags($_POST['usrname']);
 			$psw = $_POST['psw'];
 			$confrimPassword = $_POST['confirm-psw'];
+			if(!empty($displayName)&& !empty($userEmail)&& !empty($username)&& !empty($psw)&& !empty($confrimPassword)){
 			if($psw==$confrimPassword){
 				$salt=bin2hex(random_bytes(10));   //It will generate a salt of 10*2=20 characters
 				$encryptPass=md5($psw.$salt);		//Password encrypted using md5 encryption
@@ -68,10 +69,12 @@ class accessAccount extends CI_Controller {
 			}else{		//If Passwords are not matched
 				redirect(base_url()."Signup/failed");
 			}
+		}else{
+			redirect(base_url()."signup/failed");
 		}
-		// else{   //if anyone tries to run form_validate function directly.
-		// 	redirect(base_url()."signup");
-		// }
+	}else{   //if anyone tries to run form_validate function directly.
+			redirect(base_url()."signup");
+		}
 	}
 	public function checkLoginDetails(){
 		$username = $this->input->post('username');
