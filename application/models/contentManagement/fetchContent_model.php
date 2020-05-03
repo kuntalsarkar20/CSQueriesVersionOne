@@ -13,5 +13,9 @@ class fetchContent_model extends CI_Model{
 		$queryResult = $this->db->query('SELECT * FROM contents,category WHERE category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND isPublished=1');
 		return $queryResult->result_array();
 	}
+	public function getUserQuestionList($username){
+		$queryResult = $this->db->query('SELECT contents.*,category.CategoryName FROM contents,author,category WHERE author.UserName = "'.$username.'" AND author.AuthId = Contents.AuthId AND contents.CategoryId=category.CategoryId ORDER BY contents.CreatedAt DESC');
+		return $queryResult->result_array();
+	}
 }
 ?>

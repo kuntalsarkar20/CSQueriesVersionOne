@@ -4,6 +4,13 @@ foreach ($question as $row) {
 	$contentDesc= $row['Answer'];
 	$creationTime= $row['CreatedAt'];
 	$Author= $row['UserName'];
+	if($row['isPublished']==0 && !isset($_SESSION['username'])){		//if the question is private and there is session 																then check for if the author and the session username same.
+		$contentDesc = "This Question is <b>Private</b> by the Uploader. You can't view Until the user makes it <b>Public</b>.";
+	}elseif($row['isPublished']==0 && isset($_SESSION['username'])){
+		if($Author != $_SESSION['username']){	//if the author & session username not same then content can't be shown
+			$contentDesc = "This Question is <b>Private</b> by the Uploader. You can't view Until the user makes it <b>Public</b>.";
+		}
+	}
 }
 ?>
 <section style="background-color: #e9eeef91;">

@@ -4,7 +4,6 @@ session_start();
 
 class Profile extends CI_Controller{
 	public function index(){
-		$data['title']="Upload Content | CSQueries";
 		$this->load->model("contentManagement/fetchContent_model");
 		$data['category']=$this->fetchContent_model->categories();
 		$username=$this->uri->segment(1);
@@ -42,6 +41,7 @@ class Profile extends CI_Controller{
 		}
 	}
 	public function dashboard(){
+		$data['title']="Upload Content | CSQueries";
 		if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
 			$this->load->model("userManagement/accessAccount_model");
 			$username=$this->uri->segment(1);
@@ -61,9 +61,30 @@ class Profile extends CI_Controller{
 		}
 
 	}
-	public function logout(){
-		session_destroy();
-		redirect(base_url()."login");
+	public function userQuestionList(){
+		$data['title']="My Contents | CSQueries";
+		if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){			//checking if user is logged in or not
+			$this->load->model("userManagement/accessAccount_model");
+			$username=$this->uri->segment(1);				//getting the username from url
+			$result=$this->accessAccount_model->isUsernameValid($username);
+			if(!empty($result) && $username==$_SESSION['username']){			// if logged in the the url username is 
+																				//valid and if the username is same as 
+																				//session username
+				$this->load->model('contentManagement/fetchContent_model');
+				$mainData['questionList'] = $this->fetchContent_model->getUserQuestionList($username);
+				$this->load->view('templates/Header',$data);
+				$this->load->view('userManagementViews/userQuesList',$mainData);
+				$this->load->view('templates/Footer');
+			}else{				
+				show_404();		//username not valid showing error page
+			}
+		}else{
+			redirect(base_url()."login");		//no session found redirecting to login page
+		}
+	}
+	public function logout(){			//when the user clicks the logout button
+		session_destroy();				//destroying session
+		redirect(base_url()."login");		//redirecting to login page
 	}
 	// public function isSessionAvailable(){
 	// 	if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){

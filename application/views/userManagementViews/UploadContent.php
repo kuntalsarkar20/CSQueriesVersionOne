@@ -6,11 +6,6 @@
 			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			    <strong>Upload Failed</strong> Please check you have properly entered a title and Selected a Topic.
 			  </div>';
-		  }else if($this->uri->segment(2)=="UploadSuccess"){
-		  	echo '<div class="alert alert-success alert-dismissible fade in">
-			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-			    <strong>Success!</strong> Your content is Uploaded Successfully.
-			  </div>';
 		  }
 		  ?>
 		<div class="row">

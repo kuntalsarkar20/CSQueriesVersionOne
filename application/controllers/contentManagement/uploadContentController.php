@@ -31,7 +31,7 @@ class uploadContentController extends CI_Controller {
 				$this->load->model("contentManagement/uploadContent_model");
 				$result = $this->uploadContent_model->uploadContents($contentData);
 				if($result){
-					redirect(base_url().$_SESSION['username'].'/UploadSuccess');
+					redirect(base_url().$_SESSION['username'].'/myContents/UploadSuccess');
 				}else{
 					redirect(base_url().$_SESSION['username'].'/UploadFailed');
 				}

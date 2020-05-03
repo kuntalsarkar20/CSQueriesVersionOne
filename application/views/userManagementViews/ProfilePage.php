@@ -24,6 +24,7 @@ foreach ($userDetails as $row) {
 	$authorName= $row['Name'];
 	$clg= $row['AuthorCollege'];
 	$degree= $row['Degree'];
+	$email= $row['Email'];
 	$YearOfGraduation= $row['YearOfGraduation'];
 	$numberOfQuest = $row['userUploadedQuestionNo'];
 }
@@ -46,9 +47,28 @@ foreach ($userDetails as $row) {
 					<div class="row">
 						<div class="col-sm-12">
 							<h1 class="profile-h1"><span class="glyphicon glyphicon-star"></span>Badges</h1>
-							 <h2 class="profile-h2"><span class="glyphicon glyphicon-star" style="font-size: 30px;color:green;">
-							 <span class="glyphicon glyphicon-star" style="font-size: 30px;">
-							 	<span class="glyphicon glyphicon-star" style="font-size: 30px;"></h2>
+							 <h2 class="profile-h2">
+							 	<?php 
+							 		if($numberOfQuest==0){
+							 			$badge =0;
+							 		}elseif($numberOfQuest>=1 && $numberOfQuest<=5){
+							 			$badge = 1;
+							 		}elseif ($numberOfQuest>=6 && $numberOfQuest<=15) {
+							 			$badge = 2;
+							 		}elseif ($numberOfQuest>=16 && $numberOfQuest<=30) {
+							 			$badge = 3;
+							 		}elseif ($numberOfQuest>=31 && $numberOfQuest<=50) {
+							 			$badge = 4;
+							 		}elseif ($numberOfQuest>=51) {
+							 			$badge = 5;
+							 		}
+							 		for($i=1;$i<=$badge;$i++){
+							 			echo '<span class="glyphicon glyphicon-star" style="font-size: 30px;color:green;"></span>&nbsp;&nbsp;';
+							 		}
+							 	?>
+							 	<!-- <span class="glyphicon glyphicon-star" style="font-size: 30px;color:green;"></span>
+							    <span class="glyphicon glyphicon-star" style="font-size: 30px;"></span>
+							 	<span class="glyphicon glyphicon-star" style="font-size: 30px;"></span> --></h2>
 							 	<h2 class="profile-h2">Number of Question Contributed: <?php echo $numberOfQuest; ?></h2>	
 						</div>
 					</div><hr><br>
@@ -70,10 +90,10 @@ foreach ($userDetails as $row) {
 					<div class="row">
 						<div class="col-sm-12" style="padding:0px 30px;">
 							<h1 class="profile-h1"> <span class="glyphicon glyphicon-list-alt"></span> CS Topics Known:<?php echo $editLanguage; ?></h1>
-							<h2 class="profile-h2"><li>C</li>
-							<li>C++</li>
-							<li>Java</li>
-							<li>Data Structure</li></h2>
+							<h2 class="profile-h2"><li>-</li>
+							<li>-</li>
+							<li>-</li>
+							<li>-</li></h2>
 							<br><hr><br>
 						</div>
 					</div>
@@ -92,19 +112,15 @@ foreach ($userDetails as $row) {
 					    <form action="/action_page.php">
 						    <div class="form-group">
 						      <label for="uname">Username:</label>
-						      <input type="name" class="form-control" id="uname" placeholder="Enter Username" name="uname">
+						      <input type="text" class="form-control" id="uname" placeholder="Enter Username" name="uname" value="<?php echo $usrname; ?>" disabled>
 						    </div>
 						    <div class="form-group">
-						      <label for="name">First Name:</label>
-						      <input type="name" class="form-control" id="uname" placeholder="Enter first Name" name="name">
+						      <label for="name">Email:</label>
+						      <input type="text" class="form-control" placeholder="Email" name="name" value="<?php echo $email; ?>" disabled>
 						    </div>
 						    <div class="form-group">
-						      <label for="name">Last Name:</label>
-						      <input type="name" class="form-control" id="uname" placeholder="Enter Your Name" name="name">
-						    </div>
-						    <div class="form-group">
-						      <label for="pwd">Password:</label>
-						      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pwd">
+						      <label for="name">Name:</label>
+						      <input type="name" class="form-control" placeholder="Enter Your Name" name="name" value="<?php echo $authorName; ?>">
 						    </div>
 						    <center><button type="submit" class="btn btn-default">Change</button></center>
 						</form>
