@@ -71,8 +71,7 @@
             success:function(data){
             	if(data=="InValid"){
 					window.location.href="<?php echo base_url().'login/failed';?>";
-				}else{
-					
+				}else{	
 					window.location.href="<?php echo base_url();?>"+data;
 				}
             },

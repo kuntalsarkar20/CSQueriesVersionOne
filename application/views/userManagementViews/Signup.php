@@ -15,7 +15,7 @@
 			<div class="col-lg-6 col-md-6 col-sm-12">
 				<div class="login-container">
 					<center><h3 style="font-weight: bold;">Sign Up</h3></center>
-				  <form class="form-horizontal" action="userManagement/accessAccount/insertUserData" method="POST">
+				  <form class="form-horizontal" action="<?php echo base_url().'userManagement/accessAccount/insertUserData'; ?>" method="POST">
 				    <label for="usrname">Your Name</label>
 				    <div class="form-group">
 				      <div class="col-sm-12">

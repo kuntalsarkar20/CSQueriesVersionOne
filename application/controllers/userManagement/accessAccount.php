@@ -4,17 +4,21 @@ session_start();
 
 class accessAccount extends CI_Controller {
 
+	function __construct() {
+        parent::__construct();
+		$this->load->model("contentManagement/fetchContent_model");
+		$this->load->model("userManagement/accessAccount_model");
+    }
 	public function check_session(){
-		if(!isset($_SESSION['username']) && !isset($_SESSION['AuthId'])){
-			return false;
-		}else{
+		if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
 			return true;
+		}else{
+			return false;
 		}
 	}
 	public function signup()
 	{
 		$data['title']="SignUp | CSQueries";
-		$this->load->model("contentManagement/fetchContent_model");
 		$data['category']=$this->fetchContent_model->categories();
 		$this->load->view('templates/Header',$data);
 		$this->load->view('userManagementViews/Signup');
@@ -24,7 +28,6 @@ class accessAccount extends CI_Controller {
 	public function login()
 	{
 		$data['title']="Login | CSQueries";
-		$this->load->model("contentManagement/fetchContent_model");
 		$data['category']=$this->fetchContent_model->categories();
 		$this->load->view('templates/Header',$data);
 		$this->load->view('userManagementViews/Login');
@@ -33,7 +36,6 @@ class accessAccount extends CI_Controller {
 	public function isUsernameAvailable()
 	{
 		$username = $this->input->post('username');
-		$this->load->model("userManagement/accessAccount_model");
 		$result=$this->accessAccount_model->isUsernameValid($username);
 		if(!empty($result)){
 			return print_r ("Not Available");
@@ -57,12 +59,15 @@ class accessAccount extends CI_Controller {
 				'userName' => $username,
 				'password' => $encryptPass,
 				'salt' => $salt  );
-				$this->load->model("userManagement/accessAccount_model");
 				$status= $this->accessAccount_model->insertSignupData($userData);
-				if($status['status']){	//if all the data inserted properly into db
+				if($status){	//if all the data inserted properly into db
 					$_SESSION['username']=$username;
 					$_SESSION['AuthId']=$status['authorId'];
-					redirect(base_url().$username);
+					if($this->createLinkForVerification($username)){
+						redirect(base_url().$username.'/accountVerification');
+					}else{
+						redirect(base_url()."Signup/failed");
+					}
 				}else{		//If there is an error in inserting data into db
 					redirect(base_url()."Signup/failed");
 				}
@@ -79,7 +84,6 @@ class accessAccount extends CI_Controller {
 	public function checkLoginDetails(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		$this->load->model("userManagement/accessAccount_model");
 		$status= $this->accessAccount_model->checkLoginData($username);
 		if(!empty($status)){ //found the data on database
 			if(sizeof($status)==1){	//if only 1 result found
@@ -87,13 +91,18 @@ class accessAccount extends CI_Controller {
 					$authorId=$row['AuthId'];
 					$fetchedPass=$row['PassWord'];
 					$passwordSalt=$row['PassWordSalt'];
+					$isverified = $row['isVerified'];
 				}
 				$encryptpassword=md5($password.$passwordSalt);
 				// $encryptpassword=$epassword.$passwordSalt;
 				if($fetchedPass==$encryptpassword){
 					$_SESSION['AuthId']=$authorId;
 					$_SESSION['username']=$username;
-					return print_r($username);
+					if($isverified == 1){
+						return print_r($username);
+					}else{
+						return print_r($username.'/accountVerification');
+					}
 				}else{
 					return print_r("InValid");
 				}
@@ -103,5 +112,44 @@ class accessAccount extends CI_Controller {
 		}else{
 			return print_r("InValid");
 		}
+	}
+	public function accountVerficationMessageShow(){
+		$data['title']="Account Verification | CSQueries";
+		$data['category']=$this->fetchContent_model->categories();
+		$this->load->view('templates/Header',$data);
+		$this->load->view('userManagementViews/AccountVerificationMessage');
+		$this->load->view('templates/Footer');
+	}
+	public function createLinkForVerification($uname){
+		$randomNumbers = bin2hex(random_bytes(20));
+		$url = base_url().$uname.'/verifyAccount/'.$randomNumbers;
+		$status= $this->accessAccount_model->insertVerificationLink($uname,$randomNumbers);
+		return $status;
+	}
+	public function resendVerificationLink(){
+		$username = $_SESSION['username'];
+		$this->createLinkForVerification($username);
+		redirect(base_url().$username.'/accountVerification');
+	}
+	public function verifyAccount($username,$verificationCode){
+		$link= $this->accessAccount_model->getVerificationLink($username);
+		foreach($link as $row){
+			$code = $row['UniqueCode'];
+		}
+		if($code == $verificationCode){
+			$mainData['status'] = 'Verified';
+			$this->isVerifiedStatusUpdate($username);
+		}else{
+			$mainData['status'] = 'Not Verified Because of Wrong Data';
+		}
+		$data['title']="Verify Account | CSQueries";
+		$this->load->model("contentManagement/fetchContent_model");
+		$data['category']=$this->fetchContent_model->categories();
+		$this->load->view('templates/Header',$data);
+		$this->load->view('userManagementViews/AccountVerifyStatus',$mainData);
+		$this->load->view('templates/Footer');
+	}
+	public function isVerifiedStatusUpdate($username){
+		$this->accessAccount_model->updateisVerifiedStatus($username);
 	}
 }

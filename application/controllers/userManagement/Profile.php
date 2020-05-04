@@ -6,6 +6,18 @@ class Profile extends CI_Controller{
 	function __construct() {
         parent::__construct();
 		$this->load->model("contentManagement/fetchContent_model");
+		$this->load->model("userManagement/accessAccount_model");
+    }
+    public function isAccountVerified($username){
+    	$status = $this->accessAccount_model->isAccountVerified($username);
+    	foreach($status as $row){
+    		$isVerified = $row['isVerified'];
+    	}
+    	if($isVerified == 1){
+    		return true;
+    	}else{
+    		return false;
+    	}
     }
 	public function index(){
 		$data['category']=$this->fetchContent_model->categories();
@@ -23,11 +35,15 @@ class Profile extends CI_Controller{
 			$this->load->view('userManagementViews/ProfilePage',$mainData);
 			$this->load->view('templates/Footer');
 		}else if($this->uri->segment(1)==$_SESSION['username'] && isset($_SESSION['AuthId'])){ //if there is session and user clicks on his username
-			$data['title']="Profile | CSQueries";
-			$mainData['username'] = $username;
-			$this->load->view('templates/Header',$data);
-			$this->load->view('userManagementViews/ProfilePage',$mainData);
-			$this->load->view('templates/Footer');
+			if($this->isAccountVerified($username)){
+				$data['title']="Profile | CSQueries";
+				$mainData['username'] = $username;
+				$this->load->view('templates/Header',$data);
+				$this->load->view('userManagementViews/ProfilePage',$mainData);
+				$this->load->view('templates/Footer');
+			}else{
+				redirect(base_url().$username.'/accountVerification');
+			}
 		}else{				//if there is session and also valid username but username is not same with session username
 			if(!empty($result)){
 				$mainData['username'] = $username;
@@ -43,14 +59,18 @@ class Profile extends CI_Controller{
 	public function dashboard(){
 		$data['title']="Upload Content | CSQueries";
 		$data['category']=$this->fetchContent_model->categories();
+		$username=$this->uri->segment(1);	
 		if($this->isSessionAvailable()){
 			if($this->isUrlUsernameSame()){
-				$this->load->model("contentManagement/fetchContent_model");
-				$mainData['category']=$this->fetchContent_model->categories();
-				$data['category']=$mainData['category'];
-				$this->load->view('templates/Header',$data);
-				$this->load->view('userManagementViews/UploadContent',$mainData);
-				$this->load->view('templates/Footer');
+				if($this->isAccountVerified($username)){
+					$mainData['category']=$this->fetchContent_model->categories();
+					$data['category']=$mainData['category'];
+					$this->load->view('templates/Header',$data);
+					$this->load->view('userManagementViews/UploadContent',$mainData);
+					$this->load->view('templates/Footer');
+				}else{
+					redirect(base_url().$username.'/accountVerification');
+				}
 			}else{
 				show_404();
 			}
@@ -65,11 +85,14 @@ class Profile extends CI_Controller{
 		if($this->isSessionAvailable()){			//checking if user is logged in or not
 			if($this->isUrlUsernameSame()){			// if logged in the the url username is 
 				$username=$this->uri->segment(1);				//getting the username from url							
-				$this->load->model('contentManagement/fetchContent_model');
 				$mainData['questionList'] = $this->fetchContent_model->getUserQuestionList($username);
-				$this->load->view('templates/Header',$data);
-				$this->load->view('userManagementViews/userQuesList',$mainData);
-				$this->load->view('templates/Footer');
+				if($this->isAccountVerified($username)){
+					$this->load->view('templates/Header',$data);
+					$this->load->view('userManagementViews/userQuesList',$mainData);
+					$this->load->view('templates/Footer');
+				}else{
+					redirect(base_url().$username.'/accountVerification');
+				}
 			}else{				
 				show_404();		//username not valid showing error page
 			}
