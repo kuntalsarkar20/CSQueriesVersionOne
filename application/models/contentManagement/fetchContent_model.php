@@ -10,7 +10,7 @@ class fetchContent_model extends CI_Model{
 		return $queryResult->result_array();
 	}
 	public function getCategoryQuestions($category){	//gets question for a particullar category
-		$queryResult = $this->db->query('SELECT * FROM contents,category WHERE category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND isPublished=1');
+		$queryResult = $this->db->query('SELECT * FROM contents,category,author WHERE category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND author.AuthId = contents.AuthId AND isPublished=1 order by contents.views DESC,contents.CreatedAt DESC');
 		return $queryResult->result_array();
 	}
 	public function getUserQuestionList($username){		//gets question for a particular author
@@ -27,6 +27,14 @@ class fetchContent_model extends CI_Model{
 	}
 	public function homeCategory3Question(){	//gets 3 question to show in the home page of category NetWorking
 		$queryResult = $this->db->query('SELECT * FROM contents,category WHERE contents.CategoryId=3 AND category.CategoryId = contents.CategoryId order by views DESC,CreatedAt DESC Limit 3');
+		return $queryResult->result_array();
+	}
+	public function getCategoryQuestionsWithLimit($category,$startRange,$endRange){//gets question for a particullar category with limit of question for 														pagination
+		$queryResult = $this->db->query('SELECT * FROM contents,category,author WHERE category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND author.AuthId = contents.AuthId AND isPublished=1 order by contents.views DESC,contents.CreatedAt DESC Limit '.$startRange.','.$endRange.'');
+		return $queryResult->result_array();
+	}
+	public function countTotalQuestionCategory($category){
+		$queryResult = $this->db->query('SELECT count(contents.ContentId) as totalCategoryQuestion from contents,category where category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND isPublished=1');
 		return $queryResult->result_array();
 	}
 }

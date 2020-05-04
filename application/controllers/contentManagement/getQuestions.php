@@ -26,12 +26,21 @@ class getQuestions extends CI_Controller {
 		$mainData['RelatedQuestionFromTopic']=$this->fetchContent_model->getCategoryQuestions($category);	
 		return $mainData;
 	}
-	public function questionForTopic($category=NULL){
-		$mainData['categoryQuestions']=$this->fetchContent_model->getCategoryQuestions($category);
+	public function questionForTopic($category=NULL,$startingRange=1,$endingRange=10){
+		$data['title'] = 'Question List | CSQueries';
+		$data['category']=$this->fetchContent_model->categories();
+		$mainData['categoryQuestions']=$this->fetchContent_model->getCategoryQuestionsWithLimit($category,$startingRange,$endingRange);
+		$mainData['countQuestionNumber'] = $this->fetchContent_model->countTotalQuestionCategory($category);
+		foreach ($mainData['countQuestionNumber'] as $row ) {
+			$mainData['countQuestionNumber'] = $row['totalCategoryQuestion'];
+		}
 		if(!empty($mainData['categoryQuestions'])){
-			foreach ($mainData['categoryQuestions'] as $row) {
-			echo '<div style="padding:10px 20px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a></b></div>';
-			}
+			// foreach ($mainData['categoryQuestions'] as $row) {
+			// echo '<div style="padding:10px 20px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a></b></div>';
+			// }
+			$this->load->view('templates/Header',$data);
+			$this->load->view('HomeViews/CategoryQuestions',$mainData);
+			$this->load->view('templates/Footer');
 		}else{				//No questions found on database
 			show_404();
 		}
