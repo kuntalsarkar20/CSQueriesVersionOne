@@ -24,7 +24,7 @@ class accessAccount_model extends CI_Model{
 		return $queryResult;
 	}
 	public function getVerificationLink($uname){
-		$queryResult = $this->db->query('select Id,UserName,UniqueCode from verificationlinks where UserName="'.$uname.'"ORDER BY Id DESC LIMIT 1');
+		$queryResult = $this->db->query('select verificationlinks.Id,verificationlinks.UserName,verificationlinks.UniqueCode, author.AuthId from verificationlinks, author where verificationlinks.UserName="'.$uname.'" AND author.UserName = verificationlinks.UserName ORDER BY Id DESC LIMIT 1');
 		return $queryResult->result_array();
 	}
 	public function updateisVerifiedStatus($uname){

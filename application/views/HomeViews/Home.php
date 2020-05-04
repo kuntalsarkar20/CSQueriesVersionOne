@@ -1,6 +1,6 @@
 <div>
 	<img src="<?php echo base_url(); ?>assets/images/background/background.jpg" width="100%" height="600px">
-	<div class="centered"><center><h2 style="font-weight: bold;">Student Portal for Better UnderStanding</h2><br><h4>Contribute here by Writing Answers for your favourite Subjects and Help others to understand the Subject Easily.</h4><br><button type="button" class="btn btn-success btn-lg">Contribute Here</button></center></div>
+	<div class="centered"><center><h2 style="font-weight: bold;">Student Portal for Better UnderStanding</h2><br><h4>Contribute here by Writing Answers for your favourite Subjects and Help others to understand the Subject Easily.</h4><br><!-- <button type="button" class="btn btn-success btn-lg">Contribute Here</button> --></center></div>
 </div>
 <section>
 	<div class="container" style="padding: 20px 0px 50px 0px;">
@@ -49,51 +49,62 @@
 			<div class="row categoryBoxes">
 				<div class="col-sm-12" style="padding:1px;"><h3>&nbsp;&nbsp;DBMS</h3><hr></div>
 				<div class="col-sm-12" style="padding: 0px 10px;">
+					<?php
+					foreach($category1 as $row){
+						echo '<div class="col-sm-12 questionstyle"><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+					}
+					?>
+					<!-- <div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
 					<div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
-					<div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
-					<div class="col-sm-12 questionstyle" >What is Entity Relationship Diagram in DBMS Entity Relationship Diagram? <span class="datestyle">-17th April,2020</span></div>
+					<div class="col-sm-12 questionstyle" >What is Entity Relationship Diagram in DBMS Entity Relationship Diagram? <span class="datestyle">-17th April,2020</span></div> -->
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button>&nbsp;&nbsp;&nbsp;</div>
+				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/DBMS' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
 				<p>&nbsp;</p>
 			</div>
 		</div>
 		<div class="col-md-6 col-lg-6 col-sm-12" style="padding: 30px;">
 			<div class="row categoryBoxes">
-				<div class="col-sm-12" style="padding:1px;"><h3>&nbsp;&nbsp;DBMS</h3><hr></div>
+				<div class="col-sm-12" style="padding:1px;"><h3>&nbsp;&nbsp;Data Structure</h3><hr></div>
 				<div class="col-sm-12" style="padding: 0px 10px;">
-					<div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
-					<div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
-					<div class="col-sm-12 questionstyle" >What is Entity Relationship Diagram in DBMS Entity Relationship Diagram? <span class="datestyle">-17th April,2020</span></div>
+					<?php
+					foreach($category2 as $row){
+						echo '<div class="col-sm-12 questionstyle"><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+					}
+					?>
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button>&nbsp;&nbsp;&nbsp;</div>
+				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/DataStructure' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
 				<p>&nbsp;</p>
 			</div>
 		</div>
 		<div class="col-md-6 col-lg-6 col-sm-12" style="padding: 30px;">
 			<div class="row categoryBoxes">
-				<div class="col-sm-12" style="padding:1px;"><h3>&nbsp;&nbsp;DBMS</h3><hr></div>
+				<div class="col-sm-12" style="padding:1px;"><h3>&nbsp;&nbsp;NetWorking</h3><hr></div>
 				<div class="col-sm-12" style="padding: 0px 10px;">
-					<div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
-					<div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
-					<div class="col-sm-12 questionstyle" >What is Entity Relationship Diagram in DBMS Entity Relationship Diagram? <span class="datestyle">-17th April,2020</span></div>
+					<?php
+					foreach($category3 as $row){
+						echo '<div class="col-sm-12 questionstyle"><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+					}
+					?>
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button>&nbsp;&nbsp;&nbsp;</div>
+				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/NetWorking' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
 				<p>&nbsp;</p>
 			</div>
 		</div>
 		<div class="col-md-6 col-lg-6 col-sm-12" style="padding: 30px;">
 			<div class="row categoryBoxes">
-				<div class="col-sm-12" style="padding:1px;"><h3>&nbsp;&nbsp;DBMS</h3><hr></div>
+				<div class="col-sm-12" style="padding:1px;"><h3>&nbsp;&nbsp;NetWorking</h3><hr></div>
 				<div class="col-sm-12" style="padding: 0px 10px;">
-					<div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
-					<div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
-					<div class="col-sm-12 questionstyle" >What is Entity Relationship Diagram in DBMS Entity Relationship Diagram? <span class="datestyle">-17th April,2020</span></div>
+					<?php
+					foreach($category3 as $row){
+						echo '<div class="col-sm-12 questionstyle"><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+					}
+					?>
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button>&nbsp;&nbsp;&nbsp;</div>
+				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/NetWorking' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
 				<p>&nbsp;</p>
 			</div>
 		</div>

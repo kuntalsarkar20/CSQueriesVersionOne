@@ -133,23 +133,45 @@ class accessAccount extends CI_Controller {
 	}
 	public function verifyAccount($username,$verificationCode){
 		$link= $this->accessAccount_model->getVerificationLink($username);
-		foreach($link as $row){
-			$code = $row['UniqueCode'];
-		}
-		if($code == $verificationCode){
-			$mainData['status'] = 'Verified';
-			$this->isVerifiedStatusUpdate($username);
+		if(!empty($link)){
+			if($this->isAccountVerified($username)){		//checking is account already verified
+				redirect(base_url().$username);
+			}else{
+				foreach($link as $row){
+					$code = $row['UniqueCode'];
+					$authId = $row['AuthId'];
+				}
+				if($code == $verificationCode){
+					$mainData['status'] = true;
+					$_SESSION['username'] = $username;
+					$_SESSION['AuthId'] = $authId;
+					$this->isVerifiedStatusUpdate($username);
+				}else{
+					$mainData['status'] = false;
+				}
+				$data['title']="Verify Account | CSQueries";
+				$this->load->model("contentManagement/fetchContent_model");
+				$data['category']=$this->fetchContent_model->categories();
+				$this->load->view('templates/Header',$data);
+				$this->load->view('userManagementViews/AccountVerifyStatus',$mainData);
+				$this->load->view('templates/Footer');
+			}
 		}else{
-			$mainData['status'] = 'Not Verified Because of Wrong Data';
+			show_404();
 		}
-		$data['title']="Verify Account | CSQueries";
-		$this->load->model("contentManagement/fetchContent_model");
-		$data['category']=$this->fetchContent_model->categories();
-		$this->load->view('templates/Header',$data);
-		$this->load->view('userManagementViews/AccountVerifyStatus',$mainData);
-		$this->load->view('templates/Footer');
 	}
 	public function isVerifiedStatusUpdate($username){
 		$this->accessAccount_model->updateisVerifiedStatus($username);
 	}
+	public function isAccountVerified($username){
+    	$status = $this->accessAccount_model->isAccountVerified($username);
+    	foreach($status as $row){
+    		$isVerified = $row['isVerified'];
+    	}
+    	if($isVerified == 1){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
 }
