@@ -174,4 +174,28 @@ class accessAccount extends CI_Controller {
     		return false;
     	}
     }
+    public function passwordResetLinkGenerate(){
+    	date_default_timezone_set('Asia/Kolkata');
+    	$useremail = filter_var($this->input->post('useremail'), FILTER_SANITIZE_EMAIL);
+    	$status = $this->accessAccount_model->isEmailExists($useremail);
+    	if(!empty($status)){
+    		foreach($status as $row){
+    			$username = $row['UserName'];
+    		}
+    		$reqTime = date("Y-m-d H:i:s");
+    		$endTime = date("Y-m-d H:i:s", strtotime($reqTime . "+30 minutes"));
+    		$randomNumbers = bin2hex(random_bytes(20));
+    		$insertStatus= $this->accessAccount_model->insertforgotPassWordLink($username,$randomNumbers,$endTime);
+    		$forgotPassLink = base_url().'ResetPassword/'.$username.'/'.$randomNumbers.'/'.strtotime($reqTime);
+    		if($insertStatus){
+    			return print_r($forgotPassLink);
+    		}else{
+    			return print_r("Error in Sending mail. Please try again with proper details.");
+    		}
+    	}else{
+    		return print_r("Account Not found.");
+    	}
+    	
+    }
 }
+//"E-Mail Sent SuccessFully. Check Your inbox for further Instructions."

@@ -24,7 +24,7 @@ if($countQuestionNumber>10){
 		</div>
 		<div class="col-lg-10 col-md-10 col-sm-12  categoryBoxes">
 			<ul class="breadcrumb" style="background-color: transparent;">
-			  <li><a href="#">CSQueries</a></li>
+			  <li><a href="<?php echo base_url(); ?>">CSQueries</a></li>
 			  <li class="active"><?php echo $categoryName; ?></li>
 			</ul>
 			<h3><?php echo $categoryName; ?></h3>

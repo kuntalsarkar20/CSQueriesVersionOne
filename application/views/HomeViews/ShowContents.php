@@ -16,7 +16,16 @@ foreach ($question as $row) {
 <section style="background-color: #e9eeef91;padding-top: 70px 0px 0px 0px;" id="forMinHeight">
 <div class="container">
 	<div class="row categoryBoxes">
-		<div class="col-md-8 col-lg-8 col-sm-12" style="padding: 30px 20px;">
+		<div class="col-lg-12 col-md-12 col-sm-12">
+			<br>
+			<br>
+		<ul class="breadcrumb" style="/*background-color: transparent;*/">
+			  <li><a href="<?php echo base_url(); ?>">CSQueries</a></li>
+			  <li ><a href="<?php echo base_url().'Category/'.$this->uri->segment(2); ?>"><?php echo $this->uri->segment(2); ?></a></li>
+			  <li class="active"></li>
+		</ul>
+	</div>
+		<div class="col-lg-8 col-md-8 col-sm-12" style="padding: 0px 20px;">
 			<div class="row">
 				<div class="col-sm-12" style="padding:1px 13px;"><h3>&nbsp;&nbsp;<?php echo $contentName; ?></h3>
 					<span class="datestyle">-Uploaded By <b><a href="<?php echo base_url().$Author; ?>">@<?php echo $Author; ?></a></b> On <?php echo $creationTime; ?>&nbsp;&nbsp;&nbsp;</span><hr></div>
@@ -28,7 +37,7 @@ foreach ($question as $row) {
 				<p>&nbsp;</p>
 			</div>
 		</div>
-		<div class="col-lg-4 col-md-4 col-sm-12" style="padding: 30px 20px;">
+		<div class="col-lg-4 col-md-4 col-sm-12" style="padding: 0px 20px;">
 			<div class="row">
 				<div class="col-sm-12" style="padding:1px 10px;"><h3>&nbsp;&nbsp;Related Questions</h3>
 				<hr></div>

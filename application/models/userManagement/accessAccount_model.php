@@ -35,5 +35,13 @@ class accessAccount_model extends CI_Model{
 		$queryResult = $this->db->query('SELECT isVerified from author WHERE UserName = "'.$uname.'"');
 		return $queryResult->result_array();
 	}
+	public function isEmailExists($useremail){		//checking if a email exits
+		$queryResult = $this->db->query('SELECT UserName from author WHERE Email = "'.$useremail.'"');
+		return $queryResult->result_array();
+	}
+	public function insertforgotPassWordLink($username,$randomNumbers,$endTime){
+		$queryResult = $this->db->query('INSERT INTO forgotpasswordlog(UserName,RandomCodes,EndTime) VALUES("'.$username.'","'.$randomNumbers.'","'.$endTime.'")');
+		return $queryResult;
+	}
 }
 ?>
