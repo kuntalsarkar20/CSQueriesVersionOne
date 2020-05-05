@@ -17,6 +17,7 @@ $route['(:any)/UploadFailed'] = 'userManagement/profile/dashboard';
 $route['(:any)/dashboard'] = 'userManagement/profile/dashboard';
 $route['(:any)/verifyAccount/(:any)'] = 'userManagement/accessAccount/verifyAccount/$1/$2';
 $route['(:any)/accountVerification'] = 'userManagement/accessAccount/accountVerficationMessageShow';
+$route['(?i)ResetPassword/(:any)/(:any)/(:any)'] = 'userManagement/accessAccount/ResetPassword/$1/$2/$3';
 $route['(:any)'] = 'userManagement/profile/index';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

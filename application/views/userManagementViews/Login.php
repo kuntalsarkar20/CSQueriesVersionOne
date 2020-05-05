@@ -71,6 +71,10 @@
 		    </div>
 		</div>
 <script type="text/javascript">
+	//if (history.length == 1) {  // Um, needs to be 0 for IE, 1 for Firefox
+    // This is a new window or a new tab.
+    //alert(history.length);
+	//}
 	document.getElementById('login-section').style.minHeight=screen.height+"px";
 	function showLoaderForgotPass(){
 		var email = document.getElementById('useremail').value;
@@ -91,6 +95,7 @@
             data:{'useremail':email},
             success:function(data){
             	document.getElementById('msg').innerHTML = data;
+            	document.getElementById('forgotPassBtn').style.display='block';
             },
             error:function(data){
             	

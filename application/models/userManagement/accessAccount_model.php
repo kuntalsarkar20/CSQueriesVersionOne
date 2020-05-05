@@ -43,5 +43,9 @@ class accessAccount_model extends CI_Model{
 		$queryResult = $this->db->query('INSERT INTO forgotpasswordlog(UserName,RandomCodes,EndTime) VALUES("'.$username.'","'.$randomNumbers.'","'.$endTime.'")');
 		return $queryResult;
 	}
+	public function updatePassword($data){
+		$queryResult = $this->db->query('UPDATE author SET PassWord = "'.$data['psw'].'",PassWordSalt = "'.$data['salt'].'" WHERE UserName = "'.$data['username'].'"');
+		return $queryResult;
+	}
 }
 ?>

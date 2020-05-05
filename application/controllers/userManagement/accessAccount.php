@@ -197,5 +197,37 @@ class accessAccount extends CI_Controller {
     	}
     	
     }
+    public function ResetPassword($username,$randomNumber,$endTime){
+		$data['title']="Reset Password | CSQueries";
+		$data['category']=$this->fetchContent_model->categories();
+		$this->load->view('templates/Header',$data);
+		$this->load->view('userManagementViews/ResetPassword');
+		$this->load->view('templates/Footer');
+	}
+	public function uploadNewPassword(){
+		$username = $this->input->post('username');
+		$psw = $this->input->post('password');
+		$ConfirmPsw = $this->input->post('confirmPassword');
+		if(!empty($username) && !empty($psw) && !empty($ConfirmPsw)){		//If one of the input field is empty
+			if($psw == $ConfirmPsw){
+				$salt=bin2hex(random_bytes(10));   //It will generate a salt of 10*2=20 characters
+				$encryptPass=md5($psw.$salt);		//Password encrypted using md5 encryption
+				$upadtedPassData = array('username' => $username,
+				'salt' => $salt,
+				'psw' => $encryptPass);
+				$status = $this->accessAccount_model->updatePassword($upadtedPassData);
+				if($status){
+					return print_r("Passwords Updated SuccessFully.");
+				}else{
+					return print_r("Something Went Wrong. Try Again later.");
+				}
+			}else{
+				return print_r("Password and Confirm Passwords are not identical.");
+			}
+		}else{
+			return print_r("Enter all details Properly");
+		}
+		return print_r($psw." / ".$ConfirmPsw);
+	}
 }
 //"E-Mail Sent SuccessFully. Check Your inbox for further Instructions."

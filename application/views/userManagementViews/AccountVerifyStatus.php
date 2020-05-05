@@ -8,7 +8,7 @@ if($status){
 ?>
 <section id="forMinHeight">
 	<div id="loader"></div>
-	<div class="container" style="padding:80px 0px;" id="loadDiv" style="display:none;" class="animate-bottom">
+	<div class="container" style="padding:80px 0px;">
 		<div class="col-lg-12 col-md-12 col-sm-12">
 			<center><?php echo $msg; ?></center>
 		</div>
@@ -16,10 +16,4 @@ if($status){
 </section>
 <script type="text/javascript">
 	document.getElementById('forMinHeight').style.minHeight=screen.height+'px';
-  myVar = setTimeout(showPage, 2000);
-
-function showPage() {
-  document.getElementById("loader").style.display = "none";
-  document.getElementById("loadDiv").style.display = "block";
-}
 </script>

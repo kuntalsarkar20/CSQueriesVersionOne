@@ -211,7 +211,7 @@ body {
 }
 /*Loader for Account Verification Status*/
 /* Center the loader */
-#loader {
+/*#loader {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -260,4 +260,4 @@ body {
 #loadDiv {
   display: none;
   text-align: center;
-}
+}*/
