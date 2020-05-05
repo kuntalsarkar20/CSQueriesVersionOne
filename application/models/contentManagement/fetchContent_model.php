@@ -29,8 +29,8 @@ class fetchContent_model extends CI_Model{
 		$queryResult = $this->db->query('SELECT * FROM contents,category WHERE contents.CategoryId=3 AND category.CategoryId = contents.CategoryId order by views DESC,CreatedAt DESC Limit 3');
 		return $queryResult->result_array();
 	}
-	public function getCategoryQuestionsWithLimit($category,$startRange,$endRange){//gets question for a particullar category with limit of question for 														pagination
-		$queryResult = $this->db->query('SELECT * FROM contents,category,author WHERE category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND author.AuthId = contents.AuthId AND isPublished=1 order by contents.views DESC,contents.CreatedAt DESC Limit '.$startRange.','.$endRange.'');
+	public function getCategoryQuestionsWithLimit($category,$startRange){//gets question for a particullar category with limit of question for 														pagination
+		$queryResult = $this->db->query('SELECT * FROM contents,category,author WHERE category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND author.AuthId = contents.AuthId AND isPublished=1 order by contents.views DESC,contents.CreatedAt DESC Limit '.$startRange.',10');
 		return $queryResult->result_array();
 	}
 	public function countTotalQuestionCategory($category){

@@ -6,16 +6,13 @@ foreach($categoryQuestions as $row){
 $links='';
 if($countQuestionNumber>10){
 	$numberofPage = $countQuestionNumber/10; 	//keeping 10 questions in 1 page
-	$lastPage = $countQuestionNumber%10;
+	// $lastPage = $countQuestionNumber%10;
 	$startRange = 0;
-	$endRange = 10;
 	for($iteration=1;$iteration<$numberofPage;$iteration++){
-		$links = $links.'<li><a href="'.base_url().'Category/'.$categoryName.'/'.$startRange.'/'.$endRange.'">'.$iteration.'</a></li>';
+		$links = $links.'<li><a href="'.base_url().'Category/'.$categoryName.'/'.$startRange.'">'.$iteration.'</a></li>';
 		$startRange = $startRange +10;
-		$endRange = $endRange +10;
 	}
-	$lastPage  = $startRange+$lastPage;
-	$links = $links.'<li><a href="'.base_url().'Category/'.$categoryName.'/'.$startRange.'/'.$lastPage.'">'.$iteration.'</a></li>';
+	$links = $links.'<li><a href="'.base_url().'Category/'.$categoryName.'/'.$startRange.'">'.$iteration.'</a></li>';
 }else{
 	$links = '';
 }
@@ -26,20 +23,23 @@ if($countQuestionNumber>10){
 			&nbsp;
 		</div>
 		<div class="col-lg-10 col-md-10 col-sm-12  categoryBoxes">
-			<ul class="breadcrumb">
+			<ul class="breadcrumb" style="background-color: transparent;">
 			  <li><a href="#">CSQueries</a></li>
-			  <li class="active"><?php echo $countQuestionNumber; ?></li>
+			  <li class="active"><?php echo $categoryName; ?></li>
 			</ul>
 			<h3><?php echo $categoryName; ?></h3>
 			<p><?php echo $categoryDesc; ?></p>
-			<br>
-			<hr>
+			<hr style="border:2px solid green;">
+			<ul class="breadcrumb">
+			<li><p style="color:grey;font-size: 14px;">Showing (<?php echo $startLimit.'-'.($startLimit+9); ?>) of about <?php echo $countQuestionNumber; ?> results.(<?php echo round($TimeTaken,6); ?> Seconds)</p></li>
+			</ul>	<!--  Each page showing 10 records. so added 9 with start value-->
+			<hr>			
 			<div class="row">
 				<?php
 					foreach($categoryQuestions as $row){
 						echo '<div class="col-lg-12 col-md-12 col-sm-12">
-								<h4>'.$row['Question'].'<span class="datestyle" style="font-size: 15px;"> &nbsp;'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></h4>
-								<p style="color:grey;">Uploaded By: '.$row['UserName'].' <span class="datestyle" style="font-size: 15px;">Views: '.$row['Views'].'</span></p>
+								<h4><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle" style="font-size: 15px;"> &nbsp;'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></h4>
+								<p style="color:grey;">Uploaded By: <a href="'.base_url().$row['UserName'].'">@'.$row['UserName'].'</a> <span class="datestyle" style="font-size: 15px;"><span class="glyphicon glyphicon-eye-open"></span> '.$row['Views'].'</span></p>
 								<hr>
 							</div>';
 					}
