@@ -1,13 +1,18 @@
-<div>
+<!-- <div>
 	<img src="<?php echo base_url(); ?>assets/images/background/background.jpg" width="100%" height="600px">
+	<div class="centered"><center><h2 style="font-weight: bold;">Student Portal for Better UnderStanding</h2><br><h4>Contribute here by Writing Answers for your favourite Subjects and Help others to understand the Subject Easily.</h4><br><button type="button" class="btn btn-success btn-lg">Contribute Here</button></center></div> -->
+<div class="parallax" style="padding: 550px 0px 50px 0px;">
 	<div class="centered"><center><h2 style="font-weight: bold;">Student Portal for Better UnderStanding</h2><br><h4>Contribute here by Writing Answers for your favourite Subjects and Help others to understand the Subject Easily.</h4><br><!-- <button type="button" class="btn btn-success btn-lg">Contribute Here</button> --></center></div>
 </div>
-<section>
-	<div class="container" style="padding: 20px 0px 50px 0px;">
+<section style="padding: 50px 0px;">
+	<div class="container">
 		<center><h2 style="font-weight: bold;"><span style="border-bottom:4px solid black;">CSQueries</span></h2></center>
-		<div class="col-lg-2 col-md-2 col-sm-12"></div>
-		<div class="col-lg-8 col-md-8 col-sm-12" style="font-size:15px;">
-			<center>CSQueries is a Open Platform for Students to slove their Computer Science Doubts. CSQueries provides an easy and pointWise solution for the tough Questions. This platform contains a huge number of CS questions for the important Subjects like DataBase Management System, Data Structure & Algorithm, Operating System and many more computer Programming Languages.</center><br><br>
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-12">&nbsp;</div>
+			<div class="col-lg-8 col-md-8 col-sm-12" style="font-size:15px;">
+				<center>CSQueries is a Open Platform for Students to slove their Computer Science Doubts. CSQueries provides an easy and pointWise solution for the tough Questions. This platform contains a huge number of CS questions for the important Subjects like DataBase Management System, Data Structure & Algorithm, Operating System and many more computer Programming Languages.</center><br><br>
+			</div>
+			<div class="col-lg-2 col-md-2 col-sm-12">&nbsp;</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-12">
@@ -15,7 +20,7 @@
 				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/write_for_us_2.png" alt="John" style="width:100%;height:200px;">
 				  <h3>Write For Us</h3>
 				  <p class="title"><center><button type="button" class="btn btn-primary btn-md">Start Here</button></center></p>
-				   <br>
+				  <br>
 				</div>
 			</div>
 			<div class="col-sm-1"></div>
@@ -30,7 +35,7 @@
 			<div class="col-sm-1"></div>
 			<div class="col-lg-3 col-md-3 col-sm-12">
 				<div class="card">
-				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/search_here.png" alt="John" style="width:100%">
+				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/search_here.png" alt="John" style="width:100%;height:200px;">
 				  <h3>Find Answers Quickly</h3>
 				  <p class="title"><center><button type="button" class="btn btn-primary btn-md">Search</button></center></p>
 				  <br>

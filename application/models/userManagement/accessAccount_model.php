@@ -24,7 +24,7 @@ class accessAccount_model extends CI_Model{
 		return $queryResult;
 	}
 	public function getVerificationLink($uname){
-		$queryResult = $this->db->query('select verificationlinks.Id,verificationlinks.UserName,verificationlinks.UniqueCode, author.AuthId from verificationlinks, author where verificationlinks.UserName="'.$uname.'" AND author.UserName = verificationlinks.UserName ORDER BY Id DESC LIMIT 1');
+		$queryResult = $this->db->query('select verificationlinks.Id, verificationlinks.UserName, verificationlinks.UniqueCode, author.AuthId from verificationlinks, author where verificationlinks.UserName="'.$uname.'" AND author.UserName = verificationlinks.UserName ORDER BY Id DESC LIMIT 1');
 		return $queryResult->result_array();
 	}
 	public function updateisVerifiedStatus($uname){
@@ -46,6 +46,10 @@ class accessAccount_model extends CI_Model{
 	public function updatePassword($data){
 		$queryResult = $this->db->query('UPDATE author SET PassWord = "'.$data['psw'].'",PassWordSalt = "'.$data['salt'].'" WHERE UserName = "'.$data['username'].'"');
 		return $queryResult;
+	}
+	public function getResetPassData($username){	//to get data about a particular username
+		$queryResult = $this->db->query('SELECT * FROM forgotpasswordlog WHERE UserName = "'.$username.'" ORDER BY LogId DESC Limit 1');
+		return $queryResult -> result_array();
 	}
 }
 ?>

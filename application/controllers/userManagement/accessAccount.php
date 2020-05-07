@@ -187,22 +187,28 @@ class accessAccount extends CI_Controller {
     		$randomNumbers = bin2hex(random_bytes(20));
     		$insertStatus= $this->accessAccount_model->insertforgotPassWordLink($username,$randomNumbers,$endTime);
     		$forgotPassLink = base_url().'ResetPassword/'.$username.'/'.$randomNumbers.'/'.strtotime($reqTime);
-    		if($insertStatus){
-    			return print_r($forgotPassLink);
-    		}else{
-    			return print_r("Error in Sending mail. Please try again with proper details.");
-    		}
-    	}else{
-    		return print_r("Account Not found.");
-    	}
+    		if($insertStatus) return print_r($forgotPassLink);
+			else return print_r("Error in Sending mail. Please try again with proper details.");
+    	}else return print_r("Account Not found.");
     	
     }
     public function ResetPassword($username,$randomNumber,$endTime){
-		$data['title']="Reset Password | CSQueries";
-		$data['category']=$this->fetchContent_model->categories();
-		$this->load->view('templates/Header',$data);
-		$this->load->view('userManagementViews/ResetPassword');
-		$this->load->view('templates/Footer');
+    	$isLinkDataValid = $this->accessAccount_model->getResetPassData($username);
+    	if(!empty($isLinkDataValid)){
+    		foreach($isLinkDataValid as $row){
+    			$getUsername = $row['UserName'];
+    			$randomCode = $row['Randomcodes'];
+    			$EndTime = $row['EndTime'];
+    		}
+    		$now = date("Y-m-d H:i:s");
+    		if($randomNumber == $randomCode && $now <= $EndTime){
+	    		$data['title']="Reset Password | CSQueries";
+				$data['category']=$this->fetchContent_model->categories();
+				$this->load->view('templates/Header',$data);
+				$this->load->view('userManagementViews/ResetPassword');
+				$this->load->view('templates/Footer');
+			}else show_404();
+    	}else show_404();
 	}
 	public function uploadNewPassword(){
 		$username = $this->input->post('username');

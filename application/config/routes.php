@@ -6,6 +6,7 @@ $route['(?i)signup/failed'] = 'userManagement/accessAccount/signup';
 $route['(?i)signup'] = 'userManagement/accessAccount/signup';
 $route['(?i)login/failed'] = 'userManagement/accessAccount/login';
 $route['(?i)login'] = 'userManagement/accessAccount/login';
+$route['(?i)Search/(:any)'] = 'contentManagement/getQuestions/SearchResultView/$1';
 $route['(?i)category/(:any)'] = 'contentManagement/getQuestions/questionForTopic/$1';
 $route['(?i)category/(:any)/(:num)'] = 'contentManagement/getQuestions/questionForTopic/$1/$2';
 $route['questions/(:any)/(:num)/(:any)'] = 'contentManagement/getQuestions/ShowContents/$1/$2/$3';
