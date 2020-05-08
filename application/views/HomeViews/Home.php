@@ -2,8 +2,9 @@
 	<img src="<?php echo base_url(); ?>assets/images/background/background.jpg" width="100%" height="600px">
 	<div class="centered"><center><h2 style="font-weight: bold;">Student Portal for Better UnderStanding</h2><br><h4>Contribute here by Writing Answers for your favourite Subjects and Help others to understand the Subject Easily.</h4><br><button type="button" class="btn btn-success btn-lg">Contribute Here</button></center></div> -->
 <div class="parallax" style="padding: 550px 0px 50px 0px;">
-	<div class="centered"><center><h2 style="font-weight: bold;">Student Portal for Better UnderStanding</h2><br><h4>Contribute here by Writing Answers for your favourite Subjects and Help others to understand the Subject Easily.</h4><br><!-- <button type="button" class="btn btn-success btn-lg">Contribute Here</button> --></center></div>
+	<div class="centered"><center><h2 style="font-weight: bold;">Student Portal for Better UnderStanding</h2><br><h4>Contribute here by Writing Answers for your favourite Subjects and Help others to understand the Subject Easily.</h4><br><button type="button" class="btn btn-success btn-lg">Contribute Here</button></center></div>
 </div>
+
 <section style="padding: 50px 0px;">
 	<div class="container">
 		<center><h2 style="font-weight: bold;"><span style="border-bottom:4px solid black;">CSQueries</span></h2></center>
