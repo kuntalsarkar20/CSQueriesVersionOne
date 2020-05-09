@@ -35,6 +35,8 @@ if(isset($_SESSION['username'])){
     <link rel="stylesheet" type="text/css" href="/Questions/assets/css/StyleSheet.css"><!-- Our Style Sheet -->
     <!--CKEditor CDN Sources -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700&display=swap" rel="stylesheet">
     <style type="text/css">
    .ml14 {
   font-weight: 200;
