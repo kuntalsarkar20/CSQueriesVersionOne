@@ -40,6 +40,14 @@ include "Header.php";
 			  	</div>
 			</div>
 			<div class="col-lg-12 col-md-12 col-sm-12">
+			  	<select multiple data-role="tagsinput">
+				  <option value="Amsterdam">Amsterdam</option>
+				  <option value="Washington">Washington</option>
+				  <option value="Sydney">Sydney</option>
+				  <option value="Beijing">Beijing</option>
+				  <option value="Cairo">Cairo</option>
+				</select>
+			<div class="col-lg-12 col-md-12 col-sm-12">
 			  	<p style="padding-left: 30px;">Auto Saved(Not Published)</p>
 			  	<button type="button" class="btn btn-primary btn-md" style="float:right;margin-left:20px;">Publish</button>
 			  	<button type="button" class="btn btn-danger btn-md" style="float:right;right: 5px;">Cancel</button>

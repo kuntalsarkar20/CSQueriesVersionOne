@@ -15,8 +15,8 @@
 				        <input class="form-control" type="text" id="usrname">
 				        <span class="" id="icon"></span>
 				      </div>
-				      <span class="" id="msgForWrongUsername"></span>
 				  	</div>
+				  	<input type="hidden" value="<?php echo $this->uri->segment(2); ?>" id="hiddenUsrname">
 
 				    <label for="psw">New Password</label>
 				    <div class="form-group">
@@ -72,10 +72,12 @@
 		var usrname = document.getElementById('usrname').value;
 		var psw = document.getElementById('psw').value;
 		var confirmPsw = document.getElementById('confirm_psw').value;
+		var hiddenUsrname = document.getElementById('hiddenUsrname').value;
 		$.ajax({
             type:'POST',
-            url:'<?php echo base_url("userManagement/accessAccount/uploadNewPassword"); ?>',
+            url:'<?php echo base_url("userManagement/accessAccount/updatePassword"); ?>',
             data:{'username':usrname,
+            	'hiddenUname':hiddenUsrname,
 		        'password':psw,
 		    	'confirmPassword':confirmPsw},
             success:function(data){
