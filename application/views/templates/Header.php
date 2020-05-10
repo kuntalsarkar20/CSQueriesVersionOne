@@ -32,6 +32,10 @@ if(isset($_SESSION['username'])){
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 	<!--End AOS CDN Sources -->
+	<!--Tags Input StyleSheets -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+	<!--End Tags Input Plugin StyleSheets, Scripts for this plugin in placed at footer-->
     <link rel="stylesheet" type="text/css" href="/Questions/assets/css/StyleSheet.css"><!-- Our Style Sheet -->
     <!--CKEditor CDN Sources -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
@@ -61,16 +65,23 @@ if(isset($_SESSION['username'])){
 	          </ul>
 	        </li>
 	      </ul>
-	      <form class="navbar-form navbar-left">
+	      <form class="navbar-form navbar-left" method="post">
 		      <div class="input-group">
 		        <input type="text" class="form-control" placeholder="Search" name="search">
 		        <div class="input-group-btn">
-		          <button class="btn btn-default" type="submit">
+		          <button class="btn btn-default" type="submit" name="searchBtn">
 		            <i class="glyphicon glyphicon-search"></i>
 		          </button>
 		        </div>
 		      </div>
 		    </form>
+		    <?php
+		    if(isset($_POST['searchBtn'])){
+		    	$searchString = $this->security->xss_clean($_POST['search']);
+		    	$searchString = preg_replace('/[^A-Za-z0-9\-+]/', '+', $searchString);
+		    	redirect(base_url().'Search/'.$searchString);
+		    }
+		    ?>
 	      <!-- <ul class="nav navbar-nav navbar-right"> -->
 	        <?php echo $profileNavMenu; ?>
 	      <!-- </ul> -->

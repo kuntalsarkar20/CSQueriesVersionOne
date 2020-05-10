@@ -4,6 +4,7 @@ foreach ($question as $row) {
 	$contentName= $row['Question'];
 	$contentDesc= $row['Answer'];
 	$contentCategory = $row['CategoryId'];
+	$contentTags = $row['ContentTags'];
 	if($row['isPublished']==0){
 		$btnText = 'Update & Publish';
 	}else{
@@ -69,7 +70,16 @@ foreach ($question as $row) {
 			  	<label for="psw">Your Content Explaination/Answer</label>
 			    <div class="form-group">
 			      <div class="col-sm-12">
-			        <textarea class="form-control" rows="5" id="contentAns" name="contentDetails"><?php echo $contentDesc; ?></textarea>
+			        <textarea class="form-control" rows="5" id="contentAns" name="contentDetails"><?php echo htmlspecialchars($contentDesc); ?></textarea>
+			      </div>
+			  	</div>
+			</div>
+			<div class="col-lg-12 col-md-12 col-sm-12">
+				<p>&nbsp;</p>
+			  	<label for="psw">Tags/Keywords for your Content(You can add Multiple tags):</label>
+			    <div class="form-group">
+			      <div class="col-sm-12">
+			        <input type="text" value="<?php echo $contentTags; ?>" data-role="tagsinput" name="Ctag"> 
 			      </div>
 			  	</div>
 			</div>

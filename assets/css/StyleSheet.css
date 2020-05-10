@@ -1,6 +1,10 @@
 body {
 	font-family: Arial, Helvetica, sans-serif;
 }
+.bootstrap-tagsinput {
+  width:100%;
+  min-height:100px;
+  }
 .parallax {
    background-image: url("http://localhost/Questions/assets/images/background/background.jpg");
    background-attachment: fixed;

@@ -15,10 +15,13 @@
 	<!--End AOS CDN Sources -->
     <link rel="stylesheet" type="text/css" href="StyleSheet.css"><!-- Our Style Sheet -->
     <link rel="stylesheet" type="text/css" href="StyleSheet2.css"><!-- Our Style Sheet -->
+    <!--Files for Tags Input  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+	<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>	
+	<!-- End tags input -->
     <!--CKEditor CDN Sources -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 </head>

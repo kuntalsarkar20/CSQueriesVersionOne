@@ -17,7 +17,8 @@ class uploadContentController extends CI_Controller {
 			$category = $_POST['category'];
 			$contentHeading = addslashes($_POST['contentName']);
 			$content = addslashes($_POST['contentDetails']);
-			if(!empty($category) && !empty($contentHeading)){   //checking if the category or content heading is empty
+			$ContentTag = htmlentities($_POST['contentTags']);
+			if(!empty($category) && !empty($contentHeading) && !empty($ContentTag)){   //checking if the category or content heading is empty
 				$dashedContent = str_replace(" ", "-", $contentHeading);
 				$dashedContent = preg_replace('/[^A-Za-z0-9\-]/', '', $dashedContent);
 				$dashedContent = (strlen($dashedContent) > 80) ? substr($dashedContent,0,80) : $dashedContent;
@@ -26,6 +27,7 @@ class uploadContentController extends CI_Controller {
 					'contentHeading' => $contentHeading,
 					'dashed' => $dashedContent,
 					'content' => $content,
+					'ContentTags' => $ContentTag,
 					'publishStatus' => $isPublish);
 				$result = $this->uploadContent_model->uploadContents($contentData);
 				if($result){
@@ -68,8 +70,9 @@ class uploadContentController extends CI_Controller {
 		}
 		$cId = $_POST['ContentId'];
 		$category = $_POST['category'];
-		$contentHeading = addslashes($_POST['contentName']);
+		$contentHeading = htmlentities(addslashes($_POST['contentName']));
 		$content = addslashes($_POST['contentDetails']);
+		$ContentTag = htmlentities($_POST['Ctag']);
 		if(!empty($category) && !empty($contentHeading)){   //checking if the category or content heading is empty
 				$dashedContent = str_replace(" ", "-", $contentHeading);
 				$dashedContent = preg_replace('/[^A-Za-z0-9\-]/', '', $dashedContent);
@@ -78,7 +81,8 @@ class uploadContentController extends CI_Controller {
 					'category' => $category,
 					'contentHeading' => $contentHeading,
 					'dashed' => $dashedContent,
-					'content' => $content);
+					'content' => $content,
+					'contentTag' => $ContentTag);
 				if($userClick=='update'){
 					$result = $this->uploadContent_model->updateContent($contentData);
 					// echo "ok";
