@@ -1,7 +1,15 @@
-<section style="padding:100px 0px;">
+<section style="padding:100px 0px;" id="signup-section">
 	<!-- <p>&nbsp;</p>
 	<p>&nbsp;</p> -->
-	<div class="container">
+	<div class="sk-chase" style="position:fixed;top:50%;left:50%;" id="signup-loader">
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	</div>
+	<div class="container" style="display: none;" id="signup-container">
 		<?php
 		  if($this->uri->segment(2)=="failed"){
 		    echo '<div class="alert alert-danger alert-dismissible fade in">
@@ -81,6 +89,12 @@
 	</div>
 </section>
 <script type="text/javascript">
+	document.getElementById('signup-section').style.minHeight=screen.height+"px";
+	setTimeout(signupContainer, 3000)
+	function signupContainer(){
+		document.getElementById('signup-container').style.display='block';
+		document.getElementById('signup-loader').style.display='none';
+	}
 	function usernameValidation(divId,uvalue){
 		if(uvalue==''){
 			usernameValidationFailed(divId);

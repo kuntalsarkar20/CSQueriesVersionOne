@@ -1,7 +1,15 @@
 <section style="padding:80px 0px;" id="login-section">
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
-	<div class="container">
+	<div class="sk-chase" style="position:fixed;top:50%;left:50%;" id="login-loader">
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	  <div class="sk-chase-dot"></div>
+	</div>
+	<div class="container" style="display:none;" id="login-container">
 		<?php
 		  if($this->uri->segment(2)=="failed"){
 		    echo '<div class="alert alert-danger alert-dismissible fade in">
@@ -71,11 +79,12 @@
 		    </div>
 		</div>
 <script type="text/javascript">
-	//if (history.length == 1) {  // Um, needs to be 0 for IE, 1 for Firefox
-    // This is a new window or a new tab.
-    //alert(history.length);
-	//}
 	document.getElementById('login-section').style.minHeight=screen.height+"px";
+	setTimeout(loginContainerLoader, 3000)
+	function loginContainerLoader(){
+		document.getElementById('login-container').style.display='block';
+		document.getElementById('login-loader').style.display='none';
+	}
 	function showLoaderForgotPass(){
 		var email = document.getElementById('useremail').value;
 		if(email == ''){
