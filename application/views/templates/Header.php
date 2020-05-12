@@ -30,8 +30,8 @@ if(!isset($ContentKeyWords)){
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <!--modal-->
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<!--modal-->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <!--Animate on Scroll CDN Sources -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -40,7 +40,7 @@ if(!isset($ContentKeyWords)){
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.css">
 	<!--End Tags Input Plugin StyleSheets, Scripts for this plugin in placed at footer-->
-    <link rel="stylesheet" type="text/css" href="/Questions/assets/css/StyleSheet.css"><!-- Our Style Sheet -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/css/StyleSheet.css"><!-- Our Style Sheet -->
     <!--CKEditor CDN Sources -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
     <!-- Fonts -->
@@ -59,9 +59,9 @@ if(!isset($ContentKeyWords)){
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
-	        <li><a href="<?php echo base_url(); ?>" id="linkcolor">Home</a></li>
+	        <li><a href="<?php echo base_url(); ?>" id="linkcolor"><span class="glyphicon glyphicon-home"></span> Home</a></li>
 	        <li class="dropdown">
-	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor">Category <span class="caret"></span></a>
+	          <a class="dropdown-toggle" data-toggle="dropdown" href="#" id="linkcolor"><span class="glyphicon glyphicon-list-alt"></span> Category <span class="caret"></span></a>
 	          <ul class="dropdown-menu navBar">
 	            <?php 
 			        foreach ($category as $row) {

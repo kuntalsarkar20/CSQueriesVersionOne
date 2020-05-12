@@ -36,7 +36,7 @@
 				        <input class="form-control" type="password" id="psw" required>
 				      </div>
 				  	</div>
-
+				  	<p id="WrongPasswordMsg" style="color:red;"></p>
 				  	<div class="form-group">
 				      <div class="col-sm-12">
 				        <button type="button" id="login_submit" class="login-input login-submit" onclick="showLoader()">Submit</button>
@@ -133,7 +133,9 @@
             'password':pass},
             success:function(data){
             	if(data=="InValid"){
-					window.location.href="<?php echo base_url().'login/failed';?>";
+            		document.getElementById('WrongPasswordMsg').innerHTML = "Username or Password doesn't match";
+					document.getElementById('login_submit').style.display='block';
+					document.getElementById('loader').style.display='none';
 				}else{	
 					window.location.href="<?php echo base_url();?>"+data;
 				}

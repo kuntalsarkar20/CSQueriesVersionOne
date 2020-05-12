@@ -210,11 +210,15 @@ class accessAccount extends CI_Controller {
 			}else show_404();	// if the code or time is not matched as required
     	}else show_404();	//if there is no data for that username
 	}
-	public function updatePassword(){	//updating the old password.
+	public function forgotPassLinkPasswordUpdate(){
 		$username = $this->input->post('username');
 		$psw = $this->input->post('password');
 		$ConfirmPsw = $this->input->post('confirmPassword');
 		$hiddenUsername = $this->input->post('hiddenUname');
+		$result = $this->updatePassword($username,$psw,$ConfirmPsw,$hiddenUsername);
+		return $result;
+	}
+	public function updatePassword($username,$psw,$ConfirmPsw,$hiddenUsername){	//updating the old password.
 		if(!empty($username) && !empty($psw) && !empty($ConfirmPsw)){		//If one of the input field is empty
 			if($psw == $ConfirmPsw && $username == $hiddenUsername){
 				$salt=bin2hex(random_bytes(10));   //It will generate a salt of 10*2=20 characters
@@ -227,6 +231,28 @@ class accessAccount extends CI_Controller {
 				else return print_r("Something Went Wrong. Try Again later.");
 			}else return print_r("Password and Confirm Passwords are not identical.Check your username too.");
 		}else return print_r("Enter all details Properly");
+	}
+	public function matchPasswords(){	//matching inputted password with db password before changing in profile
+		$username = $this->input->post('username');
+		$currentPsw = $this->input->post('currentPassword');
+		$newPsw = $this->input->post('newPassword');
+		$ConfirmPsw = $this->input->post('confirmPassword');
+		$status= $this->accessAccount_model->checkLoginData($username);
+		if(!empty($status)){ //found the data on database
+			if(sizeof($status)==1){	//if only 1 result found
+				foreach ($status as $row) {
+					$authorId=$row['AuthId'];
+					$fetchedPass=$row['PassWord'];
+					$passwordSalt=$row['PassWordSalt'];
+					$isverified = $row['isVerified'];
+				}
+				$encryptpassword=md5($currentPsw.$passwordSalt);
+				if($encryptpassword == $fetchedPass){
+					$result = $this->updatePassword($username,$newPsw,$ConfirmPsw,$username);
+					return $result;
+				}else return print_r("Previous passwords didn't match");
+			}else return print_r("Something Went Wrong. Try Again later.");
+		}else return print_r("Something Went Wrong. Try Again later.");
 	}
 }
 //"E-Mail Sent SuccessFully. Check Your inbox for further Instructions."

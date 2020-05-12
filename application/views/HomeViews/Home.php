@@ -65,7 +65,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category1 as $row){
-						echo '<div class="col-sm-12 questionstyle"><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 					<!-- <div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
@@ -73,7 +73,7 @@
 					<div class="col-sm-12 questionstyle" >What is Entity Relationship Diagram in DBMS Entity Relationship Diagram? <span class="datestyle">-17th April,2020</span></div> -->
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/DBMS' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
+				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/DBMS' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton"><span class="glyphicon glyphicon-th-list"></span> View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
 				<p>&nbsp;</p>
 			</div>
 		</div>
@@ -88,7 +88,7 @@
 					?>
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/DataStructure' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
+				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/DataStructure' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton"><span class="glyphicon glyphicon-th-list"></span> View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
 				<p>&nbsp;</p>
 			</div>
 		</div>
@@ -103,7 +103,7 @@
 					?>
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/NetWorking' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
+				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/NetWorking' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton"><span class="glyphicon glyphicon-th-list"></span> View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
 				<p>&nbsp;</p>
 			</div>
 		</div>
@@ -118,7 +118,7 @@
 					?>
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/NetWorking' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton">View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
+				<div class="col-sm-12 allQuestionButtonPlace"><a href="<?php echo base_url().'Category/NetWorking' ?>"><button type="button" class="btn btn-success btn-lg viewAllQuestionButton"><span class="glyphicon glyphicon-th-list"></span> View All Questions</button></a>&nbsp;&nbsp;&nbsp;</div>
 				<p>&nbsp;</p>
 			</div>
 		</div>

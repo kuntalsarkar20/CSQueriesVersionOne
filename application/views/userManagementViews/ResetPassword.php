@@ -75,7 +75,7 @@
 		var hiddenUsrname = document.getElementById('hiddenUsrname').value;
 		$.ajax({
             type:'POST',
-            url:'<?php echo base_url("userManagement/accessAccount/updatePassword"); ?>',
+            url:'<?php echo base_url("userManagement/accessAccount/forgotPassLinkPasswordUpdate"); ?>',
             data:{'username':usrname,
             	'hiddenUname':hiddenUsrname,
 		        'password':psw,
