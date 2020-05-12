@@ -1,13 +1,11 @@
 <section style="padding:80px 0px;" id="login-section">
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
-	<div class="sk-chase" style="position:fixed;top:50%;left:50%;" id="login-loader">
-	  <div class="sk-chase-dot"></div>
-	  <div class="sk-chase-dot"></div>
-	  <div class="sk-chase-dot"></div>
-	  <div class="sk-chase-dot"></div>
-	  <div class="sk-chase-dot"></div>
-	  <div class="sk-chase-dot"></div>
+	<div class="sk-folding-cube" style="position:fixed;top:40%;left:50%;" id="login-loader">
+	  <div class="sk-cube1 sk-cube"></div>
+	  <div class="sk-cube2 sk-cube"></div>
+	  <div class="sk-cube4 sk-cube"></div>
+	  <div class="sk-cube3 sk-cube"></div>
 	</div>
 	<div class="container" style="display:none;" id="login-container">
 		<?php

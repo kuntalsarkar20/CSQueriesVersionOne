@@ -1,7 +1,7 @@
 <?php
 if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
 	if($_SESSION['username'] == $username){
-		$editInfoButton = '<a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Edit Info</a>';
+		$editInfoButton = '<a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Change Password</a>';
 		$editPic = '<a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil" style="top:-30px;left: 20px;color: black;"></span></a>';
 		$editCollege = '<a href="" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></a>';
 		$editLanguage = '<a href="" data-toggle="modal" data-target="#myModal2"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></a>';
@@ -112,12 +112,11 @@ foreach ($userDetails as $row) {
 		     	<div class="modal-content">
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          	<h1 style="text-align: center;font-family: arial;">Edit Info</h1><hr>
+			          	<h1 style="text-align: center;font-family: arial;">Change Password</h1><hr>
 					    <form action="">
 						    <label for="usrname">Username</label>
 								<div class="form-group" id="usernameSuccess">
-							        <input class="form-control" id="focusedInput" type="text" onkeyup="usernameValidation(this.id,this.value)" name="usrname">
-							        <span class="" id="icon"></span>
+							        <input class="form-control" type="text" value="<?php echo $usrname; ?>" name="usrname" disabled>
 							      <span class="" id="msgForWrongUsername"></span>
 							  	</div>
 						    <div class="form-group">
@@ -125,10 +124,18 @@ foreach ($userDetails as $row) {
 						      <input type="text" class="form-control" placeholder="Email" name="name" value="<?php echo $email; ?>" disabled>
 						    </div>
 						    <div class="form-group">
-						      <label for="name">Name:</label>
-						      <input type="name" class="form-control" placeholder="Enter Your Name" name="name" value="<?php echo $authorName; ?>" required>
+						      <label for="name">Current Password:</label>
+						      <input type="name" class="form-control" placeholder="Enter Your Current Password" name="name" required>
 						    </div>
-						    <center><button type="submit" class="btn btn-default">Change</button></center>
+						    <div class="form-group">
+						      <label for="name">New Password:</label>
+						      <input type="name" class="form-control" placeholder="Enter Your New Password" name="name" required>
+						    </div>
+						    <div class="form-group">
+						      <label for="name">Confirm New Password:</label>
+						      <input type="name" class="form-control" placeholder="Confirm Password" name="name" required>
+						    </div>
+						    <center><button type="button" id="login_submit" class="login-input login-submit">Change Details</button></center>
 						</form>
 			        </div>
 		      	</div>
@@ -156,7 +163,7 @@ foreach ($userDetails as $row) {
 						      <label for="name">Graduation Year (if not then expected):</label>
 						      <input type="number" class="form-control" id="year" placeholder="Enter Year" name="year" value="<?php echo $YearOfGraduation; ?>">
 						    </div>
-						    <center><button type="submit" id="edit-info" class="btn btn-default">Change</button></center>
+						    <center><button type="button" id="login_submit" class="login-input login-submit">Change Details</button></center>
 						</form>
 			        </div>
 		      	</div>

@@ -13,6 +13,9 @@ class getQuestions extends CI_Controller {
 		$mainData = $this->fetchQuestion($category,$questionId,$questionText);	//getting question through 																								category,questionid
 		if(!empty($mainData['question'])){	//if the url is valid
 			$data['title']="Questions | CSQueries";
+			foreach($mainData['question'] as $row){
+				$data['ContentKeyWords'] = $row['ContentTags'];
+			}
 			$this->load->view('templates/Header',$data);
 			$this->load->view('HomeViews/ShowContents',$mainData);
 			$this->load->view('templates/Footer');
