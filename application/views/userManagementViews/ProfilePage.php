@@ -3,7 +3,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
 	if($_SESSION['username'] == $username){
 		$editInfoButton = '<a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Change Password</a>';
 		$editPic = '<a href="" id="link" data-toggle="modal" data-target="#imageUpload"><span class="glyphicon glyphicon-pencil" style="top:-30px;left: 20px;color: white;"></span></a>';
-		$editCollege = '<a href="" data-toggle="modal" data-target="#editEducationDetails"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></a>';
+		$editCollege = '<button id="editCollege" style="border:none;background-color:transparent;float:right;"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></button>';
 		$editLanguage = '<a href="" data-toggle="modal" data-target="#editEducationDetails"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></a>';
 		$usrname = $username;
 	}else{
@@ -48,7 +48,7 @@ foreach ($userDetails as $row) {
 			 <!-- <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@<?php echo $usrname; ?></h2> -->
 			  <?php echo $editInfoButton; ?>
 			  <hr>
-			  <h2 class="profile-h2"><li>Expected gradutaion in <?php echo $degree; ?> at <?php echo $YearOfGraduation; ?></li><br></h2>
+			  <h2 class="profile-h2">About<br><br><li>Expected gradutaion in <?php echo $degree; ?> at <?php echo $YearOfGraduation; ?></li><br></h2>
 		</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
 				<div class="col-sm-12 profile-boxes">
@@ -74,9 +74,7 @@ foreach ($userDetails as $row) {
 							 			echo '<span class="glyphicon glyphicon-star" style="font-size: 30px;color:green;"></span>&nbsp;&nbsp;';
 							 		}
 							 	?>
-							 	<!-- <span class="glyphicon glyphicon-star" style="font-size: 30px;color:green;"></span>
-							    <span class="glyphicon glyphicon-star" style="font-size: 30px;"></span>
-							 	<span class="glyphicon glyphicon-star" style="font-size: 30px;"></span> --></h2>
+							 	</h2>
 							 	<h2 class="profile-h2">Number of Content Contributed: <?php echo $numberOfQuest; ?>
 							 		<span style="float:right;">Total Content Views: <?php echo $views; ?></span>
 							 	</h2>	
@@ -86,10 +84,32 @@ foreach ($userDetails as $row) {
 			</div>
 		<div class="col-lg-8 col-md-8 col-sm-12" style="padding: 20px 15px 0px 15px;">
 			<div class=" col-sm-12 profile-boxes" style="padding: 20px;" >
-				<h1 class="profile-h1"> <span class="glyphicon glyphicon-education"></span> Education</h1>
+				<h1 class="profile-h1"> <span class="glyphicon glyphicon-education"></span> Education</h1><?php echo $editCollege; ?>
 				 <h2 class="profile-h2"><span class="glyphicon glyphicon-asterisk"></span><b> <?php echo $clg; ?></b>
-				<br><?php echo $editCollege; ?> &nbsp; &nbsp;	<?php echo $degree; ?></h2>
+				<br> &nbsp; &nbsp;	<?php echo $degree.', '.$YearOfGraduation; ?></h2>
 				<br><hr>
+				<div id="editEducationDetails" style="display:none;">
+					<h1 style="text-align: center;font-family: arial">Edit Education</h1><hr>
+					    <form action="">
+						    <div class="form-group">
+						      <label for="sch">School/College:</label>
+						      <input type="name" class="form-control" id="clgName" placeholder="Enter School or College Name" value='<?php echo $clg; ?>'>
+						    </div>
+						    <div class="form-group">
+						      <label for="name">Degree:</label>
+						      <input type="name" class="form-control" id="degree" placeholder="like B-Tech,CS" value="<?php echo $degree; ?>">
+						    </div>
+						    <div class="form-group">
+						      <label for="name">Graduation Year (if not Completed then expected year):</label>
+						      <input type="number" class="form-control" id="graduationYear" placeholder="Enter Year" name="year" value="<?php echo $YearOfGraduation; ?>">
+						    </div>
+						    <div class="form-group">
+						      <label for="sch">About Yourself:</label>
+						      <input type="name" class="form-control" id="aboutAuthor" placeholder="Write Something about yourself. Others will be glad to know.">
+						    </div>
+						    <center><button type="button" id="EditEducationDetails" class="login-input login-submit">Change Details</button></center>
+						</form>
+				</div>
 			</div>
 		</div>	
 		<div class="col-lg-4 col-md-4 col-sm-12">
@@ -161,36 +181,7 @@ foreach ($userDetails as $row) {
 		      	</div>
 		    </div>
 		</div>
-		  <!-- Modal -->
-		<div class="modal fade" id="editEducationDetails" role="dialog">
-		    <div class="modal-dialog">
-		    
-		      <!-- Modal content-->
-		     	<div class="modal-content">
-			        <div class="modal-header">
-		          		<button type="button" class="close" data-dismiss="modal">&times;</button>
-		          		<h1 style="text-align: center;font-family: arial">Edit Education</h1><hr>
-					    <form action="/action_page.php">
-						    <div class="form-group">
-						      <label for="sch">School/College:</label>
-						      <input type="name" class="form-control" id="name" placeholder="Enter School or College Name" name="name" value='<?php echo $clg; ?>'>
-						    </div>
-						    <div class="form-group">
-						      <label for="name">Degree:</label>
-						      <input type="name" class="form-control" id="cname" placeholder="like B-Tech,CS" name="cname" value="<?php echo $degree; ?>">
-						    </div>
-						    <div class="form-group">
-						      <label for="name">Graduation Year (if not Completed then expected year):</label>
-						      <input type="number" class="form-control" id="year" placeholder="Enter Year" name="year" value="<?php echo $YearOfGraduation; ?>">
-						    </div>
-						    <center><button type="button" id="login_submit" class="login-input login-submit">Change Details</button></center>
-						</form>
-			        </div>
-		      	</div>
-		    </div>
-		</div>
 		 <!-- Modal for image upload-->
-		<!-- Modal -->
 		<div class="modal fade" id="imageUpload" role="dialog">
 		    <div class="modal-dialog">
 		    
@@ -212,33 +203,13 @@ foreach ($userDetails as $row) {
 	</div>
 </section>
 <script>
-// $(function() {
-
-//   // We can attach the `fileselect` event to all file inputs on the page
-//   $(document).on('change', ':file', function() {
-//     var input = $(this),
-//         numFiles = input.get(0).files ? input.get(0).files.length : 1,
-//         label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-//     input.trigger('fileselect', [numFiles, label]);
-//   });
-
-//   // We can watch for our custom `fileselect` event like this
-//   $(document).ready( function() {
-//       $(':file').on('fileselect', function(event, numFiles, label) {
-
-//           var input = $(this).parents('.input-group').find(':text'),
-//               log = numFiles > 1 ? numFiles + ' files selected' : label;
-
-//           if( input.length ) {
-//               input.val(log);
-//           } else {
-//               if( log ) alert(log);
-//           }
-
-//       });
-//   });
-  
-// });
+$(document).ready(function(){
+  $("#editCollege").click(function(){
+    //$("#div1").fadeToggle();
+    $("#editEducationDetails").fadeToggle("slow");
+    //$("#div3").fadeToggle(3000);
+  });
+});
 </script>
 <script type="text/javascript">
 	function changePassword(){
