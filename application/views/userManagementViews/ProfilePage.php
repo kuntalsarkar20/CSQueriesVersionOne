@@ -49,13 +49,17 @@ foreach ($userDetails as $row) {
 			 <!-- <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@<?php echo $usrname; ?></h2> -->
 			  <?php echo $editInfoButton; ?>
 			  <hr>
-			  <h2 class="profile-h2">About<br><br><li> <?php echo $about; ?> </li><br></h2>
+			  <h2 class="profile-h2">About</h2><br><br>
+			  <ul><li> <?php echo $about; ?> </li></ul><br>
 		</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
 				<div class="col-sm-12 profile-boxes">
 					<div class="row">
 						<div class="col-sm-12">
-							<h1 class="profile-h1"><span class="glyphicon glyphicon-star"></span> Badges<a href="" data-toggle="modal" data-target="#badgeDetails"><span class="glyphicon glyphicon-info-sign" style="color:DodgerBlue;"></span></a></h1>
+							<h1 class="profile-h1"><span class="glyphicon glyphicon-star"></span> Badges
+								<a href="" data-toggle="modal" data-target="#badgeDetails">
+								<span class="glyphicon glyphicon-info-sign" style="color:dodgerblue;"></span>
+							</a></h1>
 							 <h2 class="profile-h2">
 							 	<?php 
 							 		if($numberOfQuest==0){
@@ -93,22 +97,22 @@ foreach ($userDetails as $row) {
 					<h1 style="text-align: center;font-family: arial">Edit Education</h1><hr>
 					    <form action="<?php base_url() ?>userManagement/Profile/editUserDetails" method="POST">
 						    <div class="form-group">
-						      <label for="sch">School/College:</label>
-						      <input type="name" class="form-control" name="clgName" placeholder="Enter School or College Name" value='<?php echo $clg; ?>'>
+						      <label>School/College:</label>
+						      <input type="text" class="form-control" name="clgName" placeholder="Enter School or College Name" value='<?php echo $clg; ?>'>
 						    </div>
 						    <div class="form-group">
-						      <label for="name">Degree:</label>
-						      <input type="name" class="form-control" name="degree" placeholder="like B-Tech,CS" value="<?php echo $degree; ?>">
+						      <label>Degree:</label>
+						      <input type="text" class="form-control" name="degree" placeholder="like B-Tech,CS" value="<?php echo $degree; ?>">
 						    </div>
 						    <div class="form-group">
-						      <label for="name">Graduation Year (if not Completed then expected year):</label>
-						      <input type="number" class="form-control" name="graduationYear" placeholder="Enter Year" name="year" value="<?php echo $YearOfGraduation; ?>">
+						      <label>Graduation Year (if not Completed then expected year):</label>
+						      <input type="number" class="form-control" name="graduationYear" placeholder="Enter Year" value="<?php echo $YearOfGraduation; ?>">
 						    </div>
 						    <div class="form-group">
-						      <label for="sch">About Yourself:</label>
-						      <input type="name" class="form-control" name="aboutAuthor" placeholder="Write Something about yourself. Others will be glad to know." value="<?php echo $about; ?>">
+						      <label>About Yourself:</label>
+						      <input type="text" class="form-control" name="aboutAuthor" placeholder="Write Something about yourself. Others will be glad to know." value="<?php echo $about; ?>">
 						    </div>
-						    <center><button type="submit" name="editDetails" class="login-input login-submit">Change Details</button></center>
+						    <button type="submit" name="editDetails" class="login-input login-submit">Change Details</button>
 						</form>
 				</div>
 			</div>
@@ -142,7 +146,8 @@ foreach ($userDetails as $row) {
 								}
 							}
 							?>
-							<!-- <span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span>&nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello what up</span>&nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> -->
+							<!-- <span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span>&nbsp;
+							<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello what up</span>&nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> -->
 							
 							<br><hr><br>
 						</div>
@@ -160,20 +165,20 @@ foreach ($userDetails as $row) {
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          	<h1 style="text-align: center;font-family: arial;">Change Password</h1><hr>
 					    <form method="post">
-						    <label for="usrname">Username</label>
+						    <label>Username</label>
 								<div class="form-group" id="usernameSuccess">
 							        <input class="form-control" type="text" value="<?php echo $usrname; ?>" name="usrname" disabled>
 							      <span class="" id="msgForWrongUsername"></span>
 							  	</div>
 						    <div class="form-group">
-						      <label for="name">Email:</label>
+						      <label>Email:</label>
 						      <input type="text" class="form-control" placeholder="Email" name="name" value="<?php echo $email; ?>" disabled>
 						    </div>
 						    <div class="form-group">
-						      <label for="name">Current Password:</label>
+						      <label>Current Password:</label>
 						      <input type="password" class="form-control" placeholder="Enter Your Current Password" id="currentPassword" required>
 						    </div>
-						    <label for="psw">Password</label>
+						    <label>Password</label>
 						    <div class="form-group">
 						        <input class="form-control" type="password" id="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="psw" placeholder="Enter New Password" required>
 						  	</div>
@@ -191,11 +196,11 @@ foreach ($userDetails as $row) {
 								</div>
 							</div>
 						    <div class="form-group">
-						      <label for="name">Confirm New Password:</label>
+						      <label>Confirm New Password:</label>
 						      <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
 						    </div>
 						    <p id="msg"></p>
-						    <center><button type="button" id="ChangePassword" onclick="changePassword()" class="login-input login-submit">Change Password</button></center>
+						    <div style="text-align: center;"><button type="button" id="ChangePassword" onclick="changePassword()" class="login-input login-submit">Change Password</button></div>
 						</form>
 			        </div>
 		      	</div>
@@ -214,7 +219,7 @@ foreach ($userDetails as $row) {
 						 	<div class="form-group">
 						      <input type="file" name="profilePicture">
 						    </div>
-						    <center><button type="submit" name="UpdatePicture" class="login-input login-submit">Update Picture</button></center>
+						    <button type="submit" name="UpdatePicture" class="login-input login-submit">Update Picture</button>
 						</form>
 			        </div>
 		      	</div>
@@ -238,7 +243,8 @@ foreach ($userDetails as $row) {
 									}
 								?> 
 						      </select>
-						    <center><button type="submit" name="updateKnownTopics" class="login-input login-submit">Update</button></center>
+						  </div>
+						    <button type="submit" name="updateKnownTopics" class="login-input login-submit">Update</button>
 						</form>
 			        </div>
 		      	</div>
@@ -252,16 +258,10 @@ foreach ($userDetails as $row) {
 		     	<div class="modal-content">
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          	<h2 style="text-align: center;">Topics You may Know</h2><hr>
+			          	<h2 style="text-align: center;">Badges Details</h2><hr>
 					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/editUserKnownTopics">
 						 	<div class="form-group">
-						      <select multiple class="form-control" name="knownTopics[]">
-						        <?php 
-							        foreach ($category as $row) {
-										echo '<option value="'.$row['CategoryName'].'">'.$row['CategoryName'].'</option>';
-									}
-								?> 
-						      </select>
+						    </div>
 						</form>
 			        </div>
 		      	</div>
