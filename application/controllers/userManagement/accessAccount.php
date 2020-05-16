@@ -64,6 +64,7 @@ class accessAccount extends CI_Controller {
 				if($status){	//if all the data inserted properly into db
 					$_SESSION['username']=$username;
 					$_SESSION['AuthId']=$status['authorId'];
+					$_SESSION['authorPicture']='having_doubts.png';
 					if($this->createLinkForVerification($username)){
 						redirect(base_url().$username.'/accountVerification');
 					}else{
@@ -93,12 +94,14 @@ class accessAccount extends CI_Controller {
 					$fetchedPass=$row['PassWord'];
 					$passwordSalt=$row['PassWordSalt'];
 					$isverified = $row['isVerified'];
+					$picturePath = $row['Image'];
 				}
 				$encryptpassword=md5($password.$passwordSalt);
 				// $encryptpassword=$epassword.$passwordSalt;
 				if($fetchedPass==$encryptpassword){
 					$_SESSION['AuthId']=$authorId;
 					$_SESSION['username']=$username;
+					$_SESSION['authorPicture']=$picturePath;
 					if($isverified == 1){
 						return print_r($username);
 					}else{

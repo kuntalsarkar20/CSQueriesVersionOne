@@ -12,11 +12,15 @@ class accessAccount_model extends CI_Model{
 		return $queryResult->result_array();
 	}
 	public function checkLoginData($uname){
-		$result=$this->db->query('SELECT AuthId,PassWord,PassWordSalt,AuthId,isVerified from author where UserName="'.$uname.'"');
+		$result=$this->db->query('SELECT AuthId,PassWord,PassWordSalt,AuthId,isVerified,Image from author where UserName="'.$uname.'"');
 		return $result->result_array();
 	}
 	public function getUserData($uname){
-		$queryResult=$this->db->query('SELECT author.*,count(contents.ContentId) as userUploadedQuestionNo,sum(contents.Views) as totalView from author,contents where UserName="'.$uname.'" AND contents.AuthId = author.AuthId');
+		$queryResult=$this->db->query('SELECT author.*,count(contents.ContentId) as userUploadedQuestionNo,sum(contents.Views) as totalView from author,contents where author.UserName="'.$uname.'" AND contents.AuthId = author.AuthId');
+		return $queryResult->result_array();
+	}
+	public function getAuthorExperience($authorUsername){
+		$queryResult=$this->db->query('SELECT * FROM authorexperienced,author WHERE author.UserName = "'.$authorUsername.'" AND authorexperienced.AuthId = author.AuthId');
 		return $queryResult->result_array();
 	}
 	public function insertVerificationLink($uname,$ucode){
@@ -50,6 +54,21 @@ class accessAccount_model extends CI_Model{
 	public function getResetPassData($username){	//to get data about a particular username
 		$queryResult = $this->db->query('SELECT * FROM forgotpasswordlog WHERE UserName = "'.$username.'" ORDER BY LogId DESC Limit 1');
 		return $queryResult -> result_array();
+	}
+	public function updateUserDetails($data){
+		$queryResult = "UPDATE author SET AuthorCollege = ? ,Degree = ? ,YearOfGraduation = ? ,About = ? WHERE AuthId = ?";
+		$status= $this->db->query($queryResult, [''.$data['college'].'',''.$data['degree'].'',$data['graduationYear'],''.$data['about'].'',''.$data['authorId'].'']);
+		return $status;
+	}
+	public function updateUserPicture($imageName,$AuthorId){
+		$queryResult = "UPDATE author SET Image = ? WHERE AuthId = ?";
+		$status= $this->db->query($queryResult, [''.$imageName.'',''.$AuthorId.'']);
+		return $status;
+	}
+	public function updateUserKnownTopics($id,$topics){
+		$queryResult = "insert into authorexperienced(AuthId,Topics) values(?,?) on duplicate key update Topics = ?;";
+		$status= $this->db->query($queryResult, [$id,''.$topics.'',''.$topics.'']);
+		return $status;
 	}
 }
 ?>

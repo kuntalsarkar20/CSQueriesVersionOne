@@ -27,6 +27,7 @@ class Profile extends CI_Controller{
 		if(!empty($result)){		//Gets the user details
 			$this->load->model("userManagement/accessAccount_model");
 			$mainData['userDetails'] = $this->accessAccount_model->getUserData($username);
+			$mainData['authorExperienced'] = $this->accessAccount_model->getAuthorExperience($username);
 		}
 		if(!isset($_SESSION['username']) && !empty($result)){			//if there is no session but valid username
 			$mainData['username'] = $username;
@@ -142,6 +143,56 @@ class Profile extends CI_Controller{
 		$mainData['question']=$this->fetchContent_model->questionDetails($questionId);
 		$mainData['RelatedQuestionFromTopic']=$this->fetchContent_model->getCategoryQuestions($category);	
 		return $mainData;
+	}
+	public function editUserDetails(){
+		if(!$this->isSessionAvailable()) redirect(base_url().'login'); //Not logged in ,returning to login page
+		if(isset($_POST['editDetails'])){
+			$college = addslashes(htmlspecialchars($this->security->xss_clean($_POST['clgName'])));
+			$degree = addslashes(htmlspecialchars($this->security->xss_clean($_POST['degree'])));
+			$graduationYear = addslashes(htmlspecialchars($this->security->xss_clean($_POST['graduationYear'])));
+			$aboutAuthor = addslashes(htmlspecialchars($this->security->xss_clean($_POST['aboutAuthor'])));
+			$userData = array('college' => $college,
+			'degree' => $degree,
+			'graduationYear' => $graduationYear,
+			'about'=> $aboutAuthor,
+			'authorId' => $_SESSION['AuthId']);
+			$status = $this->accessAccount_model->updateUserDetails($userData);
+			if($status) redirect(base_url().$_SESSION['username']);
+			else show_404();
+		}else show_404();
+	}
+	public function updatePicture(){
+		if(!$this->isSessionAvailable()) redirect(base_url().'login');//Not logged in ,returning to login page
+		if(isset($_FILES['profilePicture']['name'])){
+			$file = $_FILES['profilePicture']['tmp_name'];
+			$file_name = $_FILES['profilePicture']['name'];
+			$file_name_array = explode(".",$file_name);
+			$extension = end($file_name_array);
+			$new_image_name = $_SESSION['username'].rand().'.'.$extension;
+			$allowed_extension = array("jpg","png","gif");
+			if(in_array($extension,$allowed_extension)){
+				move_uploaded_file($file, './assets/images/UserProfilePictures/'.$new_image_name);
+				$status = $this->accessAccount_model->updateUserPicture($new_image_name,$_SESSION['AuthId']);
+				if($status) {
+					$_SESSION['authorPicture'] = $new_image_name;
+					redirect(base_url().$_SESSION['username']);
+				}
+				else show_404(); 
+				// echo $new_image_name;
+			}else show_404();
+		}else show_404();
+	}
+	public function editUserKnownTopics(){
+		if(!$this->isSessionAvailable()) redirect(base_url().'login'); //Not logged in ,returning to login page
+		if(isset($_POST['updateKnownTopics'])){
+			$topics = '';
+			foreach($_POST['knownTopics'] as $row){
+				$topics = $topics . $row . ',';
+			}
+			$status = $this->accessAccount_model->updateUserKnownTopics($_SESSION['AuthId'],$topics);
+			if($status) redirect(base_url().$_SESSION['username']);
+			else show_404();
+		}else show_404();
 	}
 }
 ?>

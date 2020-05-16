@@ -4,7 +4,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
 		$editInfoButton = '<a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Change Password</a>';
 		$editPic = '<a href="" id="link" data-toggle="modal" data-target="#imageUpload"><span class="glyphicon glyphicon-pencil" style="top:-30px;left: 20px;color: white;"></span></a>';
 		$editCollege = '<button id="editCollege" style="border:none;background-color:transparent;float:right;"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></button>';
-		$editLanguage = '<a href="" data-toggle="modal" data-target="#editEducationDetails"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></a>';
+		$editLanguage = '<a href="" data-toggle="modal" data-target="#topicsKnown"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></a>';
 		$usrname = $username;
 	}else{
 		$editInfoButton = '';
@@ -29,6 +29,7 @@ foreach ($userDetails as $row) {
 	$numberOfQuest = $row['userUploadedQuestionNo'];
 	$views = $row['totalView'];
 	$authorPic = $row['Image'];
+	$about = $row['About'];
 }
 ?>
 
@@ -37,7 +38,7 @@ foreach ($userDetails as $row) {
 	<div class="row">
 		<div class="col-lg-4 col-md-4 col-sm-12" style="padding:10px 20px;" id="detail">
 			<div class="profilePic-container">
-			  <img src="<?php echo base_url().$authorPic; ?>" alt="Avatar" class="profilePic">
+			  <img src="<?php echo base_url().'assets/images/UserProfilePictures/'.$authorPic; ?>" alt="Avatar" class="profilePic">
 			  <div class="profilePic-overlay">
 			    <div class="profilePic-overlay-text"><?php echo $editPic; ?></div>
 			  </div>
@@ -48,13 +49,13 @@ foreach ($userDetails as $row) {
 			 <!-- <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@<?php echo $usrname; ?></h2> -->
 			  <?php echo $editInfoButton; ?>
 			  <hr>
-			  <h2 class="profile-h2">About<br><br><li>Expected gradutaion in <?php echo $degree; ?> at <?php echo $YearOfGraduation; ?></li><br></h2>
+			  <h2 class="profile-h2">About<br><br><li> <?php echo $about; ?> </li><br></h2>
 		</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
 				<div class="col-sm-12 profile-boxes">
 					<div class="row">
 						<div class="col-sm-12">
-							<h1 class="profile-h1"><span class="glyphicon glyphicon-star"></span> Badges <span class="glyphicon glyphicon-info-sign" style="color:DodgerBlue;"></span></h1>
+							<h1 class="profile-h1"><span class="glyphicon glyphicon-star"></span> Badges<a href="" data-toggle="modal" data-target="#badgeDetails"><span class="glyphicon glyphicon-info-sign" style="color:DodgerBlue;"></span></a></h1>
 							 <h2 class="profile-h2">
 							 	<?php 
 							 		if($numberOfQuest==0){
@@ -90,24 +91,24 @@ foreach ($userDetails as $row) {
 				<br><hr>
 				<div id="editEducationDetails" style="display:none;">
 					<h1 style="text-align: center;font-family: arial">Edit Education</h1><hr>
-					    <form action="">
+					    <form action="<?php base_url() ?>userManagement/Profile/editUserDetails" method="POST">
 						    <div class="form-group">
 						      <label for="sch">School/College:</label>
-						      <input type="name" class="form-control" id="clgName" placeholder="Enter School or College Name" value='<?php echo $clg; ?>'>
+						      <input type="name" class="form-control" name="clgName" placeholder="Enter School or College Name" value='<?php echo $clg; ?>'>
 						    </div>
 						    <div class="form-group">
 						      <label for="name">Degree:</label>
-						      <input type="name" class="form-control" id="degree" placeholder="like B-Tech,CS" value="<?php echo $degree; ?>">
+						      <input type="name" class="form-control" name="degree" placeholder="like B-Tech,CS" value="<?php echo $degree; ?>">
 						    </div>
 						    <div class="form-group">
 						      <label for="name">Graduation Year (if not Completed then expected year):</label>
-						      <input type="number" class="form-control" id="graduationYear" placeholder="Enter Year" name="year" value="<?php echo $YearOfGraduation; ?>">
+						      <input type="number" class="form-control" name="graduationYear" placeholder="Enter Year" name="year" value="<?php echo $YearOfGraduation; ?>">
 						    </div>
 						    <div class="form-group">
 						      <label for="sch">About Yourself:</label>
-						      <input type="name" class="form-control" id="aboutAuthor" placeholder="Write Something about yourself. Others will be glad to know.">
+						      <input type="name" class="form-control" name="aboutAuthor" placeholder="Write Something about yourself. Others will be glad to know." value="<?php echo $about; ?>">
 						    </div>
-						    <center><button type="button" id="EditEducationDetails" class="login-input login-submit">Change Details</button></center>
+						    <center><button type="submit" name="editDetails" class="login-input login-submit">Change Details</button></center>
 						</form>
 				</div>
 			</div>
@@ -120,10 +121,29 @@ foreach ($userDetails as $row) {
 					<div class="row">
 						<div class="col-sm-12" style="padding:0px 30px;">
 							<h1 class="profile-h1"> <span class="glyphicon glyphicon-list-alt"></span> CS Topics Known:<?php echo $editLanguage; ?></h1>
-							<h2 class="profile-h2"><li>-</li>
-							<li>-</li>
-							<li>-</li>
-							<li>-</li></h2>
+							<br>
+							<?php
+							if(empty($authorExperienced)){
+								echo '<span style="background-color: lightgray;padding:3px;font-size: 14px;">No Topics added yet</span>';
+							}else{
+								foreach($authorExperienced as $row){
+									$topics = $row['Topics'];
+								}
+								$iteration =1;
+								$topics= explode(",",$topics);
+								// print_r($topic);
+								foreach($topics as $row){
+									if(count($topics)==$iteration){
+										echo '';
+									}else{
+										echo '<span style="background-color: lightgray;padding:3px;font-size: 14px;">'.$row.'</span>&nbsp;&nbsp;';
+									}
+									$iteration++;
+								}
+							}
+							?>
+							<!-- <span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span>&nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello what up</span>&nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> &nbsp;<span style="background-color: lightgray;padding:3px;font-size: 14px;">Hello how are you</span> -->
+							
 							<br><hr><br>
 						</div>
 					</div>
@@ -190,11 +210,58 @@ foreach ($userDetails as $row) {
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          	<h2 style="text-align: center;">Change Picture</h2><hr>
-					    <form method="post" enctype="multipart/form-data">
+					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/updatePicture">
 						 	<div class="form-group">
-						      <input type="file"></input>
+						      <input type="file" name="profilePicture">
 						    </div>
-						    <center><button type="button" id="UpdatePicture" onclick="changePassword()" class="login-input login-submit">Update Picture</button></center>
+						    <center><button type="submit" name="UpdatePicture" class="login-input login-submit">Update Picture</button></center>
+						</form>
+			        </div>
+		      	</div>
+		    </div>
+		</div>
+		<!-- Modal for CSLanguage known-->
+		<div class="modal fade" id="topicsKnown" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		     	<div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          	<h2 style="text-align: center;">Topics You may Know</h2><hr>
+					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/editUserKnownTopics">
+						 	<div class="form-group">
+						      <select multiple class="form-control" id="topic" name="knownTopics[]">
+						        <?php 
+							        foreach ($category as $row) {
+										echo '<option value="'.$row['CategoryName'].'">'.$row['CategoryName'].'</option>';
+									}
+								?> 
+						      </select>
+						    <center><button type="submit" name="updateKnownTopics" class="login-input login-submit">Update</button></center>
+						</form>
+			        </div>
+		      	</div>
+		    </div>
+		</div>
+		<!-- Modal for Badges Details-->
+		<div class="modal fade" id="badgeDetails" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		     	<div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          	<h2 style="text-align: center;">Topics You may Know</h2><hr>
+					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/editUserKnownTopics">
+						 	<div class="form-group">
+						      <select multiple class="form-control" name="knownTopics[]">
+						        <?php 
+							        foreach ($category as $row) {
+										echo '<option value="'.$row['CategoryName'].'">'.$row['CategoryName'].'</option>';
+									}
+								?> 
+						      </select>
 						</form>
 			        </div>
 		      	</div>
