@@ -11,7 +11,7 @@ class uploadContentController extends CI_Controller {
 		try{
 			if(isset($_POST['publish'])){
 				$isPublish=true;
-			}else if(isset($_POST['save'])){
+			}else if(isset($_POST['save'])){ 
 				$isPublish=0;
 			}
 			$category = $_POST['category'];

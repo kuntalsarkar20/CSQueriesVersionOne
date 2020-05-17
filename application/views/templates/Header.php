@@ -43,6 +43,8 @@ if(!isset($ContentKeyWords)){
     <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>/assets/css/StyleSheet.css"><!-- Our Style Sheet -->
     <!--CKEditor CDN Sources -->
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+    <!--Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700&display=swap" rel="stylesheet">
 </head>

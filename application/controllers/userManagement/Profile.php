@@ -35,26 +35,39 @@ class Profile extends CI_Controller{
 			$this->load->view('templates/Header',$data);
 			$this->load->view('userManagementViews/ProfilePage',$mainData);
 			$this->load->view('templates/Footer');
-		}else if($this->uri->segment(1)==$_SESSION['username'] && isset($_SESSION['AuthId'])){ //if there is session and user clicks on his username
-			if($this->isAccountVerified($username)){
-				$data['title']="Profile | CSQueries";
-				$mainData['username'] = $username;
-				$this->load->view('templates/Header',$data);
-				$this->load->view('userManagementViews/ProfilePage',$mainData);
-				$this->load->view('templates/Footer');
-			}else{
-				redirect(base_url().$username.'/accountVerification');
+		}else if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){ //if there is session
+			if($this->uri->segment(1)==$_SESSION['username']){	//if the session username matches url username that means same user account
+				if($this->isAccountVerified($username)){
+					$data['title']="Profile | CSQueries";
+					$mainData['username'] = $username;
+					$this->load->view('templates/Header',$data);
+					$this->load->view('userManagementViews/ProfilePage',$mainData);
+					$this->load->view('templates/Footer');
+				}else{
+					redirect(base_url().$username.'/accountVerification');
+				}
+			}else{	//if the user clicks on different username
+				if(!empty($result)){
+					$mainData['username'] = $username;
+					$data['title']="Profile | CSQueries";
+					$this->load->view('templates/Header',$data);
+					$this->load->view('userManagementViews/ProfilePage',$mainData);
+					$this->load->view('templates/Footer');
+				}else{			//if there is no session as well as invalid username
+					show_404();
+				}
 			}
 		}else{				//if there is session and also valid username but username is not same with session username
-			if(!empty($result)){
-				$mainData['username'] = $username;
-				$data['title']="Profile | CSQueries";
-				$this->load->view('templates/Header',$data);
-				$this->load->view('userManagementViews/ProfilePage',$mainData);
-				$this->load->view('templates/Footer');
-			}else{			//if there is no session as well as invalid username
-				show_404();
-			}
+			show_404();
+			// if(!empty($result)){
+			// 	$mainData['username'] = $username;
+			// 	$data['title']="Profile | CSQueries";
+			// 	$this->load->view('templates/Header',$data);
+			// 	$this->load->view('userManagementViews/ProfilePage',$mainData);
+			// 	$this->load->view('templates/Footer');
+			// }else{			//if there is no session as well as invalid username
+			// 	show_404();
+			// }
 		}
 	}
 	public function dashboard(){

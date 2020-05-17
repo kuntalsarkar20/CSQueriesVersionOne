@@ -64,7 +64,7 @@
 			          	<p>No Problem! Enter your email below and we will send you an email with a link. Follow that link to reset your password. <strong>Remember:</strong> The link will be valid for only next 30 minutes.</p><hr>
 					    <form method="post">
 						    <div class="form-group">
-						      <label for="name">Email:</label>
+						      <label>Email:</label>
 						      <input type="email" class="form-control" placeholder="Enter your Email" id='useremail' required>
 						    </div>
 						    <p id="msg"></p>
@@ -77,7 +77,7 @@
 		    </div>
 		</div>
 <script type="text/javascript">
-	document.getElementById('login-section').style.minHeight=screen.height+"px";
+	document.getElementById('login-section').style.minHeight=(screen.height-200)+"px";
 	setTimeout(loginContainerLoader, 3000)
 	function loginContainerLoader(){
 		document.getElementById('login-container').style.display='block';

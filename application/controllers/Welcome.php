@@ -18,4 +18,18 @@ class Welcome extends CI_Controller {
 		$this->load->view('HomeViews/Home',$mainData);
 		$this->load->view('templates/Footer');
 	}
+	public function ShowContactUsPage(){
+		$data['category']=$this->fetchContent_model->categories();
+		$data['title']="Contact Us | CSQueries";
+		$this->load->view('templates/Header',$data);
+		$this->load->view('HomeViews/ContactUs');
+		$this->load->view('templates/Footer');	
+	}
+	public function MeetTheDevelopers(){
+		$data['category']=$this->fetchContent_model->categories();
+		$data['title']="Meet The Developer Team | CSQueries";
+		$this->load->view('templates/Header',$data);
+		$this->load->view('HomeViews/MeetTheDevelopers');
+		$this->load->view('templates/Footer');	
+	}
 }

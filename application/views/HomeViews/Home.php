@@ -24,35 +24,39 @@
 			<div class="col-lg-2 col-md-2 col-sm-12">&nbsp;</div>
 		</div>
 		<div class="row">
-			<div class="col-lg-3 col-md-3 col-sm-12" data-aos="fade-up" data-aos-duration="2000">
+			<div class="col-lg-3 col-md-3 col-sm-12 about-section-img-con" data-aos="fade-up" data-aos-duration="2000">
 				<div class="card">
-				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/write_for_us_2.png" alt="John" style="width:100%;height:200px;">
+				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/write_for_us_2.png" class="about-section-img" alt="John" style="width:80%;height:180px;">
 				  <h3>Write For Us</h3>
-				  <!-- <p class="title"><center><button type="button" class="btn btn-primary btn-md">Start Here</button></center></p> -->
-				  <br>
+				  <div class="about-section-img-middle">
+				  <p class=""><center><button type="button" class="about-section-button">Start Here</button></center></p>
+				  </div>
 				</div>
 			</div>
 			<div class="col-sm-1"></div>
-			<div class="col-lg-4 col-md-4 col-sm-12" data-aos="fade-up" data-aos-duration="2000">
+			<div class="col-lg-4 col-md-4 col-sm-12 about-section-img-con" data-aos="fade-up" data-aos-duration="2000">
 				<div class="card">
-				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/having_doubts.png" alt="John" style="width:100%">
+				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/having_doubts.png" alt="John" class="about-section-img" style="width:80%;height:180px;">
 				  <h3>Having Doubts?</h3>
-				  <!-- <p class="title"><center><button type="button" class="btn btn-primary btn-md">Ask Us</button></center></p> -->
-				   <br>
+				  <div class="about-section-img-middle">
+				  <p class=""><center><button type="button" class="about-section-button">Start Here</button></center></p>
+				  </div>
 				</div>
 			</div>
 			<div class="col-sm-1"></div>
-			<div class="col-lg-3 col-md-3 col-sm-12" data-aos="fade-up" data-aos-duration="2000">
+			<div class="col-lg-3 col-md-3 col-sm-12 about-section-img-con" data-aos="fade-up" data-aos-duration="2000">
 				<div class="card">
-				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/search_here.png" alt="John" style="width:100%;height:200px;">
+				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/search_here.png" alt="John" class="about-section-img" style="width:80%;height:180px;">
 				  <h3>Find Answers Quickly</h3>
-				  <!-- <p class="title"><center><button type="button" class="btn btn-primary btn-md">Search</button></center></p> -->
-				  <br>
+				  <div class="about-section-img-middle">
+				  <p class=""><center><button type="button" class="about-section-button">Start Here</button></center></p>
+				  </div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
+<!-- Browse By Categories Section Starts-->
 <section style="background-color: #e9eeef91;">
 <div class="container" style="padding-top: 20px;">
 	<h3 style="font-weight: bold;" data-aos="fade-up" data-aos-duration="2000">Browse By Categories</h3>
@@ -125,6 +129,66 @@
 	</div>
 </div>
 </section>
+	<!-- Browse By Categories Section Ends-->
+	<!-- Contributer Section Starts-->
+<section>
+	<!-- <div class="container"> -->
+		<div class="testimonial-slideshow-container">
+			<div class="container"><h3 data-aos="fade-up" data-aos-duration="2000">Our Top 3 Contributers</h3>
+			<hr style="border:2px solid #66e066;" data-aos="fade-up" data-aos-duration="2000">
+		</div>
+		<div class="testimonial-mySlides" data-aos="fade-up" data-aos-duration="2000">
+			<img src="<?php echo base_url(); ?>assets/images/aboutPictures/avatar.png" alt="John" style="height:140px;width:140px;border-radius: 50%;"><br>
+		  <q class="testimonial-q">I love you the more in that I believe you had liked me for my own sake and for nothing else</q>
+		  <p class="testimonial-author">- John Keats<br><button type="button" class="pofilebutton">View Profile</button></p>
+		</div>
+
+		<div class="testimonial-mySlides" data-aos="fade-up" data-aos-duration="2000">
+			<img src="<?php echo base_url(); ?>assets/images/aboutPictures/having_doubts.png" alt="John" style="height:140px;width:140px;"><br>
+		  <q class="testimonial-q">But man is not made for defeat. A man can be destroyed but not defeated.</q>
+		  <p class="testimonial-author">- Ernest Hemingway<br><button type="button" class="pofilebutton">View Profile</button></p>
+		</div>
+
+		<div class="testimonial-mySlides" data-aos="fade-up" data-aos-duration="2000">
+			<img src="<?php echo base_url(); ?>assets/images/aboutPictures/having_doubts.png" alt="John" style="height:140px;width:140px;"><br>
+		  <q class="testimonial-q">I have not failed. I've just found 10,000 ways that won't work.</q>
+		  <p class="testimonial-author">- Thomas A. Edison<br><button type="button" class="pofilebutton">View Profile</button></p>
+		</div>
+
+		<!-- <a class="testimonial-prev" onclick="plusSlides(-1)">❮</a>
+		<a class="testimonial-next" onclick="plusSlides(1)">❯</a> -->
+
+		</div>
+
+		<div class="testimonial-dot-container">
+		  <span class="testimonial-dot"></span> 
+		  <span class="testimonial-dot"></span> 
+		  <span class="testimonial-dot"></span> 
+		</div>
+<!-- </div> -->
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("testimonial-mySlides");
+  var dots = document.getElementsByClassName("testimonial-dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" testimonial-active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " testimonial-active";
+  setTimeout(showSlides, 3500); // Change image every 3.5 seconds
+}
+</script>
+</section>
+<!-- Contributer Section Ends-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 <script type="text/javascript">
 	// Wrap every letter in a span
