@@ -70,5 +70,9 @@ class accessAccount_model extends CI_Model{
 		$status= $this->db->query($queryResult, [$id,''.$topics.'',''.$topics.'']);
 		return $status;
 	}
+	public function top3Contributers(){	//getting the details of top 3 contributers of Homepage
+		$queryResult = $this->db->query('select * from author,contents where contents.AuthId = author.AuthId group by author.AuthId order by count(contents.AuthId) DESC limit 3');
+		return $queryResult->result_array();
+	}	
 }
 ?>

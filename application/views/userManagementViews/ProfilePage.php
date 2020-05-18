@@ -49,8 +49,8 @@ foreach ($userDetails as $row) {
 			 <!-- <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@<?php echo $usrname; ?></h2> -->
 			  <?php echo $editInfoButton; ?>
 			  <hr>
-			  <h2 class="profile-h2">About</h2><br><br>
-			  <ul><li> <?php echo $about; ?> </li></ul><br>
+			  <h2 class="profile-h2">About</h2>
+			  <ul style="list-style-type:none;"><li> <?php echo $about; ?> </li></ul><br>
 		</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
 				<div class="col-sm-12 profile-boxes">
@@ -217,7 +217,7 @@ foreach ($userDetails as $row) {
 			          	<h2 style="text-align: center;">Change Picture</h2><hr>
 					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/updatePicture">
 						 	<div class="form-group">
-						      <input type="file" name="profilePicture">
+						      <input type="file" name="profilePicture" required>
 						    </div>
 						    <button type="submit" name="UpdatePicture" class="login-input login-submit">Update Picture</button>
 						</form>

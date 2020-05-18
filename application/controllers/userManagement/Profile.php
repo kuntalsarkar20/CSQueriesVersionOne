@@ -135,14 +135,14 @@ class Profile extends CI_Controller{
 		redirect(base_url()."login");		//redirecting to login page
 	}
 	public function isUrlUsernameSame(){
-			$this->load->model("userManagement/accessAccount_model");
-			$username=$this->uri->segment(1);				//getting the username from url
-			$result=$this->accessAccount_model->isUsernameValid($username);
-			if(!empty($result) && $username==$_SESSION['username']){
-				return true;
-			}else{
-				return false;
-			}
+		$this->load->model("userManagement/accessAccount_model");
+		$username=$this->uri->segment(1);				//getting the username from url
+		$result=$this->accessAccount_model->isUsernameValid($username);
+		if(!empty($result) && $username==$_SESSION['username']){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	public function isSessionAvailable(){
 		if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
@@ -158,54 +158,101 @@ class Profile extends CI_Controller{
 		return $mainData;
 	}
 	public function editUserDetails(){
-		if(!$this->isSessionAvailable()) redirect(base_url().'login'); //Not logged in ,returning to login page
-		if(isset($_POST['editDetails'])){
-			$college = addslashes(htmlspecialchars($this->security->xss_clean($_POST['clgName'])));
-			$degree = addslashes(htmlspecialchars($this->security->xss_clean($_POST['degree'])));
-			$graduationYear = addslashes(htmlspecialchars($this->security->xss_clean($_POST['graduationYear'])));
-			$aboutAuthor = addslashes(htmlspecialchars($this->security->xss_clean($_POST['aboutAuthor'])));
-			$userData = array('college' => $college,
-			'degree' => $degree,
-			'graduationYear' => $graduationYear,
-			'about'=> $aboutAuthor,
-			'authorId' => $_SESSION['AuthId']);
-			$status = $this->accessAccount_model->updateUserDetails($userData);
-			if($status) redirect(base_url().$_SESSION['username']);
-			else show_404();
-		}else show_404();
+		try{
+			if(!$this->isSessionAvailable()) redirect(base_url().'login'); //Not logged in ,returning to login page
+			if(isset($_POST['editDetails'])){
+				$college = addslashes(htmlspecialchars($this->security->xss_clean($_POST['clgName'])));
+				$degree = addslashes(htmlspecialchars($this->security->xss_clean($_POST['degree'])));
+				$graduationYear = addslashes(htmlspecialchars($this->security->xss_clean($_POST['graduationYear'])));
+				$aboutAuthor = addslashes(htmlspecialchars($this->security->xss_clean($_POST['aboutAuthor'])));
+				$userData = array('college' => $college,
+				'degree' => $degree,
+				'graduationYear' => $graduationYear,
+				'about'=> $aboutAuthor,
+				'authorId' => $_SESSION['AuthId']);
+				$status = $this->accessAccount_model->updateUserDetails($userData);
+				if($status) redirect(base_url().$_SESSION['username']);
+				else throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Some unknown error encountered. Try again later.");
+			}else show_404();
+		}
+		catch (Exception $e)
+		{
+		    $this->ShowMessage($e->getMessage());
+		}
 	}
 	public function updatePicture(){
-		if(!$this->isSessionAvailable()) redirect(base_url().'login');//Not logged in ,returning to login page
-		if(isset($_FILES['profilePicture']['name'])){
-			$file = $_FILES['profilePicture']['tmp_name'];
-			$file_name = $_FILES['profilePicture']['name'];
-			$file_name_array = explode(".",$file_name);
-			$extension = end($file_name_array);
-			$new_image_name = $_SESSION['username'].rand().'.'.$extension;
-			$allowed_extension = array("jpg","png","gif");
-			if(in_array($extension,$allowed_extension)){
-				move_uploaded_file($file, './assets/images/UserProfilePictures/'.$new_image_name);
-				$status = $this->accessAccount_model->updateUserPicture($new_image_name,$_SESSION['AuthId']);
-				if($status) {
-					$_SESSION['authorPicture'] = $new_image_name;
-					redirect(base_url().$_SESSION['username']);
+		try{
+			if(!$this->isSessionAvailable()) redirect(base_url().'login');//Not logged in ,returning to login page
+			if(isset($_POST['UpdatePicture'])){
+				$file = $_FILES['profilePicture']['tmp_name'];
+				$file_name = $_FILES['profilePicture']['name'];
+				$file_size = $_FILES['profilePicture']['size'];
+				if(!$file){
+					throw new Exception("<b style='font-weight:bold;'>ERROR</b>: Select an Image first.");
 				}
-				else show_404(); 
-				// echo $new_image_name;
-			}else show_404();
-		}else show_404();
+				if($file_size>600000){
+					 throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Image Size should be within 600 KB.");
+					 
+				}
+				$file_type = getimagesize($file);
+				function compress_image($source_url, $destination_url, $quality)
+			    {
+			        $info = getimagesize($source_url);
+			        if ($info['mime'] == 'image/jpeg') $image = imagecreatefromjpeg($source_url);
+			        elseif ($info['mime'] == 'image/gif') $image = imagecreatefromgif($source_url);
+			        elseif ($info['mime'] == 'image/png') $image = imagecreatefrompng($source_url);
+			        imagejpeg($image, $destination_url, $quality);
+			        // echo "Image uploaded successfully.";
+			    }
+			    if($file_size<=200000) $imageQuality = 30;
+			    else if($file_size<=400000) $imageQuality = 20;
+			    else if($file_size<=600000) $imageQuality = 10;
+			    else $imageQuality = 10;
+				$file_name_array = explode(".",$file_name);
+				$extension = end($file_name_array);
+				$new_image_name = $_SESSION['username'].rand().'.'.$extension;
+				$allowed_extension = array("image/jpeg","image/gif","image/png");
+				if(in_array($file_type['mime'],$allowed_extension)){
+					compress_image($file, './assets/images/UserProfilePictures/'.$new_image_name, $imageQuality);
+					// move_uploaded_file($file, './assets/images/UserProfilePictures/'.$new_image_name);
+					$status = $this->accessAccount_model->updateUserPicture($new_image_name,$_SESSION['AuthId']);
+					if($status) {
+						$_SESSION['authorPicture'] = $new_image_name;
+						redirect(base_url().$_SESSION['username']);
+					}else $this->ShowMessage("<b style='font-weight:bold;color:red;'>ERROR</b>: Some unknown error encountered. Try again later."); 
+				}else $this->ShowMessage("<b style='font-weight:bold;color:red;'>ERROR</b>: Image Should be of .jpg,.png or .gif type.");
+			}else $this->ShowMessage("<b style='font-weight:bold;color:red;'>ERROR</b>: Select an Image first.");
+		}
+		catch (Exception $e)
+		{
+		    $this->ShowMessage($e->getMessage());
+		}
 	}
 	public function editUserKnownTopics(){
-		if(!$this->isSessionAvailable()) redirect(base_url().'login'); //Not logged in ,returning to login page
-		if(isset($_POST['updateKnownTopics'])){
-			$topics = '';
-			foreach($_POST['knownTopics'] as $row){
-				$topics = $topics . $row . ',';
-			}
-			$status = $this->accessAccount_model->updateUserKnownTopics($_SESSION['AuthId'],$topics);
-			if($status) redirect(base_url().$_SESSION['username']);
-			else show_404();
-		}else show_404();
+		try{
+			if(!$this->isSessionAvailable()) redirect(base_url().'login'); //Not logged in ,returning to login page
+			if(isset($_POST['updateKnownTopics'])){
+				$topics = '';
+				foreach($_POST['knownTopics'] as $row){
+					$topics = $topics . $row . ',';
+				}
+				$status = $this->accessAccount_model->updateUserKnownTopics($_SESSION['AuthId'],$topics);
+				if($status) redirect(base_url().$_SESSION['username']);
+				else show_404();
+			}else throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Direct Access not allowed.");
+		}
+		catch (Exception $e)
+		{
+		    $this->ShowMessage($e->getMessage());
+		}
+	}
+	public function ShowMessage($message=NULL){
+		$data['title']="Message | CSQueries";
+		$data['category']=$this->fetchContent_model->categories();
+		$mainData['message'] = $message;
+		$this->load->view('templates/Header',$data);
+		$this->load->view('templates/ShowMessage',$mainData);
+		$this->load->view('templates/Footer');
 	}
 }
 ?>

@@ -44,22 +44,28 @@ class uploadContentController extends CI_Controller {
 		}
 	}
 	public function uploadContentImages(){
-		if(isset($_FILES['upload']['name'])){
-			$file = $_FILES['upload']['tmp_name'];
-			$file_name = $_FILES['upload']['name'];
-			$file_name_array = explode(".",$file_name);
-			$extension = end($file_name_array);
-			$new_image_name = rand().'.'.$extension;
-			$this->load->library('upload'); // do the job
-			chmod(base_url() .'assets/images/contentImagesByUser',0777);
-			$allowed_extension = array("jpg","png","gif");
-			if(in_array($extension,$allowed_extension)){
-				move_uploaded_file($file, './assets/images/contentImagesByUser/'.$new_image_name);
-				$function_number = $_GET['CKEditorFuncNum'];
-				$url = base_url().'assets/images/contentImagesByUser/'.$new_image_name;
-				$message = 'Uploaded';
-				echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number,'$url','$message');</script>";
+		try{
+			if(isset($_FILES['upload']['name'])){
+				$file = $_FILES['upload']['tmp_name'];
+				$file_name = $_FILES['upload']['name'];
+				$file_name_array = explode(".",$file_name);
+				$extension = end($file_name_array);
+				$new_image_name = rand().'.'.$extension;
+				$this->load->library('upload'); // do the job
+				chmod(base_url() .'assets/images/contentImagesByUser',0777);
+				$allowed_extension = array("jpg","png","gif");
+				if(in_array($extension,$allowed_extension)){
+					move_uploaded_file($file, './assets/images/contentImagesByUser/'.$new_image_name);
+					$function_number = $_GET['CKEditorFuncNum'];
+					$url = base_url().'assets/images/contentImagesByUser/'.$new_image_name;
+					$message = 'Uploaded';
+					echo "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction($function_number,'$url','$message');</script>";
+				}
 			}
+		}
+		catch (Exception $e)
+		{
+		    $this->ShowMessage($e->getMessage());
 		}
 	}
 	public function editContent(){
@@ -100,6 +106,13 @@ class uploadContentController extends CI_Controller {
 				redirect($_SERVER['HTTP_REFERER'].'/UpdateFailed');
 			}
 	}
-
+	public function ShowMessage($message=NULL){
+		$data['title']="Message | CSQueries";
+		$data['category']=$this->fetchContent_model->categories();
+		$mainData['message'] = $message;
+		$this->load->view('templates/Header',$data);
+		$this->load->view('templates/ShowMessage',$mainData);
+		$this->load->view('templates/Footer');
+	}
 }
 ?>

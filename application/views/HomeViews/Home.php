@@ -137,26 +137,23 @@
 			<div class="container"><h3 data-aos="fade-up" data-aos-duration="2000">Our Top 3 Contributers</h3>
 			<hr style="border:2px solid #66e066;" data-aos="fade-up" data-aos-duration="2000">
 		</div>
-		<div class="testimonial-mySlides" data-aos="fade-up" data-aos-duration="2000">
-			<img src="<?php echo base_url(); ?>assets/images/aboutPictures/avatar.png" alt="John" style="height:140px;width:140px;border-radius: 50%;"><br>
-		  <q class="testimonial-q">I love you the more in that I believe you had liked me for my own sake and for nothing else</q>
-		  <p class="testimonial-author">- John Keats<br><button type="button" class="pofilebutton">View Profile</button></p>
-		</div>
+		<?php 
+		foreach($top3Contributers as $row){
+			echo '<div class="testimonial-mySlides" style="background-color:whitesmoke;">
+					<img src="'.base_url().'assets/images/UserProfilePictures/'.$row['Image'].'" alt="'.$row['Name'].'" style="height:140px;width:140px;border-radius: 50%;"><br>
+					<p class="testimonial-author">'.$row['Name'].'</p>
+				  <q class="testimonial-q">'.$row['About'].'</q>
+				  <br><a href="'.base_url().$row['UserName'].'"><button type="button" class="pofilebutton">View Profile</button></a>
+				</div>';
+		}
+		?>
+		
 
-		<div class="testimonial-mySlides" data-aos="fade-up" data-aos-duration="2000">
-			<img src="<?php echo base_url(); ?>assets/images/aboutPictures/having_doubts.png" alt="John" style="height:140px;width:140px;"><br>
+		<!-- <div class="testimonial-mySlides" data-aos="fade-up" data-aos-duration="2000">
+			<img src="assets/images/aboutPictures/having_doubts.png" alt="John" style="height:140px;width:140px;"><br>
 		  <q class="testimonial-q">But man is not made for defeat. A man can be destroyed but not defeated.</q>
 		  <p class="testimonial-author">- Ernest Hemingway<br><button type="button" class="pofilebutton">View Profile</button></p>
-		</div>
-
-		<div class="testimonial-mySlides" data-aos="fade-up" data-aos-duration="2000">
-			<img src="<?php echo base_url(); ?>assets/images/aboutPictures/having_doubts.png" alt="John" style="height:140px;width:140px;"><br>
-		  <q class="testimonial-q">I have not failed. I've just found 10,000 ways that won't work.</q>
-		  <p class="testimonial-author">- Thomas A. Edison<br><button type="button" class="pofilebutton">View Profile</button></p>
-		</div>
-
-		<!-- <a class="testimonial-prev" onclick="plusSlides(-1)">❮</a>
-		<a class="testimonial-next" onclick="plusSlides(1)">❯</a> -->
+		</div> -->
 
 		</div>
 

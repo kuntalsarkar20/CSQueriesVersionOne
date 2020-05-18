@@ -1,5 +1,5 @@
 <section style="background: linear-gradient(to top, #009933 0%, #ffffff 100%);padding: 80px 0px 0px 0px;">
-	<h1 style="text-align: center;"><b>Meet Our Team</b></h1>
+	<h1 style="text-align: center;font-size:35px;"><b>Meet Our Team</b></h1>
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-4 col-md-4 col-sm-12">
@@ -7,7 +7,7 @@
 					<div class="hexagon" data-aos="fade-down" data-aos-duration="1500" style="padding: 20px;">
 						<img src="<?php echo base_url(); ?>assets/images/aboutPictures/SampleMeetTheTeamPage.jpg" alt="Jane" style="width:200px; height: 250px;">
 					</div>
-					<h3 data-aos="fade-down" data-aos-duration="1500" style="font-weight: bold;">Afsara Yeasmin</h3>
+					<h3 style="font-weight: bold;">Afsara Yeasmin</h3>
 			        <p>Web Designer & SEO Expert</p>
 			        <p>example@example.com</p>
 		        
