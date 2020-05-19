@@ -77,7 +77,7 @@ if(!isset($ContentKeyWords)){
 	      </ul>
 	      <form class="navbar-form navbar-left" method="post">
 		      <div class="input-group">
-		        <input type="text" class="form-control" placeholder="Search" name="search">
+		        <input type="text" class="form-control" placeholder="Search" name="search" required>
 		        <div class="input-group-btn">
 		          <button class="btn btn-default" type="submit" name="searchBtn">
 		            <i class="glyphicon glyphicon-search"></i>

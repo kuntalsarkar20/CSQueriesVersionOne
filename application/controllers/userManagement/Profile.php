@@ -177,7 +177,7 @@ class Profile extends CI_Controller{
 		}
 		catch (Exception $e)
 		{
-		    $this->ShowMessage($e->getMessage());
+		    show_error($e->getMessage());
 		}
 	}
 	public function updatePicture(){
@@ -219,16 +219,16 @@ class Profile extends CI_Controller{
 					if($status) {
 						$_SESSION['authorPicture'] = $new_image_name;
 						redirect(base_url().$_SESSION['username']);
-					}else $this->ShowMessage("<b style='font-weight:bold;color:red;'>ERROR</b>: Some unknown error encountered. Try again later."); 
-				}else $this->ShowMessage("<b style='font-weight:bold;color:red;'>ERROR</b>: Image Should be of .jpg,.png or .gif type.");
-			}else $this->ShowMessage("<b style='font-weight:bold;color:red;'>ERROR</b>: Select an Image first.");
+					}else show_error("<b style='font-weight:bold;color:red;'>ERROR</b>: Some unknown error encountered. Try again later."); 
+				}else show_error("<b style='font-weight:bold;color:red;'>ERROR</b>: Image Should be of .jpg,.png or .gif type.");
+			}else show_error("<b style='font-weight:bold;color:red;'>ERROR</b>: Select an Image first.");
 		}
 		catch (Exception $e)
 		{
-		    $this->ShowMessage($e->getMessage());
+		    show_error($e->getMessage());
 		}
 	}
-	public function editUserKnownTopics(){
+	public function editUserKnownTopics(){ //Edit User Known Topics in Profile Page
 		try{
 			if(!$this->isSessionAvailable()) redirect(base_url().'login'); //Not logged in ,returning to login page
 			if(isset($_POST['updateKnownTopics'])){
@@ -243,16 +243,16 @@ class Profile extends CI_Controller{
 		}
 		catch (Exception $e)
 		{
-		    $this->ShowMessage($e->getMessage());
+		    show_error($e->getMessage());
 		}
 	}
-	public function ShowMessage($message=NULL){
-		$data['title']="Message | CSQueries";
-		$data['category']=$this->fetchContent_model->categories();
-		$mainData['message'] = $message;
-		$this->load->view('templates/Header',$data);
-		$this->load->view('templates/ShowMessage',$mainData);
-		$this->load->view('templates/Footer');
-	}
+	// public function ShowMessage($message=NULL){
+	// 	$data['title']="Message | CSQueries";
+	// 	$data['category']=$this->fetchContent_model->categories();
+	// 	$mainData['message'] = $message;
+	// 	$this->load->view('templates/Header',$data);
+	// 	$this->load->view('templates/ShowMessage',$mainData);
+	// 	$this->load->view('templates/Footer');
+	// }
 }
 ?>
