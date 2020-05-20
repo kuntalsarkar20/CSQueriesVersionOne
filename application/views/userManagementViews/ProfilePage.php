@@ -55,13 +55,13 @@ foreach ($userDetails as $row) {
 			<div class="col-lg-8 col-md-8 col-sm-12">
 				<div class="col-sm-12 profile-boxes">
 					<div class="row">
-						<div class="col-sm-12">
+						<div class="col-lg-12 col-md-12 col-sm-12">
 							<h1 class="profile-h1"><span class="glyphicon glyphicon-star"></span> Badges
 								<a href="" data-toggle="modal" data-target="#badgeDetails">
 								<span class="glyphicon glyphicon-info-sign" style="color:dodgerblue;"></span>
 							</a></h1>
-							 <h2 class="profile-h2">
-							 	<?php 
+							 <div class="row">
+							 	 <?php 
 							 		if($numberOfQuest==0){
 							 			$badge =0;
 							 		}elseif($numberOfQuest>=1 && $numberOfQuest<=5){
@@ -75,12 +75,45 @@ foreach ($userDetails as $row) {
 							 		}elseif ($numberOfQuest>=51) {
 							 			$badge = 5;
 							 		}
+							 		$ContributedQus= 0;
 							 		for($i=1;$i<=$badge;$i++){
-							 			echo '<span class="glyphicon glyphicon-star" style="font-size: 30px;color:green;"></span>&nbsp;&nbsp;';
+							 			echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
+											<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
+												 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
+												Contributed Qus: '.$ContributedQus + 5.'</p>
+											</div>
+										</div>';
 							 		}
 							 	?>
-							 	</h2>
-							 	<h2 class="profile-h2">Number of Content Contributed: <?php echo $numberOfQuest; ?>
+							 	
+							 	
+							 	<!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
+									<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
+										 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
+										Completed Qus: 5</p>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
+									<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
+										 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
+										Completed Qus: 10</p>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
+									<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
+										 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
+										Completed Qus: 15</p>
+									</div>
+								</div>
+								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
+									<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
+										 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
+										Completed Qus: 20</p>
+									</div>
+								</div> -->
+								</div>
+
+							 	<h2 class="profile-h2"><!-- Number of Content Contributed: <?php echo $numberOfQuest; ?> -->
 							 		<span style="float:right;">Total Content Views: <?php echo $views; ?></span>
 							 	</h2>	
 						</div>

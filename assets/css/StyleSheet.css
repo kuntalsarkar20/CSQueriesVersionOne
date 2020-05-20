@@ -629,3 +629,76 @@ h2 {
   clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
  
 }
+.hexagon-profile  {
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+ 
+}
+/* Creating pseudo-class */
+.hexagon-profile:before, .hexagon-profile:after { 
+    content: ""; 
+    border: inherit; 
+    position: absolute; 
+    top: -0.5vh; 
+    left: -0.5vh; 
+    background-color: dodgerblue; 
+    border-radius: inherit; 
+    height: 100px; 
+    width: 100px; 
+    z-index: -1;
+} 
+  
+/* Align them in such a way 
+that they form a hexagon */
+.hexagon-profile:before { 
+    transform: rotate(60deg); 
+} 
+.hexagon-profile:after { 
+    transform: rotate(-60deg); 
+}
+        
+        /*Cookie Consent Begin*/
+#cookieConsent {
+    background-color: rgba(20,20,20,0.8);
+    min-height: 26px;
+    font-size: 14px;
+    color: #ccc;
+    line-height: 26px;
+    padding: 8px 0 8px 30px;
+    font-family: "Trebuchet MS",Helvetica,sans-serif;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none;
+    z-index: 9999;
+}
+#cookieConsent a {
+    color: #4B8EE7;
+    text-decoration: none;
+}
+#closeCookieConsent {
+    float: right;
+    display: inline-block;
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+    margin: -15px 0 0 0;
+    font-weight: bold;
+}
+#closeCookieConsent:hover {
+    color: #FFF;
+}
+#cookieConsent a.cookieConsentOK {
+    background-color: #F1D600;
+    color: #000;
+    display: inline-block;
+    border-radius: 5px;
+    padding: 0 20px;
+    cursor: pointer;
+    float: right;
+    margin: 0 60px 0 10px;
+}
+#cookieConsent a.cookieConsentOK:hover {
+    background-color: #E0C91F;
+}
+/*Cookie Consent End*/

@@ -49,6 +49,17 @@ if(!isset($ContentKeyWords)){
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+    <!-- Jquery for Cookie accept bar -->
+    <script type="text/javascript">
+    	$(document).ready(function(){   
+		    setTimeout(function () {
+		        $("#cookieConsent").fadeIn(100);
+		     }, 1000);
+		    $("#closeCookieConsent, .cookieConsentOK").click(function() {
+		        $("#cookieConsent").fadeOut(200);
+		    }); 
+		}); 
+    </script>
 </head>
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top navBar">
