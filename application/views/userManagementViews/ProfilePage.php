@@ -77,45 +77,27 @@ foreach ($userDetails as $row) {
 							 		}
 							 		$ContributedQus= 0;
 							 		for($i=1;$i<=$badge;$i++){
+							 			$ContributedQus = $ContributedQus + 5;
 							 			echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
 											<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
 												 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
-												Contributed Qus: '.$ContributedQus + 5.'</p>
+												For Contributing '.$ContributedQus.' Qus</p>
 											</div>
 										</div>';
 							 		}
 							 	?>
 							 	
 							 	
-							 	<!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
-									<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
-										 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
-										Completed Qus: 5</p>
-									</div>
-								</div>
+							 	<!-- 
 								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
 									<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
 										 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
 										Completed Qus: 10</p>
 									</div>
-								</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
-									<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
-										 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
-										Completed Qus: 15</p>
-									</div>
-								</div>
-								<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
-									<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
-										 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
-										Completed Qus: 20</p>
-									</div>
-								</div> -->
+								</div>-->
 								</div>
 
-							 	<h2 class="profile-h2"><!-- Number of Content Contributed: <?php echo $numberOfQuest; ?> -->
-							 		<span style="float:right;">Total Content Views: <?php echo $views; ?></span>
-							 	</h2>	
+							 	<h2 class="profile-h2">Total Content Views: <?php echo $views; ?></h2>	
 						</div>
 					</div><hr><br>
 				</div>
