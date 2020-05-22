@@ -10,7 +10,7 @@ class accessAccount extends CI_Controller {
 		$this->load->model("userManagement/accessAccount_model");
 		date_default_timezone_set('Asia/Kolkata');
     }
-	public function check_session(){
+	private function check_session(){
 		if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
 			return true;
 		}else{
@@ -19,6 +19,7 @@ class accessAccount extends CI_Controller {
 	}
 	public function signup()
 	{
+		if($this->check_session()) redirect(base_url().$_SESSION['username']);
 		$data['title']="SignUp | CSQueries";
 		$data['category']=$this->fetchContent_model->categories();
 		$this->load->view('templates/Header',$data);
@@ -28,6 +29,7 @@ class accessAccount extends CI_Controller {
 	}
 	public function login()
 	{
+		if($this->check_session()) redirect(base_url().$_SESSION['username']);
 		$data['title']="Login | CSQueries";
 		$data['category']=$this->fetchContent_model->categories();
 		$this->load->view('templates/Header',$data);
@@ -221,7 +223,7 @@ class accessAccount extends CI_Controller {
 		$result = $this->updatePassword($username,$psw,$ConfirmPsw,$hiddenUsername);
 		return $result;
 	}
-	public function updatePassword($username,$psw,$ConfirmPsw,$hiddenUsername){	//updating the old password.
+	private function updatePassword($username,$psw,$ConfirmPsw,$hiddenUsername){	//updating the old password.
 		if(!empty($username) && !empty($psw) && !empty($ConfirmPsw)){		//If one of the input field is empty
 			if($psw == $ConfirmPsw && $username == $hiddenUsername){
 				$salt=bin2hex(random_bytes(10));   //It will generate a salt of 10*2=20 characters

@@ -638,22 +638,24 @@ h2 {
     content: ""; 
     border: inherit; 
     position: absolute; 
-    top: -0.5vh; 
-    left: -0.5vh; 
+    top: 0px;
+    right: -17px;
     background-color: dodgerblue; 
     border-radius: inherit; 
-    height: 100px; 
-    width: 100px; 
+    height: 90px; 
+    width: 95px; 
     z-index: -1;
 } 
   
 /* Align them in such a way 
 that they form a hexagon */
 .hexagon-profile:before { 
-    transform: rotate(60deg); 
+    transform: rotate(50deg);
+    top: 40px;
+    right: -0.px;
 } 
 .hexagon-profile:after { 
-    transform: rotate(-60deg); 
+    transform: rotate(140deg); 
 }
         
         /*Cookie Consent Begin*/

@@ -58,4 +58,5 @@ foreach ($question as $row) {
 </section>
 <script type="text/javascript">
 	document.getElementById('forMinHeight').style.minHeight=screen.height+'px';
+	setCookie("TopicCategory","<?php echo $this->uri->segment(2); ?>",30,"None");
 </script>
