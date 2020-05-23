@@ -15,6 +15,12 @@
 			    <strong>Failed!</strong> Please check Your Details and try again.
 			  </div>';
 		  }
+		  if(!empty($this->session->flashdata('error'))){
+		    echo '<div class="alert alert-danger alert-dismissible fade in">
+			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    '.$this->session->flashdata("error").'
+			  </div>';
+		  }
 		  ?>
 		<div class="row">
 			<div class="col-lg-3 col-md-3 col-sm-12"></div>

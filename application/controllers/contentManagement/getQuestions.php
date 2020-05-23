@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-session_start();
+//session_start();
 
 class getQuestions extends CI_Controller {
 	function __construct() {

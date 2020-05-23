@@ -4,6 +4,11 @@ foreach ($question as $row) {
 	$contentDesc= $row['Answer'];
 	$creationTime= $row['CreatedAt'];
 	$Author= $row['UserName'];
+	if($creationTime == $row['UpdatedAt']){
+		$updateTime = 'Never';
+	}else{
+		$updateTime = $row['UpdatedAt'];
+	}
 	if($row['isPublished']==0 && !isset($_SESSION['username'])){		//if the question is private and there is session 																then check for if the author and the session username same.
 		$contentDesc = "This Question is <b>Private</b> by the Uploader. You can't view Until the user makes it <b>Public</b>.";
 	}elseif($row['isPublished']==0 && isset($_SESSION['username'])){
@@ -33,7 +38,7 @@ foreach ($question as $row) {
 					<div class="col-sm-12 questionstyle"><?php echo $contentDesc; ?> </div>
 				</div>
 				<p>&nbsp;</p>
-				<div class="col-sm-12 allQuestionButtonPlace"><p class="datestyle">Last Updated: Never&nbsp;&nbsp;&nbsp;</p></div>
+				<div class="col-sm-12 allQuestionButtonPlace"><p class="datestyle">Last Updated: <?php echo $updateTime; ?>&nbsp;&nbsp;&nbsp;</p></div>
 				<p>&nbsp;</p>
 			</div>
 		</div>

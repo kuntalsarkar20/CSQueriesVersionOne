@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-session_start();
+//session_start();
 
 class accessAccount extends CI_Controller {
 
@@ -76,10 +76,12 @@ class accessAccount extends CI_Controller {
 					redirect(base_url()."Signup/failed");
 				}
 			}else{		//If Passwords are not matched
-				redirect(base_url()."Signup/failed");
+				$this->session->set_flashdata('error', 'Passwords Did not matched.');
+				redirect(base_url()."Signup");
 			}
 		}else{
-			redirect(base_url()."signup/failed");
+			$this->session->set_flashdata('error', 'No fields can be <b>empty</b>.');
+			redirect(base_url()."signup");
 		}
 	}else{   //if anyone tries to run form_validate function directly.
 			redirect(base_url()."signup");

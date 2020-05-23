@@ -37,7 +37,7 @@ class fetchContent_model extends CI_Model{
 		$queryResult = $this->db->query('SELECT count(contents.ContentId) as totalCategoryQuestion from contents,category where category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND isPublished=1');
 		return $queryResult->result_array();
 	}
-	public function SeacrhResults($searchString){
+	public function SeacrhResults($searchString){ //Searching for particular questions
 		$Result['queryResult'] = $this->db->query('SELECT MATCH(Contents.ContentTags,Contents.Question,Contents.Answer) AGAINST("'.$searchString.'") AS relevance,Contents.*,author.*,category.* FROM contents,author,category WHERE MATCH(Contents.ContentTags,Contents.Question,Contents.Answer) AGAINST("'.$searchString.'") AND Contents.AuthId = author.AuthId AND Contents.CategoryId=category.CategoryId AND contents.isPublished = 1 ORDER BY relevance DESC,Contents.Views DESC,Contents.CreatedAt DESC;');
 		$Result['totalQuestion'] = $this->db->query('SELECT MATCH(Contents.ContentTags,Contents.Question,Contents.Answer) AGAINST("'.$searchString.'") AS relevance,Contents.*,author.*,category.*,count(contents.ContentId) as totalQuestionFound FROM contents,author,category WHERE MATCH(Contents.ContentTags,Contents.Question,Contents.Answer) AGAINST("'.$searchString.'") AND Contents.AuthId = author.AuthId AND Contents.CategoryId=category.CategoryId AND contents.isPublished = 1 ORDER BY relevance DESC,Contents.Views DESC,Contents.CreatedAt DESC;');
 		return $Result;

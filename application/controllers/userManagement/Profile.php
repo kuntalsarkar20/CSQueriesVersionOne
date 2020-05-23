@@ -1,6 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-session_start();
+//session_start();
 
 class Profile extends CI_Controller{
 	function __construct() {
@@ -172,7 +172,7 @@ class Profile extends CI_Controller{
 				'authorId' => $_SESSION['AuthId']);
 				$status = $this->accessAccount_model->updateUserDetails($userData);
 				if($status) redirect(base_url().$_SESSION['username']);
-				else throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Some unknown error encountered. Try again later.");
+				else throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Some error encountered. Try again later.");
 			}else show_404();
 		}
 		catch (Exception $e)
