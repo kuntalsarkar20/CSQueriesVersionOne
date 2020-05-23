@@ -6,6 +6,7 @@ class uploadContentController extends CI_Controller {
 	function __construct() {
         parent::__construct();
 		$this->load->model("contentManagement/uploadContent_model");
+		date_default_timezone_set('Asia/Kolkata');
     }
 	public function contentUploadUser(){
 		try{
@@ -22,7 +23,7 @@ class uploadContentController extends CI_Controller {
 			if(!empty($category) && !empty($contentHeading) && !empty($ContentTag)){   //checking if the category or content heading is empty
 				$dashedContent = str_replace(" ", "-", $contentHeading);
 				$dashedContent = preg_replace('/[^A-Za-z0-9\-]/', '', $dashedContent);
-				$dashedContent = (strlen($dashedContent) > 80) ? substr($dashedContent,0,80) : $dashedContent;
+				$dashedContent = (strlen($dashedContent) > 100) ? substr($dashedContent,0,100) : $dashedContent;
 				$contentData = array( 'authId' => $_SESSION['AuthId'],
 					'category' => $category,
 					'contentHeading' => $contentHeading,
@@ -69,7 +70,7 @@ class uploadContentController extends CI_Controller {
 
 				$file_name_array = explode(".",$file_name);
 				$extension = end($file_name_array);
-				$new_image_name = rand().'.'.$extension;
+				$new_image_name = date("d-m-Y-H-i-s").$_SESSION['username'].rand().'.'.$extension;
 				$allowed_extension = array("image/jpeg","image/gif","image/png");
 				if(in_array($file_type['mime'],$allowed_extension)){
 					compress_image($file, './assets/images/contentImagesByUser/'.$new_image_name, $imageQuality);

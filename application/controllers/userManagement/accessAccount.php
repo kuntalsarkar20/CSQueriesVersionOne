@@ -47,81 +47,100 @@ class accessAccount extends CI_Controller {
 		}
 	}
 	public function insertUserData(){     //Sending User registration data into database
-		if(isset($_POST['submit'])){      //if user clicks the submit button on signup page
+		try{
+			//if user does not clicks the submit button on signup page
+			if(!isset($_POST['submit'])) throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Direct Access not allowed.");	
 			$displayName=strip_tags($_POST['displayName']);
 			$userEmail = strip_tags($_POST['userEmail']);
 			$username = strip_tags($_POST['usrname']);
 			$psw = $_POST['psw'];
 			$confrimPassword = $_POST['confirm-psw'];
 			if(!empty($displayName)&& !empty($userEmail)&& !empty($username)&& !empty($psw)&& !empty($confrimPassword)){
-			if($psw==$confrimPassword){
-				$salt=bin2hex(random_bytes(10));   //It will generate a salt of 10*2=20 characters
-				$encryptPass=md5($psw.$salt);		//Password encrypted using md5 encryption
-				$userData = array('name' => $displayName,
-				'Email' => $userEmail,
-				'userName' => $username,
-				'password' => $encryptPass,
-				'salt' => $salt  );
-				$status= $this->accessAccount_model->insertSignupData($userData);
-				if($status){	//if all the data inserted properly into db
-					$_SESSION['username']=$username;
-					$_SESSION['AuthId']=$status['authorId'];
-					$_SESSION['authorPicture']='having_doubts.png';
-					if($this->createLinkForVerification($username)){
-						redirect(base_url().$username.'/accountVerification');
-					}else{
-						redirect(base_url()."Signup/failed");
+				if($psw==$confrimPassword){
+					$salt=bin2hex(random_bytes(10));   //It will generate a salt of 10*2=20 characters
+					$encryptPass=md5($psw.$salt);		//Password encrypted using md5 encryption
+					$userData = array('name' => $displayName,
+					'Email' => $userEmail,
+					'userName' => $username,
+					'password' => $encryptPass,
+					'salt' => $salt  );
+					$status= $this->accessAccount_model->insertSignupData($userData);
+					if($status){	//if all the data inserted properly into db
+						$_SESSION['username']=$username;
+						$_SESSION['AuthId']=$status['authorId'];
+						$_SESSION['authorPicture']='having_doubts.png';
+						if($this->createLinkForVerification($username)){
+							redirect(base_url().$username.'/accountVerification');
+						}else{
+							$this->session->set_flashdata('error', 'Some Error occured During SignUp. Try again.');
+							redirect(base_url()."Signup");
+						}
+					}else{		//If there is an error in inserting data into db
+						$this->session->set_flashdata('error', 'Some Error occured During SignUp. Try again.');
+						redirect(base_url()."Signup");
 					}
-				}else{		//If there is an error in inserting data into db
-					redirect(base_url()."Signup/failed");
+				}else{		//If Passwords are not matched
+					$this->session->set_flashdata('error', 'Passwords Did not matched.');
+					redirect(base_url()."Signup");
 				}
-			}else{		//If Passwords are not matched
-				$this->session->set_flashdata('error', 'Passwords Did not matched.');
-				redirect(base_url()."Signup");
+			}else{
+				$this->session->set_flashdata('error', 'No fields can be <b>empty</b>.');
+				redirect(base_url()."signup");
 			}
-		}else{
-			$this->session->set_flashdata('error', 'No fields can be <b>empty</b>.');
-			redirect(base_url()."signup");
 		}
-	}else{   //if anyone tries to run form_validate function directly.
-			redirect(base_url()."signup");
+		catch (Exception $e)
+		{
+		    show_error($e->getMessage());
 		}
 	}
 	public function checkLoginDetails(){	// checking if the login details given by the user is correct
-		$username = $this->input->post('username');
-		$password = $this->input->post('password');
-		$status= $this->accessAccount_model->checkLoginData($username);
-		if(!empty($status)){ //found the data on database
-			if(sizeof($status)==1){	//if only 1 result found
-				foreach ($status as $row) {
-					$authorId=$row['AuthId'];
-					$fetchedPass=$row['PassWord'];
-					$passwordSalt=$row['PassWordSalt'];
-					$isverified = $row['isVerified'];
-					$picturePath = $row['Image'];
-				}
-				$encryptpassword=md5($password.$passwordSalt);
-				// $encryptpassword=$epassword.$passwordSalt;
-				if($fetchedPass==$encryptpassword){
-					$_SESSION['AuthId']=$authorId;
-					$_SESSION['username']=$username;
-					$_SESSION['authorPicture']=$picturePath;
-					if($isverified == 1){
-						return print_r($username);
+		try{
+			$username = $this->input->post('username');
+			$password = $this->input->post('password');
+			$status= $this->accessAccount_model->checkLoginData($username);
+			if(!empty($status)){ //found the data on database
+				if(sizeof($status)==1){	//if only 1 result found
+					foreach ($status as $row) {
+						$authorId=$row['AuthId'];
+						$fetchedPass=$row['PassWord'];
+						$passwordSalt=$row['PassWordSalt'];
+						$isverified = $row['isVerified'];
+						$picturePath = $row['Image'];
+					}
+					$encryptpassword=md5($password.$passwordSalt);
+					// $encryptpassword=$epassword.$passwordSalt;
+					if($fetchedPass==$encryptpassword){
+						$_SESSION['AuthId']=$authorId;
+						$_SESSION['username']=$username;
+						$_SESSION['authorPicture']=$picturePath;
+						if($isverified == 1){
+							return print_r($username);
+						}else{
+							return print_r($username.'/accountVerification');
+						}
 					}else{
-						return print_r($username.'/accountVerification');
+						$this->session->set_flashdata('error', "Passwords didn't matched.");
+						return print_r("InValid");
 					}
 				}else{
+					$this->session->set_flashdata('error', "Not Valid UserName or Password.");
 					return print_r("InValid");
 				}
 			}else{
+				$this->session->set_flashdata('error', "No UserName found.<a href='".base_url()."signup'> Create New Account</a>");
 				return print_r("InValid");
 			}
-		}else{
-			return print_r("InValid");
+		}
+		catch (Exception $e)
+		{
+		    show_error($e->getMessage());
 		}
 	}
 	public function accountVerficationMessageShow(){	// showing user that they need to verify their ac to continue.
+		if(!$this->check_session()) {
+			$this->session->set_flashdata('error', "Oops!! It's looks like you are logged out.You must Login continue.");
+				redirect(base_url().'login');
+		}
 		$data['title']="Account Verification | CSQueries";
 		$data['category']=$this->fetchContent_model->categories();
 		$this->load->view('templates/Header',$data);

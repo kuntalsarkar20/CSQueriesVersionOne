@@ -19,6 +19,9 @@ if(isset($_SESSION['username'])){
 if(!isset($ContentKeyWords)){
 	$ContentKeyWords = '';
 }
+if(!isset($MetaDescription)){
+	$MetaDescription = '';
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,6 +30,7 @@ if(!isset($ContentKeyWords)){
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<meta name="keywords" content="<?php echo $ContentKeyWords; ?>">
+  	<meta name="description" content="<?php echo $MetaDescription; ?>">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -71,7 +75,7 @@ if(!isset($ContentKeyWords)){
 	          <ul class="dropdown-menu navBar">
 	            <?php 
 			        foreach ($category as $row) {
-			        	echo '<li><a href="'.base_url().'Category/'.$row['CategoryName'].'/" id="linkcolor">'.$row['CategoryName'].'</a></li>';
+			        	echo '<li><a href="'.base_url().'Category/'.$row['CategoryName'].'/" id="linkcolor">'.$row['Category'].'</a></li>';
 					}
 				?>
 	          </ul>

@@ -25,7 +25,6 @@ class Profile extends CI_Controller{
 		$this->load->model("userManagement/accessAccount_model");
 		$result=$this->accessAccount_model->isUsernameValid($username);
 		if(!empty($result)){		//Gets the user details
-			$this->load->model("userManagement/accessAccount_model");
 			$mainData['userDetails'] = $this->accessAccount_model->getUserData($username);
 			$mainData['authorExperienced'] = $this->accessAccount_model->getAuthorExperience($username);
 		}
@@ -71,10 +70,14 @@ class Profile extends CI_Controller{
 		}
 	}
 	public function dashboard(){
-		$data['title']="Upload Content | CSQueries";
-		$data['category']=$this->fetchContent_model->categories();
-		$username=$this->uri->segment(1);	
-		if($this->isSessionAvailable()){
+		try{
+			if(!$this->isSessionAvailable()){	//checking if user is logged in or not
+				$this->session->set_flashdata('error', "Oops!! It's looks like you are logged out.You must Login first to Upload your content.");
+				redirect(base_url().'login');
+			}
+			$data['title']="Upload Content | CSQueries";
+			$data['category']=$this->fetchContent_model->categories();
+			$username=$this->uri->segment(1);	
 			if($this->isUrlUsernameSame()){
 				if($this->isAccountVerified($username)){
 					$mainData['category']=$this->fetchContent_model->categories();
@@ -88,15 +91,20 @@ class Profile extends CI_Controller{
 			}else{
 				show_404();
 			}
-		}else{
-			redirect(base_url()."login");
 		}
-
+		catch (Exception $e)
+		{
+		    show_error($e->getMessage());
+		}
 	}
 	public function userQuestionList(){
-		$data['title']="My Contents | CSQueries";
-		$data['category']=$this->fetchContent_model->categories();
-		if($this->isSessionAvailable()){			//checking if user is logged in or not
+		try{
+			if(!$this->isSessionAvailable()){	//checking if user is logged in or not
+				$this->session->set_flashdata('error', "Oops!! It's looks like you are logged out.You must Login first to View your content.");
+				redirect(base_url().'login');
+			}
+			$data['title']="My Contents | CSQueries";
+			$data['category']=$this->fetchContent_model->categories();
 			if($this->isUrlUsernameSame()){			// if logged in the the url username is 
 				$username=$this->uri->segment(1);				//getting the username from url							
 				$mainData['questionList'] = $this->fetchContent_model->getUserQuestionList($username);
@@ -110,25 +118,36 @@ class Profile extends CI_Controller{
 			}else{				
 				show_404();		//username not valid showing error page
 			}
-		}else{
-			redirect(base_url()."login");		//no session found redirecting to login page
+		}
+		catch (Exception $e)
+		{
+		    show_error($e->getMessage());
 		}
 	}
 	public function editContent($category=NULL,$questionId =NULL ,$questionText=NULL){		//function for editing existing content
-		$data['title']="Edit Content | CSQueries";
-		$data['category']=$this->fetchContent_model->categories();
-		$mainData = $this->fetchQuestion($category,$questionId,$questionText);
-		if($this->isSessionAvailable()){			//checking if user is logged in or not
-			if($this->isUrlUsernameSame()){
-				$this->load->view('templates/Header',$data);
-				$this->load->view('userManagementViews/EditContent',$mainData);
-				$this->load->view('templates/Footer');
-			}else{
-				show_404();
+		try{
+			if(!$this->isSessionAvailable()){	//checking if user is logged in or not
+				$this->session->set_flashdata('error', "Oops!! It's looks like you are logged out.You must Login first to Edit your content.");
+				redirect(base_url().'login');
 			}
-		}else{
-			redirect(base_url()."login");		//no session found redirecting to login page
-		}
+			$data['title']="Edit Content | CSQueries";
+			$data['category']=$this->fetchContent_model->categories();
+			$mainData = $this->fetchQuestion($category,$questionId,$questionText);
+			if($this->isSessionAvailable()){			//checking if user is logged in or not
+				if($this->isUrlUsernameSame()){
+					$this->load->view('templates/Header',$data);
+					$this->load->view('userManagementViews/EditContent',$mainData);
+					$this->load->view('templates/Footer');
+				}else{
+					show_404();
+				}
+			}else{
+				redirect(base_url()."login");		//no session found redirecting to login page
+			}
+		}catch (Exception $e)
+			{
+			    show_error($e->getMessage());
+			}
 	}
 	public function logout(){			//when the user clicks the logout button
 		session_destroy();				//destroying session
@@ -152,7 +171,6 @@ class Profile extends CI_Controller{
 		}
 	}
 	public function fetchQuestion($category=NULL,$questionId =NULL ,$questionText=NULL){
-		$this->load->model("contentManagement/fetchContent_model");
 		$mainData['question']=$this->fetchContent_model->questionDetails($questionId);
 		$mainData['RelatedQuestionFromTopic']=$this->fetchContent_model->getCategoryQuestions($category);	
 		return $mainData;

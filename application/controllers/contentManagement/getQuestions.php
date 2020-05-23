@@ -9,26 +9,53 @@ class getQuestions extends CI_Controller {
 		$this->load->model("contentManagement/uploadContent_model");
     }
 	public function ShowContents($category=NULL,$questionId =NULL ,$questionText=NULL){	//showing detail of a particular 																						question
-		$data['category']=$this->fetchContent_model->categories();
-		$mainData = $this->fetchQuestion($category,$questionId,$questionText);	//getting question through 																								category,questionid
-		if(!empty($mainData['question'])){	//if the url is valid
-			$data['title']="Questions | CSQueries";
-			foreach($mainData['question'] as $row){
-				$data['ContentKeyWords'] = $row['ContentTags'];
+		try{
+			$data['category']=$this->fetchContent_model->categories();
+			$mainData['question']=$this->fetchContent_model->questionDetails($questionId);
+			$mainData['RelatedQuestionFromTopic'] = $this->fetchContent_model->getCategoryQuestionsWithLimit($category,0);	//getting question through 																								category,questionid
+			if(!empty($mainData['question'])){	//if the url is valid
+				foreach ($mainData['question'] as $row) {
+					$mainData['contentName']= $row['Question'];
+					$mainData['contentDesc']= $row['Answer'];
+					$mainData['creationTime']= $row['CreatedAt'];
+					$mainData['Author']= $row['UserName'];
+
+					//for meta tags
+					$data['title']= substr(str_replace('-', ' ', $row['DashedQuestion']),0,20)." | CSQueries";
+					$data['ContentKeyWords'] = $row['ContentTags']; 
+					$data['MetaDescription'] = substr(str_replace('-', ' ', $row['DashedQuestion']),0,100);
+
+					if($mainData['creationTime'] == $row['UpdatedAt']){
+						$mainData['updateTime'] = 'Never';
+					}else{
+						$mainData['updateTime'] = $row['UpdatedAt'];
+					}
+
+					if($row['isPublished']==0 && !isset($_SESSION['username'])){		//if the question is private and there 										is session then check for if the author and the session username same.
+						$mainData['contentDesc'] = "This Question is <b>Private</b> by the Uploader. You can't view Until the user makes it <b>Public</b>.";
+					}elseif($row['isPublished']==0 && isset($_SESSION['username'])){
+						if($mainData['Author'] != $_SESSION['username']){	//if the author & session username not same then content can't be shown
+							$mainData['contentDesc'] = "This Question is <b>Private</b> by the Uploader. You can't view Until the user makes it <b>Public</b>.";
+						}
+					}
+				}
+				$this->load->view('templates/Header',$data);
+				$this->load->view('HomeViews/ShowContents',$mainData);
+				$this->load->view('templates/Footer');
+				$this->uploadContent_model->updateQuestionView($questionId);
+			}else{				//No questions found on database
+				show_404();
 			}
-			$this->load->view('templates/Header',$data);
-			$this->load->view('HomeViews/ShowContents',$mainData);
-			$this->load->view('templates/Footer');
-			$this->uploadContent_model->updateQuestionView($questionId);
-		}else{				//No questions found on database
-			show_404();
+		}catch (Exception $e)
+		{
+		    show_error($e->getMessage());
 		}
 	}
-	public function fetchQuestion($category=NULL,$questionId =NULL ,$questionText=NULL){	//returning details about a 																							particular question
-		$mainData['question']=$this->fetchContent_model->questionDetails($questionId);
-		$mainData['RelatedQuestionFromTopic']=$this->fetchContent_model->getCategoryQuestions($category);	
-		return $mainData;
-	}
+	// public function fetchQuestion($category=NULL,$questionId =NULL ,$questionText=NULL){	//returning details about a 																							particular question
+	// 	$mainData['question']=$this->fetchContent_model->questionDetails($questionId);
+	// 	$mainData['RelatedQuestionFromTopic']=$this->fetchContent_model->getCategoryQuestions($category);	
+	// 	return $mainData;
+	// }
 	public function questionForTopic($category=NULL,$startingRange=0){//Showing question for a particular topic in category 																	question view in content Management section 
 		$startTime = $this->microtime_float();	//getting current time
 		$data['title'] = 'Question List | CSQueries';
@@ -75,35 +102,15 @@ class getQuestions extends CI_Controller {
 		foreach ($NoOfResult as $row ) { 
 			$mainData['countQuestionNumber'] = $row['totalQuestionFound'];
 		}
+
 		$data['title'] = 'Search Result | CSQueries';
 		$data['category']=$this->fetchContent_model->categories();
+
 		$mainData['SearchString'] = $searchString;
 		$endTime = $this->microtime_float();
 		$mainData['TimeTaken'] = $endTime - $startTime;
 		$this->load->view('templates/Header',$data);
 		$this->load->view('HomeViews/SearchResults',$mainData);
 		$this->load->view('templates/Footer');
-		// foreach ($mainData['SearchResults'] as $row ) { 
-		// 	echo $row['Name'].' \n ';
-		// }
-		//print_r($searchString);
-		// $startTime = $this->microtime_float();
-		// $data['title'] = 'Search Result | CSQueries';
-		// $data['category']=$this->fetchContent_model->categories();
-		// $mainData['categoryQuestions']=$this->fetchContent_model->getCategoryQuestionsWithLimit($category,$startingRange);
-		// $mainData['countQuestionNumber'] = $this->fetchContent_model->countTotalQuestionCategory($category);
-		// foreach ($mainData['countQuestionNumber'] as $row ) {	
-		// 	$mainData['countQuestionNumber'] = $row['totalCategoryQuestion'];
-		// }
-		// $endTime = $this->microtime_float();
-		// $mainData['TimeTaken'] = $endTime - $startTime;
-		// $mainData['startLimit'] = $startingRange+1; 
-		// if(!empty($mainData['categoryQuestions'])){
-		// 	$this->load->view('templates/Header',$data);
-		// 	$this->load->view('HomeViews/SearchResults',$mainData);
-		// 	$this->load->view('templates/Footer');
-		// }else{				//No questions found on database
-		// 	show_404();
-		// }
 	}
 }

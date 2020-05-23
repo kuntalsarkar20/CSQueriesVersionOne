@@ -1,4 +1,4 @@
-<section style="padding:80px 0px;" id="login-section">
+<section style="padding:30px 0px;" id="login-section">
 	<p>&nbsp;</p>
 	<p>&nbsp;</p>
 	<div class="sk-folding-cube" style="position:fixed;top:40%;left:50%;" id="login-loader">
@@ -13,6 +13,12 @@
 		    echo '<div class="alert alert-danger alert-dismissible fade in">
 			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 			    <strong>Verification Failed</strong> Please check Your Credentials and try again.
+			  </div>';
+		  }
+		  if(!empty($this->session->flashdata('error'))){
+		    echo '<div class="alert alert-danger alert-dismissible fade in">
+			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    '.$this->session->flashdata("error").'
 			  </div>';
 		  }
 		  ?>
@@ -78,7 +84,7 @@
 		</div>
 <script type="text/javascript">
 	document.getElementById('login-section').style.minHeight=(screen.height-200)+"px";
-	setTimeout(loginContainerLoader, 3000)
+	setTimeout(loginContainerLoader, 2000)
 	function loginContainerLoader(){
 		document.getElementById('login-container').style.display='block';
 		document.getElementById('login-loader').style.display='none';
@@ -133,9 +139,10 @@
             'password':pass},
             success:function(data){
             	if(data=="InValid"){
-            		document.getElementById('WrongPasswordMsg').innerHTML = "Username or Password doesn't match";
-					document.getElementById('login_submit').style.display='block';
-					document.getElementById('loader').style.display='none';
+     //        		document.getElementById('WrongPasswordMsg').innerHTML = "Username or Password doesn't match";
+					// document.getElementById('login_submit').style.display='block';
+					// document.getElementById('loader').style.display='none';
+					window.location.href="<?php echo base_url();?>login";
 				}else{	
 					window.location.href="<?php echo base_url();?>"+data;
 				}

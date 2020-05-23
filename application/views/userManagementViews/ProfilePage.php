@@ -32,7 +32,16 @@ foreach ($userDetails as $row) {
 	$about = $row['About'];
 }
 ?>
-
+<script type="text/javascript">
+	$(document).ready(function() {       
+    $('#profilePicture').bind('change', function() {
+        var a=(this.files[0].size);
+        if(a > 600000) {
+            alert('Selected picture must be under 600 KB.');
+        };
+    });
+});
+</script>
 <section style="background-color:#f3f7f7;padding:50px 0px;">
 	<div class="container" style="padding: 20px;">
 	<div class="row">
@@ -49,7 +58,7 @@ foreach ($userDetails as $row) {
 			 <!-- <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@<?php echo $usrname; ?></h2> -->
 			  <?php echo $editInfoButton; ?>
 			  <hr>
-			  <h2 class="profile-h2">About</h2>
+			  <h2 class="profile-h2">About <?php echo $editCollege; ?></h2>
 			  <ul style="list-style-type:none;"><li> <?php echo $about; ?> </li></ul><br>
 		</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
@@ -78,6 +87,7 @@ foreach ($userDetails as $row) {
 							 		$ContributedQus= 0;
 							 		for($i=1;$i<=$badge;$i++){
 							 			$ContributedQus = $ContributedQus + 5;
+							 			// echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6"><img src="'.base_url().'assets/images/background/badge.png" style="height:100px; width:100px;"><div class="centered" style="left:72px;;top:30%;">1st</div></div>';
 							 			echo '<div class="col-lg-2 col-md-2 col-sm-2 col-xs-6" style="padding: 10px 30px 10px 30px;">
 											<div class="hexagon-profile" style="height: 100px;width: 100px;background-color:#ff6633;padding: 5px 0px 10px 0px;border-radius: 25px;">
 												 <p style="text-align: center;"><span class="glyphicon glyphicon-file"></span><br>
@@ -232,7 +242,8 @@ foreach ($userDetails as $row) {
 			          	<h2 style="text-align: center;">Change Picture</h2><hr>
 					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/updatePicture">
 						 	<div class="form-group">
-						      <input type="file" name="profilePicture" required>
+						      <input type="file" name="profilePicture" id="profilePicture" required>
+						      <small>Picture Should be within 600 KB.</small>
 						    </div>
 						    <button type="submit" name="UpdatePicture" class="login-input login-submit">Update Picture</button>
 						</form>
@@ -273,11 +284,16 @@ foreach ($userDetails as $row) {
 		     	<div class="modal-content">
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
-			          	<h2 style="text-align: center;">Badges Details</h2><hr>
-					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/editUserKnownTopics">
-						 	<div class="form-group">
-						    </div>
-						</form>
+			          	<h3 style="text-align: center;">Badge Details</h3> 
+			        </div>
+			        <div class="modal-body">
+			        	<ul>
+			        		<li>1 - 5 Content: 1 Badge</li>
+			        		<li>6 - 15 Content: 2 Badges</li>
+			        		<li>16 - 30 Content: 3 Badges</li>
+			        		<li>31 - 50 Content: 4 Badges</li>
+			        		<li>More than 50 Content: 5 Badges (Highest Level)</li>
+			        	</ul>
 			        </div>
 		      	</div>
 		    </div>

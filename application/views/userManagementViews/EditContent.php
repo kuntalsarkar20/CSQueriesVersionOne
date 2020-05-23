@@ -12,6 +12,7 @@ foreach ($question as $row) {
 	}
 	}
 ?>
+
 <section style="padding:55px 0px;">
 		<div class="container">
 			<ul class="breadcrumb">
@@ -44,7 +45,7 @@ foreach ($question as $row) {
 					        	}else{
 					        		$select = '';
 					        	}
-								echo '<option value="'.$row['CategoryId'].'" '.$select.'  id="topicName'.$row['CategoryId'].'">'.$row['CategoryName'].'</option>';
+								echo '<option value="'.$row['CategoryName'].'" '.$select.'  id="topicName'.$row['CategoryId'].'">'.$row['CategoryName'].'</option>';
 							}
 						?>
 				        
@@ -115,11 +116,9 @@ foreach ($question as $row) {
 <script type="text/javascript">
 	function getTopicQuestions(){
 		var topic = document.getElementById('topic').value;
-		var id = 'topicName'+topic;
-		var topicval = document.getElementById(id).innerHTML;
 		$.ajax({
 	            type:'GET',
-	            url:'<?php echo base_url("contentManagement/getQuestions/questionForTopic/"); ?>'+topicval,
+	            url:'<?php echo base_url("contentManagement/getQuestions/relatedQuestionFromTopicDashboard/"); ?>'+topic,
 	            success:function(data){ 
 	            	$("#relatedQuestionBox").html(data);	
 	            },

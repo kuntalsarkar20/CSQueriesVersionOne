@@ -14,7 +14,7 @@ class fetchContent_model extends CI_Model{
 		return $queryResult->result_array();
 	}
 	public function getUserQuestionList($username){		//gets question for a particular author
-		$queryResult = $this->db->query('SELECT contents.*,category.CategoryName FROM contents,author,category WHERE author.UserName = "'.$username.'" AND author.AuthId = Contents.AuthId AND contents.CategoryId=category.CategoryId ORDER BY contents.CreatedAt DESC');
+		$queryResult = $this->db->query('SELECT contents.*,category.CategoryName,category.Category FROM contents,author,category WHERE author.UserName = "'.$username.'" AND author.AuthId = Contents.AuthId AND contents.CategoryId=category.CategoryId ORDER BY contents.CreatedAt DESC');
 		return $queryResult->result_array();
 	}
 	public function homeCategory1Question(){	//gets 3 question to show in the home page of category DBMS

@@ -28,7 +28,7 @@
 								<h1 class="profile-h1" style="font-size:22px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a> '.$publishStatus.'</b></h1>
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12">
-										<h2 class="questionList-h2">Category: '.$row['CategoryName'].'</h2>
+										<h2 class="questionList-h2">Category: '.$row['Category'].'</h2>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-12">
 										<h2 class="questionList-h2">Uploaded On: '.date('d-M-Y', strtotime($row['CreatedAt'])).'</h2>
