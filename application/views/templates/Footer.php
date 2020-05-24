@@ -16,8 +16,8 @@
 						<h4>&nbsp;<span class="glyphicon glyphicon-link"></span>Useful Links</h4>
 						<ul style="list-style-type:none">
 							<li class="footer-links"><a href="<?php echo base_url(); ?>Contactus"><span class="glyphicon glyphicon-envelope"></span> Contact Us</a></li>
-							<li class="footer-links"><a href=".php"><span class="glyphicon glyphicon-lock"></span> Privacy And Policy</a></li>
-							<li class="footer-links"><a href=""><span class="glyphicon glyphicon-warning-sign"></span> Terms And Condition</a></li>
+							<li class="footer-links"><a href="<?php echo base_url(); ?>PrivacyPolicy"><span class="glyphicon glyphicon-lock"></span> Privacy Policy</a></li>
+							<li class="footer-links"><a href="<?php echo base_url(); ?>TermsAndConditions"><span class="glyphicon glyphicon-warning-sign"></span> Terms And Condition</a></li>
 						</ul>
 					</div>
 					<div class="col-lg-4 col-md-4 col-sm-12">

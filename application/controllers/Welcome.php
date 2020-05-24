@@ -36,6 +36,20 @@ class Welcome extends CI_Controller {
 		$this->load->view('HomeViews/MeetTheDevelopers');
 		$this->load->view('templates/Footer');	
 	}
+	public function ShowPrivacyPolicy(){
+		$data['category']=$this->fetchContent_model->categories();
+		$data['title']="Privacy Policy | CSQueries";
+		$this->load->view('templates/Header',$data);
+		$this->load->view('HomeViews/PrivacyPolicy');
+		$this->load->view('templates/Footer');	
+	}
+	public function ShowTermsAndConditions(){
+		$data['category']=$this->fetchContent_model->categories();
+		$data['title']="Privacy Policy | CSQueries";
+		$this->load->view('templates/Header',$data);
+		$this->load->view('HomeViews/TermsAndConditions');
+		$this->load->view('templates/Footer');	
+	}
 	public function SendContactUsData(){
 		try{
 			if(!isset($_POST['SendThought'])) throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Direct Access is not allowed");	//Showing error if anyone tries to directly access it

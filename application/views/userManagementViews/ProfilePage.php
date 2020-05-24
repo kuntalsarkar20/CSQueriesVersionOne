@@ -58,7 +58,7 @@ foreach ($userDetails as $row) {
 			 <!-- <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@<?php echo $usrname; ?></h2> -->
 			  <?php echo $editInfoButton; ?>
 			  <hr>
-			  <h2 class="profile-h2">About <?php echo $editCollege; ?></h2>
+			  <h2 class="profile-h2">About </h2>
 			  <ul style="list-style-type:none;"><li> <?php echo $about; ?> </li></ul><br>
 		</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
@@ -119,7 +119,7 @@ foreach ($userDetails as $row) {
 				<br> &nbsp; &nbsp;	<?php echo $degree.', '.$YearOfGraduation; ?></h2>
 				<br><hr>
 				<div id="editEducationDetails" style="display:none;">
-					<h1 style="text-align: center;font-family: arial">Edit Education</h1><hr>
+					<h1 style="text-align: center;font-family: arial">Edit Education & Details</h1><hr>
 					    <form action="<?php base_url() ?>userManagement/Profile/editUserDetails" method="POST">
 						    <div class="form-group">
 						      <label>School/College:</label>

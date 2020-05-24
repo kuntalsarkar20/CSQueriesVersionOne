@@ -79,7 +79,7 @@
 				  	</div>
 				  	<div class="form-group">
 					      <div class="col-sm-12">
-						  <label><input type="checkbox" value="" required> I accept all the Terms & Conditions.</label>
+						  <label><input type="checkbox" value="" required> I accept all the <a href="<?php echo base_url(); ?>TermsAndConditions">Terms & Conditions</a>.</label>
 						</div>
 					</div>
 				    
