@@ -9,7 +9,7 @@ class uploadContentController extends CI_Controller {
 		date_default_timezone_set('Asia/Kolkata');
     }
 	public function contentUploadUser(){
-		try{
+		// try{
 			if(isset($_POST['publish'])){
 				$isPublish=true;
 			}else if(isset($_POST['save'])){ 
@@ -36,10 +36,10 @@ class uploadContentController extends CI_Controller {
 					redirect(base_url().$_SESSION['username'].'/myContents/UploadSuccess');
 				}else throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Some unknown error encountered. Try again later.");
 			}else throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Category Name or Content Heading or Content Tag Con not be empty.");
-		}
-		catch(exception $e){
-			show_error($e->getMessage());
-		}
+		// }
+		// catch(exception $e){
+		// 	show_error($e->getMessage());
+		// }
 	}
 	public function uploadContentImages(){
 		try{
