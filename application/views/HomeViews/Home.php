@@ -69,7 +69,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category1 as $row){
-						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>140) ? substr($row['Question'],0,120).'..':$row['Question']).'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 					<!-- <div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
@@ -87,7 +87,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category2 as $row){
-						echo '<div class="col-sm-12 questionstyle"><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>140) ? substr($row['Question'],0,120).'..':$row['Question']).'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 				</div>
@@ -102,7 +102,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category3 as $row){
-						echo '<div class="col-sm-12 questionstyle"><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>140) ? substr($row['Question'],0,120).'..':$row['Question']).'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 				</div>
@@ -117,7 +117,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category3 as $row){
-						echo '<div class="col-sm-12 questionstyle"><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>140) ? substr($row['Question'],0,120).'..':$row['Question']).'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 				</div>
@@ -147,9 +147,45 @@
         
         <!-- Carousel Slides / Quotes -->
         <div class="carousel-inner" style="border:2px solid #ffff;">
+        	
+
+        	<?php 
+        	$count=1;
+		foreach($top3Contributers as $row){
+			// echo '<div class="testimonial-mySlides" style="background-color:whitesmoke;">
+			// 		<img src="'.base_url().'assets/images/UserProfilePictures/'.$row['Image'].'" alt="'.$row['Name'].'" style="height:140px;width:140px;border-radius: 50%;"><br>
+			// 		<p class="testimonial-author">'.$row['Name'].'</p>
+			// 	  <q class="testimonial-q">'.$row['About'].'</q>
+			// 	  <br><a href="'.base_url().$row['UserName'].'"><button type="button" class="pofilebutton">View Profile</button></a>
+			// 	</div>';
+			if($count==1) $active ="active";
+			else $active= '';
+			$count++;
+				echo '<div class="item '.$active.'">
+ 	        <div class="row">
+                <div class="col-sm-12 hidden-xs">
+                	&nbsp;&nbsp;
+                </div>
+               <div class="col-sm-12" style="overflow:hidden;height:420px;">
+               	<div class="col-sm-12" style="margin-top: 70px;position:absolute;border-top:4px solid white;">
+               		<div style="position: absolute;top: -70px; /* half of image height */ left: 40%; /* right space */"><img class="img-circle center" src="'.base_url().'assets/images/UserProfilePictures/'.$row['Image'].'" style="width: 120px;height:120px;display:block;border:4px solid white;">
+				</div>
+				<br><br><br>
+				<div class="col-sm-12 hidden-xs">
+                	&nbsp;&nbsp;
+                </div>
+               		<p style="color: white;text-align:center;padding:5px;">'.$row['About'].'PowerPoint templates for Quotes in presentations. Set of famous quotes on motivation, future, time planning etc.</p>
+               		<a href="'.base_url().$row['UserName'].'" class="links-col"><p style="font-weight: bold;font-size: 25px;text-align: center;">'.$row['Name'].'</p></a>
+               		</div>
+            </div>
+              </div>
+          </div>';
+		}
+		?>
+		
         
           <!-- Quote 1 -->
-          <div class="item active">
+          <!-- <div class="item">
  	        <div class="row">
                 <div class="col-sm-12 hidden-xs">
                 	&nbsp;&nbsp;
@@ -167,7 +203,7 @@
                		</div>
             </div>
               </div>
-          </div>
+          </div> -->
  		<!-- Carousel Buttons Next/Prev -->
         <!-- <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
         <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a> -->
