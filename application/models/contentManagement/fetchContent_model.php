@@ -9,8 +9,8 @@ class fetchContent_model extends CI_Model{
 		$queryResult = $this->db->query('SELECT * FROM contents,author WHERE ContentId="'.$questionId.'" AND contents.AuthId=author.AuthId');
 		return $queryResult->result_array();
 	}
-	public function getCategoryQuestions($category){	//gets question for a particular category
-		$queryResult = $this->db->query('SELECT * FROM contents,category,author WHERE category.CategoryName="'.$category.'" AND category.CategoryId=contents.CategoryId AND author.AuthId = contents.AuthId AND isPublished=1 order by contents.views DESC,contents.CreatedAt DESC');
+	public function getCategoryQuestions($categoryId){	//gets question for a particular category
+		$queryResult = $this->db->query('SELECT * FROM contents,category,author WHERE category.CategoryId="'.$categoryId.'" AND category.CategoryId=contents.CategoryId AND author.AuthId = contents.AuthId AND isPublished=1 order by contents.views DESC,contents.CreatedAt DESC');
 		return $queryResult->result_array();
 	}
 	public function getUserQuestionList($username){		//gets question for a particular author

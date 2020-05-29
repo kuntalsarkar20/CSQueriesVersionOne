@@ -17,6 +17,12 @@
 					    <strong>Success!</strong> Your content is Uploaded Successfully.
 					  </div>';
 				  }
+				  if(!empty($this->session->flashdata('success'))){
+				    echo '<div class="alert alert-success alert-dismissible fade in">
+					    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+					    '.$this->session->flashdata("success").'
+					  </div>';
+				  }
 				foreach ($questionList as $row) {
 					if($row['isPublished']==1){
 						$publishStatus= '<span class="label label-info">Published</span>';

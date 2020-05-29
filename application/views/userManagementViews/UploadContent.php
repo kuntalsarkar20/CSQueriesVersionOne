@@ -18,7 +18,7 @@
 				        <option selected="true" value='' disabled="disabled">Select Topic</option>
 				        <?php 
 					        foreach ($category as $row) {
-								echo '<option value="'.$row['CategoryName'].'" id="topicName'.$row['CategoryId'].'">'.$row['Category'].'</option>';
+								echo '<option value="'.$row['CategoryId'].'" id="topicName'.$row['CategoryId'].'">'.$row['Category'].'</option>';
 							}
 						?>
 				        

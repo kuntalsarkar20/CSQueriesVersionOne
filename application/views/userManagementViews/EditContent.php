@@ -45,7 +45,7 @@ foreach ($question as $row) {
 					        	}else{
 					        		$select = '';
 					        	}
-								echo '<option value="'.$row['CategoryName'].'" '.$select.'  id="topicName'.$row['CategoryId'].'">'.$row['CategoryName'].'</option>';
+								echo '<option value="'.$row['CategoryId'].'" '.$select.'  id="topicName'.$row['CategoryId'].'">'.$row['CategoryName'].'</option>';
 							}
 						?>
 				        

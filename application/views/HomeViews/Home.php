@@ -131,59 +131,52 @@
 </section>
 	<!-- Browse By Categories Section Ends-->
 	<!-- Contributer Section Starts-->
-<section>
-	<!-- <div class="container"> -->
-		<div class="testimonial-slideshow-container">
-			<div class="container"><h3 data-aos="fade-up" data-aos-duration="2000">Our Top 3 Contributers</h3>
-			<hr style="border:2px solid #66e066;" data-aos="fade-up" data-aos-duration="2000">
-		</div>
-		<?php 
-		foreach($top3Contributers as $row){
-			echo '<div class="testimonial-mySlides" style="background-color:whitesmoke;">
-					<img src="'.base_url().'assets/images/UserProfilePictures/'.$row['Image'].'" alt="'.$row['Name'].'" style="height:140px;width:140px;border-radius: 50%;"><br>
-					<p class="testimonial-author">'.$row['Name'].'</p>
-				  <q class="testimonial-q">'.$row['About'].'</q>
-				  <br><a href="'.base_url().$row['UserName'].'"><button type="button" class="pofilebutton">View Profile</button></a>
-				</div>';
-		}
-		?>
-		
-
-		<!-- <div class="testimonial-mySlides" data-aos="fade-up" data-aos-duration="2000">
-			<img src="assets/images/aboutPictures/having_doubts.png" alt="John" style="height:140px;width:140px;"><br>
-		  <q class="testimonial-q">But man is not made for defeat. A man can be destroyed but not defeated.</q>
-		  <p class="testimonial-author">- Ernest Hemingway<br><button type="button" class="pofilebutton">View Profile</button></p>
-		</div> -->
-
-		</div>
-
-		<div class="testimonial-dot-container">
-		  <span class="testimonial-dot"></span> 
-		  <span class="testimonial-dot"></span> 
-		  <span class="testimonial-dot"></span> 
-		</div>
+<!-- Contributer -->
+<section style="padding:80px 0px;background-image: url(<?php base_url() ?>assets/images/background/ContributerWithBlackCover.jpg);background-size: 100% 100%;">
+	<!-- <div style="background-color: rgb(0,0,0,0.5);"> -->
+<div class="container" style="background-color:;height: 500px;">
+  <div class="row">
+    <div class="col-sm-offset-1 col-lg-10 col-md-10 col-sm-12">
+      <div class="carousel slide" data-ride="carousel" id="quote-carousel">
+        <!-- Bottom Carousel Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+          <li data-target="#quote-carousel" data-slide-to="1"></li>
+          <li data-target="#quote-carousel" data-slide-to="2"></li>
+        </ol>
+        
+        <!-- Carousel Slides / Quotes -->
+        <div class="carousel-inner" style="border:2px solid #ffff;">
+        
+          <!-- Quote 1 -->
+          <div class="item active">
+ 	        <div class="row">
+                <div class="col-sm-12 hidden-xs">
+                	&nbsp;&nbsp;
+                </div>
+               <div class="col-sm-12" style="overflow:hidden;height:420px;">
+               	<div class="col-sm-12" style="margin-top: 70px;position:absolute;border-top:4px solid white;">
+               		<div style="position: absolute;top: -70px; /* half of image height */ left: 40%; /* right space */"><img class="img-circle center" src="<?php echo base_url(); ?>assets/images/aboutPictures/search_here.png" style="width: 120px;height:120px;display:block;border:4px solid white;">
+				</div>
+				<br><br><br>
+				<div class="col-sm-12 hidden-xs">
+                	&nbsp;&nbsp;
+                </div>
+               		<p style="color: white">PowerPoint templates for Quotes in presentations. Set of famous quotes on motivation, future, time planning etc. by Sun Tzu, Richard Banson, Michal Kundera or Terry Pratchett. Includes creative graphics editable using PPT tools. The text inside quotes can be replaced by your ownPowerPoint templates for Quotes in presentations. Set of famous quotes on motivation, future, time planning etc. by Sun Tzu, Richard Banson, Michal Kundera or Terry Pratchett. Includes creative graphics editable using PPT tools. The text inside quotes can be replaced by your own</p>
+               		<a href="" class="links-col"><p style="font-weight: bold;font-size: 25px;text-align: center;">Kuntal Sarkar</p></a>
+               		</div>
+            </div>
+              </div>
+          </div>
+ 		<!-- Carousel Buttons Next/Prev -->
+        <!-- <a data-slide="prev" href="#quote-carousel" class="left carousel-control"><i class="fa fa-chevron-left"></i></a>
+        <a data-slide="next" href="#quote-carousel" class="right carousel-control"><i class="fa fa-chevron-right"></i></a> -->
+      </div>                          
+    </div>
+    </div>
+</div>
+</div>
 <!-- </div> -->
-<script>
-var slideIndex = 0;
-showSlides();
-
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("testimonial-mySlides");
-  var dots = document.getElementsByClassName("testimonial-dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";  
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}    
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" testimonial-active", "");
-  }
-  slides[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " testimonial-active";
-  setTimeout(showSlides, 3500); // Change image every 3.5 seconds
-}
-</script>
 </section>
 <!-- Contributer Section Ends-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>

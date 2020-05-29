@@ -76,8 +76,8 @@ class getQuestions extends CI_Controller {
 			show_404();
 		}
 	}
-	public function relatedQuestionFromTopicDashboard($category){//getting questions to show in the dashboard related 																			question section
-		$mainData['categoryQuestions']=$this->fetchContent_model->getCategoryQuestions($category);
+	public function relatedQuestionFromTopicDashboard($categoryId){//getting questions to show in the dashboard related 																			question section
+		$mainData['categoryQuestions']=$this->fetchContent_model->getCategoryQuestions($categoryId);
 		if(!empty($mainData['categoryQuestions'])){
 			foreach ($mainData['categoryQuestions'] as $row) {
 			echo '<div style="padding:10px 20px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a></b></div>';

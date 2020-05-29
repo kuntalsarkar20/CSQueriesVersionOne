@@ -262,13 +262,14 @@ foreach ($userDetails as $row) {
 			          	<h2 style="text-align: center;">Topics You may Know</h2><hr>
 					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/editUserKnownTopics">
 						 	<div class="form-group">
-						      <select multiple class="form-control" id="topic" name="knownTopics[]">
+						      <select multiple class="form-control" id="topic" name="knownTopics[]" required>
 						        <?php 
 							        foreach ($category as $row) {
 										echo '<option value="'.$row['CategoryName'].'">'.$row['CategoryName'].'</option>';
 									}
 								?> 
 						      </select>
+						      <p>Press Shift or Ctrl to select multiple</p>
 						  </div>
 						    <button type="submit" name="updateKnownTopics" class="login-input login-submit">Update</button>
 						</form>
