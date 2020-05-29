@@ -8,11 +8,11 @@ if($countQuestionNumber>10){
 	$numberofPage = $countQuestionNumber/10; 	//keeping 10 questions in 1 page
 	// $lastPage = $countQuestionNumber%10;
 	$startRange = 0;
-	for($iteration=1;$iteration<$numberofPage;$iteration++){
-		$links = $links.'<li><a href="'.base_url().'Category/'.$categoryName.'/'.$startRange.'">'.$iteration.'</a></li>';
+	for($iteration=1;$iteration<=$numberofPage+1;$iteration++){
+		$links = $links.'<li class="'.($PageNo == $iteration ? 'active' : '').'"><a href="'.base_url().'Category/'.$categoryName.'/'.$startRange.'">'.$iteration.'</a></li>';
 		$startRange = $startRange +10;
 	}
-	$links = $links.'<li><a href="'.base_url().'Category/'.$categoryName.'/'.$startRange.'">'.$iteration.'</a></li>';
+	// $links = $links.'<li><a href="'.base_url().'Category/'.$categoryName.'/'.$startRange.'">'.$iteration.'</a></li>';
 }else{
 	$links = '';
 }

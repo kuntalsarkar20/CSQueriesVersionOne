@@ -130,5 +130,24 @@ class uploadContentController extends CI_Controller {
 			show_error($e->getMessage());
 		}
 	}
+	public function ReqCategory(){
+		try{
+			if(!isset($_POST['ReqCategory']) || !$this->isSessionAvailable()) throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Direct access is not allowed.");
+			$ReqCategoryName = $_POST['categoryName'];
+			$ReqCategoryDesc = $_POST['categoryDesc'];
+			if(empty($ReqCategoryName)) throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Category Name can't be empty.");
+			
+		}
+		catch(exception $e){
+			show_error($e->getMessage());
+		}
+	}
+	private function isSessionAvailable(){
+		if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
 ?>

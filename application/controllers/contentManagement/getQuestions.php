@@ -15,10 +15,12 @@ class getQuestions extends CI_Controller {
 			$mainData['RelatedQuestionFromTopic'] = $this->fetchContent_model->getCategoryQuestionsWithLimit($category,0);	//getting question through 																								category,questionid
 			if(!empty($mainData['question'])){	//if the url is valid
 				foreach ($mainData['question'] as $row) {
+					$mainData['contentId']= $row['ContentId'];
 					$mainData['contentName']= $row['Question'];
 					$mainData['contentDesc']= $row['Answer'];
 					$mainData['creationTime']= $row['CreatedAt'];
 					$mainData['Author']= $row['UserName'];
+					$mainData['DashedQuestion'] = $row['DashedQuestion'];
 
 					//for meta tags
 					$data['title']= substr(str_replace('-', ' ', $row['DashedQuestion']),0,20)." | CSQueries";
@@ -56,7 +58,7 @@ class getQuestions extends CI_Controller {
 	// 	$mainData['RelatedQuestionFromTopic']=$this->fetchContent_model->getCategoryQuestions($category);	
 	// 	return $mainData;
 	// }
-	public function questionForTopic($category=NULL,$startingRange=0){//Showing question for a particular topic in category 																	question view in content Management section 
+	public function questionForTopic($category=NULL,$startingRange=0){//Showing question for a particular topic in category question view in content Management section 
 		$startTime = $this->microtime_float();	//getting current time
 		$data['title'] = 'Question List | CSQueries';
 		$data['category']=$this->fetchContent_model->categories();
@@ -68,6 +70,7 @@ class getQuestions extends CI_Controller {
 		$endTime = $this->microtime_float();	//getting current time
 		$mainData['TimeTaken'] = $endTime - $startTime;	//determining the total time taken for searching
 		$mainData['startLimit'] = $startingRange+1; 	//starting range to show in pagination
+		$mainData['PageNo'] = ($startingRange>9 ? ($startingRange / 10) + 1 : 1); // for pagination active page
 		if(!empty($mainData['categoryQuestions'])){
 			$this->load->view('templates/Header',$data);
 			$this->load->view('HomeViews/CategoryQuestions',$mainData);

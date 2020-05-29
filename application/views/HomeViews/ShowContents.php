@@ -17,6 +17,12 @@
 // 		}
 // 	}
 // }
+$editButtonForUploader = "";
+if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
+	if($_SESSION['username'] == $Author){
+		$editButtonForUploader = '<a href="'.base_url().$_SESSION['username'].'/myContents/editContent/'.$this->uri->segment(2).'/'.$contentId.'/'.$DashedQuestion.'"><span class="label label-success">Edit</span></a>';
+	}
+}
 ?>
 <section style="background-color: #e9eeef91;padding: 20px 0px 0px 0px;" id="forMinHeight">
 <div class="container">
@@ -32,7 +38,7 @@
 	</div>
 		<div class="col-lg-8 col-md-8 col-sm-12" style="padding: 0px 20px;">
 			<div class="row">
-				<div class="col-sm-12" style="padding:1px 13px;"><h3>&nbsp;&nbsp;<?php echo $contentName; ?></h3>
+				<div class="col-sm-12" style="padding:1px 13px;"><h3>&nbsp;&nbsp;<?php echo $contentName .' '. $editButtonForUploader; ?></h3>
 					<span class="datestyle">-Uploaded By <b><a href="<?php echo base_url().$Author; ?>">@<?php echo $Author; ?></a></b> On <?php echo $creationTime; ?>&nbsp;&nbsp;&nbsp;</span><hr></div>
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<div class="col-sm-12 questionstyle"><?php echo $contentDesc; ?> </div>

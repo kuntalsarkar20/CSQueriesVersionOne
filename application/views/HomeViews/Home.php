@@ -28,9 +28,9 @@
 				<div class="card">
 				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/write_for_us_2.png" class="about-section-img" alt="John" style="width:80%;height:180px;">
 				  <h3>Write For Us</h3>
-				  <div class="about-section-img-middle">
+				  <!-- <div class="about-section-img-middle">
 				  <p class=""><center><button type="button" class="about-section-button">Start Here</button></center></p>
-				  </div>
+				  </div> -->
 				</div>
 			</div>
 			<div class="col-sm-1"></div>
@@ -38,9 +38,9 @@
 				<div class="card">
 				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/having_doubts.png" alt="John" class="about-section-img" style="width:80%;height:180px;">
 				  <h3>Having Doubts?</h3>
-				  <div class="about-section-img-middle">
+				  <!-- <div class="about-section-img-middle">
 				  <p class=""><center><button type="button" class="about-section-button">Start Here</button></center></p>
-				  </div>
+				  </div> -->
 				</div>
 			</div>
 			<div class="col-sm-1"></div>
@@ -48,9 +48,9 @@
 				<div class="card">
 				  <img src="<?php echo base_url(); ?>assets/images/aboutPictures/search_here.png" alt="John" class="about-section-img" style="width:80%;height:180px;">
 				  <h3>Find Answers Quickly</h3>
-				  <div class="about-section-img-middle">
+				  <!-- <div class="about-section-img-middle">
 				  <p class=""><center><button type="button" class="about-section-button">Start Here</button></center></p>
-				  </div>
+				  </div> -->
 				</div>
 			</div>
 		</div>
@@ -69,7 +69,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category1 as $row){
-						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>140) ? substr($row['Question'],0,120).'..':$row['Question']).'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>70) ? substr($row['Question'],0,70).'..':$row['Question']).'</a><br><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 					<!-- <div class="col-sm-12 questionstyle">What is DBMS? <span class="datestyle">-17th April,2020</span></div>
@@ -87,7 +87,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category2 as $row){
-						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>140) ? substr($row['Question'],0,120).'..':$row['Question']).'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>70) ? substr($row['Question'],0,70).'..':$row['Question']).'</a><br><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 				</div>
@@ -102,7 +102,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category3 as $row){
-						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>140) ? substr($row['Question'],0,120).'..':$row['Question']).'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>70) ? substr($row['Question'],0,70).'..':$row['Question']).'</a><br><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 				</div>
@@ -117,7 +117,7 @@
 				<div class="col-sm-12" style="padding: 0px 10px;">
 					<?php
 					foreach($category3 as $row){
-						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>140) ? substr($row['Question'],0,120).'..':$row['Question']).'</a><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
+						echo '<div class="col-sm-12 questionstyle"> <span class="glyphicon glyphicon-hand-right"></span> <a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.((strlen($row['Question'])>70) ? substr($row['Question'],0,70).'..':$row['Question']).'</a><br><span class="datestyle">'.date('d-M-Y',strtotime($row['CreatedAt'])).'</span></div>';
 					}
 					?>
 				</div>
@@ -166,15 +166,27 @@
                 <div class="col-sm-12 hidden-xs">
                 	&nbsp;&nbsp;
                 </div>
-               <div class="col-sm-12" style="overflow:hidden;height:420px;">
-               	<div class="col-sm-12" style="margin-top: 70px;position:absolute;border-top:4px solid white;">
-               		<div style="position: absolute;top: -70px; /* half of image height */ left: 40%; /* right space */"><img class="img-circle center" src="'.base_url().'assets/images/UserProfilePictures/'.$row['Image'].'" style="width: 120px;height:120px;display:block;border:4px solid white;">
+               <div class="col-sm-12 hidden-xs" style="overflow:hidden;height:420px;">
+               	<div class="col-sm-12" style="margin-top: 70px;position:absolute;border-top:4px solid white;width:100%;text-align:center;">
+               		<div style="position: absolute;top: -70px; /* half of image height */ left:40%; /* right space */text-align:center;"><img class="img-circle center" src="'.base_url().'assets/images/UserProfilePictures/'.$row['Image'].'" style="width: 120px;height:120px;display:block;border:4px solid white;">
 				</div>
 				<br><br><br>
 				<div class="col-sm-12 hidden-xs">
                 	&nbsp;&nbsp;
                 </div>
-               		<p style="color: white;text-align:center;padding:5px;">'.$row['About'].'PowerPoint templates for Quotes in presentations. Set of famous quotes on motivation, future, time planning etc.</p>
+               		<p style="color: white;text-align:center;padding:5px;">'.$row['About'].'</p>
+               		<a href="'.base_url().$row['UserName'].'" class="links-col"><p style="font-weight: bold;font-size: 25px;text-align: center;">'.$row['Name'].'</p></a>
+               		</div>
+            </div>
+            <div class="col-sm-12 hidden-lg hidden-md hidden-sm" style="overflow:hidden;height:420px;">
+               	<div class="col-sm-12" style="margin-top: 70px;position:absolute;border-top:4px solid white;width:100%;">
+               		<div style="position: absolute;top: -70px; /* half of image height */ left: 30%; /* right space */"><img class="img-circle center" src="'.base_url().'assets/images/UserProfilePictures/'.$row['Image'].'" style="width: 120px;height:120px;display:block;border:4px solid white;">
+				</div>
+				<br><br><br>
+				<div class="col-sm-12 hidden-xs">
+                	&nbsp;&nbsp;
+                </div>
+               		<p style="color: white;text-align:center;padding:5px;">'.$row['About'].'</p>
                		<a href="'.base_url().$row['UserName'].'" class="links-col"><p style="font-weight: bold;font-size: 25px;text-align: center;">'.$row['Name'].'</p></a>
                		</div>
             </div>
@@ -190,7 +202,7 @@
                 <div class="col-sm-12 hidden-xs">
                 	&nbsp;&nbsp;
                 </div>
-               <div class="col-sm-12" style="overflow:hidden;height:420px;">
+               <div class="col-sm-12 hidden-xs" style="overflow:hidden;height:420px;">
                	<div class="col-sm-12" style="margin-top: 70px;position:absolute;border-top:4px solid white;">
                		<div style="position: absolute;top: -70px; /* half of image height */ left: 40%; /* right space */"><img class="img-circle center" src="<?php echo base_url(); ?>assets/images/aboutPictures/search_here.png" style="width: 120px;height:120px;display:block;border:4px solid white;">
 				</div>
@@ -198,7 +210,7 @@
 				<div class="col-sm-12 hidden-xs">
                 	&nbsp;&nbsp;
                 </div>
-               		<p style="color: white">PowerPoint templates for Quotes in presentations. Set of famous quotes on motivation, future, time planning etc. by Sun Tzu, Richard Banson, Michal Kundera or Terry Pratchett. Includes creative graphics editable using PPT tools. The text inside quotes can be replaced by your ownPowerPoint templates for Quotes in presentations. Set of famous quotes on motivation, future, time planning etc. by Sun Tzu, Richard Banson, Michal Kundera or Terry Pratchett. Includes creative graphics editable using PPT tools. The text inside quotes can be replaced by your own</p>
+               		<p style="color: white">Desk top view</p>
                		<a href="" class="links-col"><p style="font-weight: bold;font-size: 25px;text-align: center;">Kuntal Sarkar</p></a>
                		</div>
             </div>

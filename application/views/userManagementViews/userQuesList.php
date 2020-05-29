@@ -23,6 +23,7 @@
 					    '.$this->session->flashdata("success").'
 					  </div>';
 				  }
+				 if(!empty($questionList)){
 				foreach ($questionList as $row) {
 					if($row['isPublished']==1){
 						$publishStatus= '<span class="label label-info">Published</span>';
@@ -31,16 +32,16 @@
 					}
 					echo '<div class="col-md-offset-1 col-lg-offset-1 col-lg-10 col-md-10 col-sm-12" style="padding: 20px 10px;">
 							<div class="profile-boxes" style="padding: 10px 10px;">
-								<h1 class="profile-h1" style="font-size:22px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a> '.$publishStatus.'</b></h1>
+								<h1 style="font-size:22px;"><b><a href="'.base_url().'questions/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'">'.$row['Question'].'</a></b></h1>
 								<div class="row">
 									<div class="col-lg-12 col-md-12 col-sm-12">
-										<h2 class="questionList-h2">Category: '.$row['Category'].'</h2>
+										<p>Category: '.$row['Category'].' <span style="float:right;">'.$publishStatus.'</span></p>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-12">
-										<h2 class="questionList-h2">Uploaded On: '.date('d-M-Y', strtotime($row['CreatedAt'])).'</h2>
+										<p>Uploaded On: '.date('d-M-Y', strtotime($row['CreatedAt'])).'</p>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-12">
-										<h2 class="questionList-h2">Last Updated: '.date('d-M-Y', strtotime($row['UpdatedAt'])).'</h2>
+										<p>Last Updated: '.date('d-M-Y', strtotime($row['UpdatedAt'])).'</p>
 									</div>
 									<div class="col-lg-4 col-md-4 col-sm-12">
 										<a href="'.base_url().$_SESSION['username'].'/myContents/editContent/'.$row['CategoryName'].'/'.$row['ContentId'].'/'.$row['DashedQuestion'].'"><button class="publish-button"><span class="glyphicon glyphicon-edit"></span> Edit</button></a>
@@ -49,6 +50,9 @@
 							</div>
 						</div>';
 				}
+			}else{
+				echo "<h3 style='text-align:center;'>NO QUESTION UPLOADED TILL NOW.</h3>";
+			}
 			?>
 			<!-- <div class="col-md-offset-1 col-lg-10 col-md-10 col-md-12" style="padding: 20px 10px;">
 				<div class="profile-boxes" style="padding: 10px 10px;">

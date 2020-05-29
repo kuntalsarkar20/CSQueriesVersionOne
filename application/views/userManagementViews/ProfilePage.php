@@ -191,10 +191,10 @@ foreach ($userDetails as $row) {
 			          	<h1 style="text-align: center;font-family: arial;">Change Password</h1><hr>
 					    <form method="post">
 						    <label>Username</label>
-								<div class="form-group" id="usernameSuccess">
-							        <input class="form-control" type="text" value="<?php echo $usrname; ?>" name="usrname" disabled>
-							      <span class="" id="msgForWrongUsername"></span>
-							  	</div>
+							<div class="form-group" id="usernameSuccess">
+						        <input class="form-control" type="text" value="<?php echo $usrname; ?>" name="usrname" disabled>
+						      <span class="" id="msgForWrongUsername"></span>
+						  	</div>
 						    <div class="form-group">
 						      <label>Email:</label>
 						      <input type="text" class="form-control" placeholder="Email" name="name" value="<?php echo $email; ?>" disabled>
@@ -241,6 +241,11 @@ foreach ($userDetails as $row) {
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          	<h2 style="text-align: center;">Change Picture</h2><hr>
 					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/updatePicture">
+					    	<div class="container">
+					    		<div>
+								  <img id="image" class="img-profile" src="<?php echo base_url().'assets/images/UserProfilePictures/'.$authorPic; ?>">
+								</div>
+					    	</div>
 						 	<div class="form-group">
 						      <input type="file" name="profilePicture" id="profilePicture" required>
 						      <small>Picture Should be within 600 KB.</small>
@@ -251,6 +256,63 @@ foreach ($userDetails as $row) {
 		      	</div>
 		    </div>
 		</div>
+		<input type="file" name="image" id="image" onchange="readURL(this);"/>
+<div class="image_container">
+    <img id="blah" src="#" alt="your image" />
+</div>
+<div id="cropped_result"></div>        // Cropped image to display (only if u want)
+<button id="crop_button">Crop</button> // Will trigger crop event
+		<script type="text/javascript" defer>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#blah').attr('src', e.target.result)
+            };
+            reader.readAsDataURL(input.files[0]);
+            setTimeout(initCropper, 1000);
+        }
+    }
+    function initCropper(){
+        var image = document.getElementById('blah');
+        var cropper = new Cropper(image, {
+          aspectRatio: 1 / 1,
+          crop: function(e) {
+            console.log(e.detail.x);
+            console.log(e.detail.y);
+          }
+        });
+
+        // On crop button clicked
+        document.getElementById('crop_button').addEventListener('click', function(){
+            var imgurl =  cropper.getCroppedCanvas().toDataURL();
+            var img = document.createElement("img");
+            img.src = imgurl;
+            document.getElementById("cropped_result").appendChild(img);
+
+            /* ---------------- SEND IMAGE TO THE SERVER-------------------------
+
+                cropper.getCroppedCanvas().toBlob(function (blob) {
+                      var formData = new FormData();
+                      formData.append('croppedImage', blob);
+                      // Use `jQuery.ajax` method
+                      $.ajax('/path/to/upload', {
+                        method: "POST",
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function () {
+                          console.log('Upload success');
+                        },
+                        error: function () {
+                          console.log('Upload error');
+                        }
+                      });
+                });
+            ----------------------------------------------------*/
+        })
+    }
+</script>
 		<!-- Modal for CSLanguage known-->
 		<div class="modal fade" id="topicsKnown" role="dialog">
 		    <div class="modal-dialog">

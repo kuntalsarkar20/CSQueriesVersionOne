@@ -24,7 +24,7 @@
 				        
 				      </select>
 			      </div>
-			      <h5 style="float: right;padding-right: 30px;">Topic not listed?</h5>
+			      <h5 style="float: right;padding-right: 30px;"><a href="" data-toggle="modal" data-target="#myModal">Topic not listed?</a></h5>
 			  	</div>
 			  	<p>&nbsp;</p>
 			  	<label for="psw">Your Content Heading/Question</label>
@@ -79,6 +79,34 @@
 		</div>
 	</div>
 </section>
+<!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Want to add your topic?</h4>
+        </div>
+        <div class="modal-body">
+          <p>Fill the form below. If your topic is Proper and not listed it will added in our topic list within 24 hours.</p>
+          <form method="post" action="<?php echo base_url(); ?>contentManagement/uploadContentController/ReqCategory">
+		 	<label>Category Name</label>
+			<div class="form-group">
+		        <input class="form-control" type="text" name="categoryName" placeholder="Enter the Category name">
+		  	</div>
+		  	<label>Category Description</label>
+			<div class="form-group">
+		        <textarea class="form-control" row="5" name="categoryDesc" placeholder="Enter the Category Description"></textarea>
+		  	</div>
+		    <input type="submit" name="ReqCategory" class="login-input login-submit" value="Request Category">
+		</form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <script type="text/javascript">
 	CKEDITOR.replace('contentAns',{
 		height:300,
