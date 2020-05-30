@@ -32,15 +32,14 @@
 				    <label for="usrname">Username</label>
 					<div class="form-group" id="usernameSuccess">
 				      <div class="col-sm-12">
-				        <input class="form-control" id="usrname" type="text">
+				        <input class="form-control" id="usrname" type="text" placeholder="Enter Your Username">
 				      </div>
 				  	</div>
 
 				    <label for="psw">Password</label>
-				    <div class="form-group">
-				      <div class="col-sm-12">
-				        <input class="form-control" type="password" id="psw" required>
-				      </div>
+				    <div class="input-group">
+				        <input class="form-control" type="password" id="psw" placeholder="Enter Your Password" required>
+				        <span class="input-group-addon"><span style="color: green;" class="glyphicon glyphicon-eye-open" id="passIcon" onmouseover="mouseoverPass();" onmouseout="mouseoutPass();"></span></span>
 				  	</div>
 				  	<p id="WrongPasswordMsg" style="color:red;"></p>
 				  	<div class="form-group">
@@ -82,6 +81,24 @@
 		      	</div>
 		    </div>
 		</div>
+
+<!-- Js for show hide password on hover -->
+<script type="text/javascript">
+function mouseoverPass(obj) {
+  var obj = document.getElementById('psw');
+  obj.type = "text";
+  document.getElementById('passIcon').classList.remove('glyphicon-eye-open');
+  document.getElementById('passIcon').classList.add('glyphicon-eye-close');
+}
+function mouseoutPass(obj) {
+  var obj = document.getElementById('psw');
+  obj.type = "password";
+  document.getElementById('passIcon').classList.remove('glyphicon-eye-close');
+  document.getElementById('passIcon').classList.add('glyphicon-eye-open');
+}
+</script>
+<!--End Js for show hide password on hover -->
+
 <script type="text/javascript">
 	document.getElementById('login-section').style.minHeight=(screen.height-200)+"px";
 	setTimeout(loginContainerLoader, 2000)

@@ -3,7 +3,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
 	if($_SESSION['username'] == $username){
 		$editInfoButton = '<a href="" id="link" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-pencil"></span> Change Password</a>';
 		$editPic = '<a href="" id="link" data-toggle="modal" data-target="#imageUpload"><span class="glyphicon glyphicon-pencil" style="top:-30px;left: 20px;color: white;"></span></a>';
-		$editCollege = '<button id="editCollege" style="border:none;background-color:transparent;float:right;"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></button>';
+		$editCollege = '<a href="" id="" style="float:right;" data-toggle="modal" data-target="#editEducationDetails"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></a>';
 		$editLanguage = '<a href="" data-toggle="modal" data-target="#topicsKnown"><span class="glyphicon glyphicon-pencil" style="float: right;font-size: 20px;"></span></a>';
 		$usrname = $username;
 	}else{
@@ -42,8 +42,8 @@ foreach ($userDetails as $row) {
     });
 });
 </script>
-<section style="background-color:#f3f7f7;padding:50px 0px;">
-	<div class="container" style="padding: 20px;">
+<section style="background-color:#f3f7f7;padding:70px 0px;">
+	<div class="container">
 	<div class="row">
 		<div class="col-lg-4 col-md-4 col-sm-12" style="padding:10px 20px;" id="detail">
 			<div class="profilePic-container">
@@ -58,7 +58,7 @@ foreach ($userDetails as $row) {
 			 <!-- <h2 class="profile-h2" style="font-family:OpenSans;font-size: 20px;">@<?php echo $usrname; ?></h2> -->
 			  <?php echo $editInfoButton; ?>
 			  <hr>
-			  <h2 class="profile-h2">About </h2>
+			  <h2 class="profile-h2">About <?php echo $editCollege; ?></h2>
 			  <ul style="list-style-type:none;"><li> <?php echo $about; ?> </li></ul><br>
 		</div>
 			<div class="col-lg-8 col-md-8 col-sm-12">
@@ -118,28 +118,6 @@ foreach ($userDetails as $row) {
 				 <h2 class="profile-h2"><span class="glyphicon glyphicon-asterisk"></span><b> <?php echo $clg; ?></b>
 				<br> &nbsp; &nbsp;	<?php echo $degree.', '.$YearOfGraduation; ?></h2>
 				<br><hr>
-				<div id="editEducationDetails" style="display:none;">
-					<h1 style="text-align: center;font-family: arial">Edit Education & Details</h1><hr>
-					    <form action="<?php base_url() ?>userManagement/Profile/editUserDetails" method="POST">
-						    <div class="form-group">
-						      <label>School/College:</label>
-						      <input type="text" class="form-control" name="clgName" placeholder="Enter School or College Name" value='<?php echo $clg; ?>'>
-						    </div>
-						    <div class="form-group">
-						      <label>Degree:</label>
-						      <input type="text" class="form-control" name="degree" placeholder="like B-Tech,CS" value="<?php echo $degree; ?>">
-						    </div>
-						    <div class="form-group">
-						      <label>Graduation Year (if not Completed then expected year):</label>
-						      <input type="number" class="form-control" name="graduationYear" placeholder="Enter Year" value="<?php echo $YearOfGraduation; ?>">
-						    </div>
-						    <div class="form-group">
-						      <label>About Yourself:</label>
-						      <input type="text" class="form-control" name="aboutAuthor" placeholder="Write Something about yourself. Others will be glad to know." value="<?php echo $about; ?>">
-						    </div>
-						    <button type="submit" name="editDetails" class="login-input login-submit">Change Details</button>
-						</form>
-				</div>
 			</div>
 		</div>	
 		<div class="col-lg-4 col-md-4 col-sm-12">
@@ -240,12 +218,7 @@ foreach ($userDetails as $row) {
 			        <div class="modal-header">
 			          <button type="button" class="close" data-dismiss="modal">&times;</button>
 			          	<h2 style="text-align: center;">Change Picture</h2><hr>
-					    <form method="post" enctype="multipart/form-data" action="<?php base_url() ?>userManagement/Profile/updatePicture">
-					    	<div class="container">
-					    		<div>
-								  <img id="image" class="img-profile" src="<?php echo base_url().'assets/images/UserProfilePictures/'.$authorPic; ?>">
-								</div>
-					    	</div>
+					    <form method="post" enctype="multipart/form-data" action="<?php echo base_url() ?>userManagement/Profile/updatePicture">
 						 	<div class="form-group">
 						      <input type="file" name="profilePicture" id="profilePicture" required>
 						      <small>Picture Should be within 600 KB.</small>
@@ -256,63 +229,7 @@ foreach ($userDetails as $row) {
 		      	</div>
 		    </div>
 		</div>
-		<input type="file" name="image" id="image" onchange="readURL(this);"/>
-<div class="image_container">
-    <img id="blah" src="#" alt="your image" />
-</div>
-<div id="cropped_result"></div>        // Cropped image to display (only if u want)
-<button id="crop_button">Crop</button> // Will trigger crop event
-		<script type="text/javascript" defer>
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function (e) {
-                $('#blah').attr('src', e.target.result)
-            };
-            reader.readAsDataURL(input.files[0]);
-            setTimeout(initCropper, 1000);
-        }
-    }
-    function initCropper(){
-        var image = document.getElementById('blah');
-        var cropper = new Cropper(image, {
-          aspectRatio: 1 / 1,
-          crop: function(e) {
-            console.log(e.detail.x);
-            console.log(e.detail.y);
-          }
-        });
-
-        // On crop button clicked
-        document.getElementById('crop_button').addEventListener('click', function(){
-            var imgurl =  cropper.getCroppedCanvas().toDataURL();
-            var img = document.createElement("img");
-            img.src = imgurl;
-            document.getElementById("cropped_result").appendChild(img);
-
-            /* ---------------- SEND IMAGE TO THE SERVER-------------------------
-
-                cropper.getCroppedCanvas().toBlob(function (blob) {
-                      var formData = new FormData();
-                      formData.append('croppedImage', blob);
-                      // Use `jQuery.ajax` method
-                      $.ajax('/path/to/upload', {
-                        method: "POST",
-                        data: formData,
-                        processData: false,
-                        contentType: false,
-                        success: function () {
-                          console.log('Upload success');
-                        },
-                        error: function () {
-                          console.log('Upload error');
-                        }
-                      });
-                });
-            ----------------------------------------------------*/
-        })
-    }
-</script>
+		
 		<!-- Modal for CSLanguage known-->
 		<div class="modal fade" id="topicsKnown" role="dialog">
 		    <div class="modal-dialog">
@@ -361,17 +278,42 @@ foreach ($userDetails as $row) {
 		      	</div>
 		    </div>
 		</div>
+		<!-- Modal for Edit education & about-->
+		<div class="modal fade" id="editEducationDetails" role="dialog">
+		    <div class="modal-dialog">
+		    
+		      <!-- Modal content-->
+		     	<div class="modal-content">
+			        <div class="modal-header">
+			          <button type="button" class="close" data-dismiss="modal">&times;</button>
+			          	<h3 style="text-align: center;">Edit Education & Details</h3> 
+			        </div>
+			        <div class="modal-body">
+			        	<form action="<?php base_url() ?>userManagement/Profile/editUserDetails" method="POST">
+						    <div class="form-group">
+						      <label>School/College:</label>
+						      <input type="text" class="form-control" name="clgName" placeholder="Enter School or College Name" value='<?php echo $clg; ?>'>
+						    </div>
+						    <div class="form-group">
+						      <label>Degree:</label>
+						      <input type="text" class="form-control" name="degree" placeholder="like B-Tech,CS" value="<?php echo $degree; ?>">
+						    </div>
+						    <div class="form-group">
+						      <label>Graduation Year (if not Completed then expected year):</label>
+						      <input type="number" class="form-control" name="graduationYear" placeholder="Enter Year" value="<?php echo $YearOfGraduation; ?>">
+						    </div>
+						    <div class="form-group">
+						      <label>About Yourself:</label>
+						      <input type="text" class="form-control" name="aboutAuthor" placeholder="Write Something about yourself. Others will be glad to know." value="<?php echo $about; ?>">
+						    </div>
+						    <button type="submit" name="editDetails" class="login-input login-submit">Change Details</button>
+						</form>
+			        </div>
+		      	</div>
+		    </div>
+		</div>
 	</div>
 </section>
-<script>
-$(document).ready(function(){
-  $("#editCollege").click(function(){
-    //$("#div1").fadeToggle();
-    $("#editEducationDetails").fadeToggle("slow");
-    //$("#div3").fadeToggle(3000);
-  });
-});
-</script>
 <script type="text/javascript">
 	function changePassword(){
 	var username = '<?php echo $_SESSION['username']; ?>';

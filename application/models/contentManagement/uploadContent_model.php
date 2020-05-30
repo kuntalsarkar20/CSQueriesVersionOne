@@ -16,5 +16,10 @@ class uploadContent_model extends CI_Model{
 	public function updateQuestionView($contentId){		//for updating the question views
 		$queryResult = $this->db->query('UPDATE contents SET Views = Views+1 WHERE ContentId = "'.$contentId.'"');
 	}
+	public function addRequestedCategory($categoryName,$Desc,$authId){
+		$queryResult = "INSERT INTO requestedcategory(CategoryName,Description,ReqAuthId) VALUES(?,?,?)";
+		$status= $this->db->query($queryResult, [$categoryName,''.$Desc.'',''.$authId.'']);
+		return $status;
+	}
 }
 ?>

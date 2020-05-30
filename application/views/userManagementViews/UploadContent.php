@@ -7,6 +7,18 @@
 			    <strong>Upload Failed</strong> Please check you have properly entered a title and Selected a Topic.
 			  </div>';
 		  }
+		  if(!empty($this->session->flashdata('error'))){
+		    echo '<div class="alert alert-danger alert-dismissible fade in">
+			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    '.$this->session->flashdata("error").'
+			  </div>';
+		  }
+		  if(!empty($this->session->flashdata('success'))){
+		    echo '<div class="alert alert-success alert-dismissible fade in">
+			    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			    '.$this->session->flashdata("success").'
+			  </div>';
+		  }
 		  ?>
 		<div class="row">
 			<form method="post" action="<?php echo base_url();?>contentManagement/uploadContentController/contentUploadUser">

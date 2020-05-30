@@ -136,7 +136,14 @@ class uploadContentController extends CI_Controller {
 			$ReqCategoryName = $_POST['categoryName'];
 			$ReqCategoryDesc = $_POST['categoryDesc'];
 			if(empty($ReqCategoryName)) throw new Exception("<b style='font-weight:bold;color:red;'>ERROR</b>: Category Name can't be empty.");
-			
+			$returnedStatus = $this->uploadContent_model->addRequestedCategory($ReqCategoryName,$ReqCategoryDesc,$_SESSION['AuthId']);
+			if($returnedStatus){
+				$this->session->set_flashdata('success', 'Thank you for your Request. We received the request Successfully.');
+				redirect(base_url().$_SESSION['username'].'/dashboard/');
+			}else{
+				$this->session->set_flashdata('error', 'Some error occured. Try again later.');
+				redirect(base_url().$_SESSION['username'].'/dashboard/');
+			}
 		}
 		catch(exception $e){
 			show_error($e->getMessage());

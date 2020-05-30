@@ -55,9 +55,6 @@ if(!isset($MetaDescription)){
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
     <!-- JS for cookie accept bar and cookie accept function -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/SetCookie.js"></script>
-    <!-- Picture cropper -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.7/cropper.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.7/cropper.css">
     <style type="text/css">
     	#myBtn {
   display: none;
