@@ -31,15 +31,33 @@ h2 {
 .navBar{
 	background-color: #5cb85c;
 }
-#linkcolor{
+/*#linkcolor{
 	color:white;
 	background-color: #5cb85c;
 }
 #linkcolor:hover{
-	color:black;
+  color:black;
 }
 #linkcolor:active{
-	color:green;
+  color:green;
+}*/
+.navBar{
+  background-color: #5cb85c;
+  /*transition:all 1s ease-in-out;*/
+
+}
+.navbar-inverse .navbar-nav>li>a{
+     color: #ffff; 
+     transition:all 1s ease-in-out;
+}
+.navbar-inverse .navbar-nav>li>a:hover {
+    color: black;
+    background-color: transparent;
+}
+.navbar-inverse .navbar-brand {
+     color: #ffff; 
+     /*transition:all 1s ease-in-out;*/
+
 }
 .centered {
   position: absolute;

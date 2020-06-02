@@ -60,11 +60,23 @@ if(!isset($MetaDescription)){
     <!-- JS for cookie accept bar and cookie accept function -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/SetCookie.js"></script>
     <style type="text/css">
-
+  .search-form-wrapper {
+    width: 70%;
+    display: none;
+    position: absolute;
+    left: 15%;
+    right: 0;
+    padding: 20px 15px;
+    margin-top: 50px;
+    background: #5cb85c;
+}
+.search-form-wrapper.open {
+    display: block;
+}
     </style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top navBar">
+	<nav class="navbar navbar-inverse navbar-fixed-top navBar" style="position: absolute;">
 	  <div class="container"> <!--To make the navbar full screen add -fluid here -->
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -87,8 +99,9 @@ if(!isset($MetaDescription)){
 				?>
 	          </ul>
 	        </li>
+          <li class="hidden-xs"><a href="#search" class="search-form-tigger linkcolor"  data-toggle="search-form"> <i class="fa fa-search" aria-hidden="true"></i> Search</a></li>
 	      </ul>
-	      <form class="navbar-form navbar-left" method="post">
+	      <form class="navbar-form navbar-left hidden-md hidden-lg hidden-sm" method="post">
 		      <div class="input-group">
 		        <input type="text" class="form-control" placeholder="Search" name="search" required>
 		        <div class="input-group-btn">
@@ -111,3 +124,17 @@ if(!isset($MetaDescription)){
 	    </div>
 	  </div>
 	</nav>
+  <div class="search-form-wrapper hidden-xs">
+   <form class="search-form" method="post">
+      <div class="input-group">
+         <input type="text" name="search" class="search form-control" placeholder="Search" required>
+         <div class="input-group-btn">
+              <button class="btn btn-default" type="submit" name="searchBtn">
+                <i class="glyphicon glyphicon-search"></i>
+              </button>
+            </div>
+         <span class="input-group-addon search-close" id="basic-addon2"><i class="fa fa-window-close" aria-hidden="true"></i>
+         </span>
+      </div>
+   </form>
+  </div>
