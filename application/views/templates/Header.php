@@ -27,6 +27,7 @@ if(!isset($MetaDescription)){
 <html>
 <head>
 	<title><?= $title ?></title>
+  <link rel="icon" type="image/png" href="<?php echo base_url(); ?>/assets/images/Logo/fav-icon-2.png"/>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   	<meta name="keywords" content="<?php echo $ContentKeyWords; ?>">
@@ -76,7 +77,7 @@ if(!isset($MetaDescription)){
     </style>
 </head>
 <body>
-	<nav class="navbar navbar-inverse navbar-fixed-top navBar" style="position: absolute;">
+	<nav class="navbar navbar-inverse navbar-fixed-top navBar">
 	  <div class="container"> <!--To make the navbar full screen add -fluid here -->
 	    <div class="navbar-header">
 	      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -84,7 +85,7 @@ if(!isset($MetaDescription)){
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>                        
 	      </button>
-	      <a class="navbar-brand" href="<?php echo base_url(); ?>" id="linkcolor">CSQuery</a>
+	      <a class="navbar-brand" href="<?php echo base_url(); ?>" id="linkcolor" style="padding-top:0px;"><img src="<?php echo base_url(); ?>/assets/images/Logo/exp-logo-1.png" alt="logo" style="width:px;height:50px;"></a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">

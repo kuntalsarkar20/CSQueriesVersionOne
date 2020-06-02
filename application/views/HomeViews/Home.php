@@ -2,15 +2,15 @@
 	<img src="<?php echo base_url(); ?>assets/images/background/background.jpg" width="100%" height="600px">
 	<div class="centered"><center><h2 style="font-weight: bold;">Student Portal for Better UnderStanding</h2><br><h4>Contribute here by Writing Answers for your favourite Subjects and Help others to understand the Subject Easily.</h4><br><button type="button" class="btn btn-success btn-lg">Contribute Here</button></center></div> -->
 <div class="parallax" style="padding: 550px 0px 50px 0px;">
-	<div class="centered"><center>
+	<div class="centered" style="text-align: center;">
+		<br><br>
 		<h2 class="ml14">
 		  <span class="text-wrapper">
 		    <span class="letters" style="color:black;">CSQuery: A Student's Portal</span>
 		    <span class="line" style="color:black;"></span>
 		  </span>
 		</h2>
-		<br>
-		<h4 class="ml16" style="color:;">MADE WITH LOVE.</h4><br><!-- <button type="button" class="btn btn-success btn-lg">Contribute Here</button> --></center></div>
+		<h4 class="ml16" style="color:;">By Students</h4><!-- <button type="button" class="btn btn-success btn-lg">Contribute Here</button> --></div>
 </div>
 
 <section style="padding: 50px 0px;">

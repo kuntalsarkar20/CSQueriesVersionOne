@@ -56,8 +56,12 @@ h2 {
 }
 .navbar-inverse .navbar-brand {
      color: #ffff; 
-     /*transition:all 1s ease-in-out;*/
 
+}
+@media (max-width: 767px){
+.navbar-inverse .navbar-nav .open .dropdown-menu>li>a {
+    color: black;
+}
 }
 .centered {
   position: absolute;
@@ -437,10 +441,16 @@ h2 {
   }
 }
 .ml14 {
-  font-weight: 200;
-  font-size: 3.2em;
+  /*font-weight: 100;*/
+  font-size: 5vmax;
+  font-size: 5vmin;
 }
-
+@media (max-width: 767px){
+.ml14 {
+  /*font-weight: 100;*/
+  font-size: 5vmax;
+}
+}
 .ml14 .text-wrapper {
   position: relative;
   display: inline-block;
