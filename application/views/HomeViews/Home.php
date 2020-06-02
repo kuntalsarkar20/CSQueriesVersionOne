@@ -5,21 +5,21 @@
 	<div class="centered"><center>
 		<h2 class="ml14">
 		  <span class="text-wrapper">
-		    <span class="letters">CSQueries: A Student's Portal</span>
-		    <span class="line"></span>
+		    <span class="letters" style="color:black;">CSQuery: A Student's Portal</span>
+		    <span class="line" style="color:black;"></span>
 		  </span>
 		</h2>
 		<br>
-		<h4 class="ml16" style="color:white;">MADE WITH LOVE.</h4><br><!-- <button type="button" class="btn btn-success btn-lg">Contribute Here</button> --></center></div>
+		<h4 class="ml16" style="color:;">MADE WITH LOVE.</h4><br><!-- <button type="button" class="btn btn-success btn-lg">Contribute Here</button> --></center></div>
 </div>
 
 <section style="padding: 50px 0px;">
 	<div class="container">
-		<center><h2 style="font-weight: bold;"><span style="border-bottom:4px solid black;">CSQueries</span></h2></center>
+		<center><h2 style="font-weight: bold;"><span style="border-bottom:4px solid black;">CSQuery</span></h2></center>
 		<div class="row">
 			<div class="col-lg-2 col-md-2 col-sm-12">&nbsp;</div>
 			<div class="col-lg-8 col-md-8 col-sm-12" style="font-size:15px;">
-				<center>CSQueries is a Open Platform for Students to slove their Computer Science Doubts. CSQueries provides an easy and pointWise solution for the tough Questions. This platform contains a huge number of CS questions for the important Subjects like DataBase Management System, Data Structure & Algorithm, Operating System and many more computer Programming Languages.</center><br><br>
+				<center>CSQuery is a Open Platform for Students to slove their Computer Science Doubts. CSQuery provides an easy and pointWise solution for the tough Questions. This platform contains a huge number of CS questions for the important Subjects like DataBase Management System, Data Structure & Algorithm, Operating System and many more computer Programming Languages.</center><br><br>
 			</div>
 			<div class="col-lg-2 col-md-2 col-sm-12">&nbsp;</div>
 		</div>

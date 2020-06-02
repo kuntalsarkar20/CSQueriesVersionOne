@@ -31,7 +31,7 @@ if(isset($_SESSION['username']) && isset($_SESSION['AuthId'])){
 			<br>
 			<br>
 		<ul class="breadcrumb" style="/*background-color: transparent;*/">
-			  <li><a href="<?php echo base_url(); ?>">CSQueries</a></li>
+			  <li><a href="<?php echo base_url(); ?>">CSQuery</a></li>
 			  <li ><a href="<?php echo base_url().'Category/'.$this->uri->segment(2); ?>"><?php echo $this->uri->segment(2); ?></a></li>
 			  <li class="active"></li>
 		</ul>

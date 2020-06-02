@@ -27,7 +27,7 @@
 			    <div class="form-group">
 			      <div class="col-sm-12">
 			        <select class="form-control" id="topic" name="category" onchange="getTopicQuestions()" required>
-				        <option selected="true" value='' disabled="disabled">Select Topic</option>
+				        <!-- <option selected="true" value='' disabled="disabled">Select Topic</option> -->
 				        <?php 
 					        foreach ($category as $row) {
 								echo '<option value="'.$row['CategoryId'].'" id="topicName'.$row['CategoryId'].'">'.$row['Category'].'</option>';
@@ -65,7 +65,7 @@
 			  	<label for="psw">Tags/Keywords for your Content(You can add Multiple tags):</label>
 			    <div class="form-group">
 			      <div class="col-sm-12">
-			        <input type="text" value="CSQueries" data-role="tagsinput" name="contentTags">
+			        <input type="text" value="CSQuery" data-role="tagsinput" name="contentTags">
 			      </div>
 			  	</div>
 			</div>
@@ -120,6 +120,9 @@
     </div>
   </div>
 <script type="text/javascript">
+	window.onload = function() {
+	  getTopicQuestions();
+	};
 	CKEDITOR.replace('contentAns',{
 		height:300,
 		filebrowserUploadUrl:"<?php echo base_url();?>contentManagement/uploadContentController/uploadContentImages",

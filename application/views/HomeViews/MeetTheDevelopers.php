@@ -24,7 +24,7 @@
 					</div>
 					<h3 data-aos="fade-down" data-aos-duration="1500" style="font-weight: bold;">Kuntal Sarkar</h3>
 			        <p>Founder & Developer</p>
-			        <p>example@example.com</p>
+			        <p><a href="<?php echo base_url(); ?>welcome/viewTemplate">View Template</a></p>
 		        
 		        	<a href=""><i class="fa fa-facebook-square" style="font-size:24px;padding: 0px 10px;color:black;"></i></a>
 		        	<a href=""><i class="fa fa-twitter" style="font-size:24px;padding: 0px 10px;color:black;"></i></a>

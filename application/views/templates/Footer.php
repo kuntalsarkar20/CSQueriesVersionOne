@@ -31,6 +31,7 @@
 			</div>
 			</div>
 			</div>
+			<a href="javascript:" id="return-to-top"><i class="icon-chevron-up"></i></a>
 		</footer>
 		<div id="cookieConsent">
 			<div id="closeCookieConsent">x</div>
@@ -39,30 +40,24 @@
 <script>
   AOS.init();
 </script>
-<script>
-//Get the button
-var mybutton = document.getElementById("myBtn");
-
-// When the user scrolls down 20px from the top of the document, show the button
-window.onscroll = function() {scrollFunction()};
-
-function scrollFunction() {
-  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-    mybutton.style.display = "block";
-  } else {
-    mybutton.style.display = "none";
-  }
-}
-
-// When the user clicks on the button, scroll to the top of the document
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
-}
-</script>
 <!--Tags input plugin Scripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>	
 <!-- End tags input -->
+<script type="text/javascript">
+      // ===== Scroll to Top ==== 
+	$(window).scroll(function() {
+	if ($(this).scrollTop() >= 50) {        // If page is scrolled more than 50px
+	    $('#return-to-top').fadeIn(200);    // Fade in the arrow
+	} else {
+	    $('#return-to-top').fadeOut(200);   // Else fade out the arrow
+	}
+	});
+	$('#return-to-top').click(function() {      // When arrow is clicked
+	$('body,html').animate({
+	    scrollTop : 0                       // Scroll to top of body
+	}, 500);
+	});
+</script>
 </body>
 </html>

@@ -4,9 +4,9 @@
 			<div class="col-lg-2 col-md-2 col-sm-12">&nbsp;</div>
 			<div class="col-lg-8 col-md-8 col-sm-12 card" style="border:px solid black;max-width:100%;border-radius: 0px;text-align: left;padding:10px;">
 				<h1 style="text-align: center;">Privacy Policy</h1><hr>
-				<h3>ABOUT CSQUERIES</h3><br>
-				<p>CSQueries is a Open Platform for Students to slove their Computer Science Doubts. CSQueries provides an easy and pointWise solution for the tough Questions. This platform contains a huge number of CS questions for the important Subjects like DataBase Management System, Data Structure & Algorithm, Operating System and many more computer Programming Languages.<br><br>
-				CSQueries welcomes you to the open community of computer science in the world, and invites you to participate in the community by sharing knowledge with your peers, colleagues and classmates.
+				<h3>ABOUT CSQuery</h3><br>
+				<p>CSQuery is a Open Platform for Students to slove their Computer Science Doubts. CSQuery provides an easy and pointWise solution for the tough Questions. This platform contains a huge number of CS questions for the important Subjects like DataBase Management System, Data Structure & Algorithm, Operating System and many more computer Programming Languages.<br><br>
+				CSQuery welcomes you to the open community of computer science in the world, and invites you to participate in the community by sharing knowledge with your peers, colleagues and classmates.
 				</p><br>
 				<h4>HOW WE COLLECT INFORMATION FROM YOU</h4><br>
 				<h4>Information that you give to us</h4>

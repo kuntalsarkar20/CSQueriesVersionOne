@@ -49,89 +49,21 @@ if(!isset($MetaDescription)){
     <script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
     <!--Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap" rel="stylesheet">
+
+
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@600&display=swap" rel="stylesheet">
     <!-- JS for cookie accept bar and cookie accept function -->
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/js/SetCookie.js"></script>
     <style type="text/css">
-    	#myBtn {
-  display: none;
-  position: fixed;
-  bottom: 20px;
-  right: 30px;
-  z-index: 99;
-  font-size: 18px;
-  border: none;
-  outline: none;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-  padding: 15px;
-  border-radius: 4px;
-}
 
-#myBtn:hover {
-  background-color: #555;
-}
-/* Ensure the size of the image fit the container perfectly */
-.img-profile {
-  display: block;
-
-  /* This rule is very important, please don't ignore this */
-  max-width: 100%;
-}
-/*#scroll {
-    position:fixed;
-    right:10px;
-    bottom:10px;
-    cursor:pointer;
-    width:50px;
-    height:50px;
-    background-color:#3498db;
-    text-indent:-9999px;
-    display:none;
-    -webkit-border-radius:60px;
-    -moz-border-radius:60px;
-    border-radius:60px
-}
-#scroll span {
-    position:absolute;
-    top:50%;
-    left:50%;
-    margin-left:-8px;
-    margin-top:-12px;
-    height:0;
-    width:0;
-    border:8px solid transparent;
-    border-bottom-color:#ffffff;
-}
-#scroll:hover {
-    background-color:#e74c3c;
-    opacity:1;filter:"alpha(opacity=100)";
-    -ms-filter:"alpha(opacity=100)";
-}*/
     </style>
-    <script type="text/javascript">
-    	$(document).ready(function(){ 
-    $(window).scroll(function(){ 
-        if ($(this).scrollTop() > 100) { 
-            $('#scroll').fadeIn(); 
-        } else { 
-            $('#scroll').fadeOut(); 
-        } 
-    }); 
-    $('#scroll').click(function(){ 
-        $("html, body").animate({ scrollTop: 0 }, 600); 
-        return false; 
-    }); 
-});
-    </script>
 </head>
 <body>
-	<!-- <a href="#" id="scroll" style="display: none;"><span></span></a> -->
-	<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
 	<nav class="navbar navbar-inverse navbar-fixed-top navBar">
 	  <div class="container"> <!--To make the navbar full screen add -fluid here -->
 	    <div class="navbar-header">
@@ -140,7 +72,7 @@ if(!isset($MetaDescription)){
 	        <span class="icon-bar"></span>
 	        <span class="icon-bar"></span>                        
 	      </button>
-	      <a class="navbar-brand" href="<?php echo base_url(); ?>" id="linkcolor">CSQueries</a>
+	      <a class="navbar-brand" href="<?php echo base_url(); ?>" id="linkcolor">CSQuery</a>
 	    </div>
 	    <div class="collapse navbar-collapse" id="myNavbar">
 	      <ul class="nav navbar-nav">
