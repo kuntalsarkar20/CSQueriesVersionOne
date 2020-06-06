@@ -77,4 +77,11 @@ class Welcome extends CI_Controller {
 		$this->load->view('HomeViews/Error_page');
 		$this->load->view('templates/Footer');
 	}
+	public function testFunc(){		//just for testing purposes
+		$data['category']=$this->fetchContent_model->categories();
+		$data['title']="ERROR 404 | CSQueries";
+		$this->load->view('templates/Header',$data);
+		$this->load->view('HomeViews/Error_page');  //replace just the name of page iwth this one without .php 														extension
+		$this->load->view('templates/Footer');
+	}
 }

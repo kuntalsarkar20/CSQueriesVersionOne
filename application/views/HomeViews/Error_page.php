@@ -6,7 +6,9 @@
     <h4 style="font-size: 27px;padding: 0px 0px 0px 15px;">Oops! Page Not Found</h4>
     <h3 class="error-page-h3">404</h3>
     <p style="padding: 0px 0px 0px 10px;">We can't find the page you are looking for</p>
-    <a href="#" class="error-page-a">Go Back Home</a>
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: center;">
+    <a href="<?php echo base_url();?>" class="error-page-a">Go Back Home</a>
+  </div>
   </div>
 </div>
 </div>
