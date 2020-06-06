@@ -894,9 +894,27 @@ that they form a hexagon */
 .error-page-h3{
   font-size: 140px;
   margin:0;
-  font-weight: 900;
+  font-weight:bold;
   letter-spacing: 20px;
-  background:url('http://localhost/CSQuestion/assets/images/background/errorpagepic.jpg') center no-repeat;
+  background:url('http://localhost/CSQuestion/assets/images/background/errorpic2.jpg') center no-repeat;
   -webkit-text-fill-color:transparent;
   -webkit-background-clip:text;
+  text-shadow: 1px 19px 15px 9px rgba(0,0,0,.2);
+}
+.error-page-a{
+text-decoration: none;
+background:#e55039aa;
+color: #fff;
+padding: 12px 24px;
+display: inline-block;
+border-radius: 25px;
+font-size: 14px;
+text-transform: uppercase;
+transition: 0.4s;
+text-align: center;
+}
+.error-page-a:hover{
+  background:#e55039;
+  text-decoration: none;
+  color: black;
 }
